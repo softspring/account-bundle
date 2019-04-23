@@ -4,6 +4,7 @@
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
+        "softspring/account": "*",
         "softspring/user-bundle": "*",
         "symfony/config": "^4.2",
         "symfony/console": "^4.2",
