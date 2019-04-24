@@ -3,13 +3,12 @@
 namespace Softspring\AccountBundle\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Softspring\Account\Model\AccountInterface;
+use Softspring\AccountBundle\Doctrine\Filter\AccountFilter;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class AccountRequestListener implements EventSubscriberInterface
+class AccountDoctrineFilterListener implements EventSubscriberInterface
 {
     /**
      * @var EntityManagerInterface
@@ -36,33 +35,19 @@ class AccountRequestListener implements EventSubscriberInterface
     {
         return [
             KernelEvents::REQUEST => [
-                ['onRequestGetAccount', 30], // router listener has 32
+                ['onRequestEnableDoctrineAccountFilter', -200],
             ],
         ];
     }
 
-    /**
-     * @param GetResponseEvent $event
-     * @throws NotFoundHttpException
-     */
-    public function onRequestGetAccount(GetResponseEvent $event)
+    public function onRequestEnableDoctrineAccountFilter(GetResponseEvent $event)
     {
         $request = $event->getRequest();
 
         if ($request->attributes->has($this->accountRouteParamName)) {
-            $account = $request->attributes->get($this->accountRouteParamName);
-
-            if (!$account) {
-                throw new NotFoundHttpException('Empty _account');
-            }
-
-            $account = $this->em->getRepository(AccountInterface::class)->findOneById($account);
-
-            if (!$account) {
-                throw new NotFoundHttpException('Account not found');
-            }
-
-            $request->attributes->set($this->accountRouteParamName, $account);
+            $this->em->getConfiguration()->addFilter('account', AccountFilter::class);
+            $filter = $this->em->getFilters()->enable('account');
+            $filter->setParameter('_account', $request->attributes->get($this->accountRouteParamName));
         }
     }
 }

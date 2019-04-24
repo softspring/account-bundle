@@ -3,6 +3,8 @@ services:
         autowire: true
         autoconfigure: true
         public: false
+        bind:
+            $accountRouteParamName: '%sfs_account.account.route_param_name%'
 
     Softspring\Account\Manager\AccountManagerInterface:
         class: Softspring\AccountBundle\Manager\AccountManager
@@ -10,3 +12,6 @@ services:
     Softspring\AccountBundle\Controller\:
         resource: '../../Controller/*'
         public: true
+
+    Softspring\AccountBundle\EventListener\AccountRequestListener:
+        tags: ['kernel.event_subscriber']

@@ -29,6 +29,10 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
         // load services
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
+
+        if ($config['filter']['enabled']) {
+            $loader->load('services/doctrine_filter.yaml');
+        }
     }
 
     public function prepend(ContainerBuilder $container)
