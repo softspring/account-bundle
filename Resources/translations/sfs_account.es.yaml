@@ -3,3 +3,21 @@ admin_accounts:
         fields:
             id.header: "Slug"
             name.header: "Nombre"
+        actions:
+            details:
+                link: "detalles"
+
+    details:
+        fields:
+            slug: "Slug"
+            name: "Nombre"
+            owner: "Propietario"
+        actions:
+            edit: "Editar"
+            delete: "Eliminar"
+
+
+    update:
+        actions:
+            update.button: "Guardar"
+            cancel: "Cancelar"

@@ -69,4 +69,12 @@ class AccountManager implements AccountManagerInterface
         $this->em->persist($user);
         $this->em->flush();
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function findAccountBy(array $criteria): ?AccountInterface
+    {
+        return $this->getRepository()->findOneBy($criteria);
+    }
 }

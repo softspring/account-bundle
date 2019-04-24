@@ -1,3 +1,11 @@
 sfs_account_admin_accounts_list:
     controller: Softspring\AccountBundle\Controller\Admin\AccountsController::list
     path: /
+
+sfs_account_admin_accounts_details:
+    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::details
+    path: /{account}/details
+
+sfs_account_admin_accounts_update:
+    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::update
+    path: /{account}/update

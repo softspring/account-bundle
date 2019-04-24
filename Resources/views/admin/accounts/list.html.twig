@@ -16,6 +16,9 @@
             <tr>
                 <td>{{ account.id }}</td>
                 <td>{{ account.name }}</td>
+                <td>
+                    <a href="{{ url('sfs_account_admin_accounts_details', {'account': account}) }}">{{ 'admin_accounts.list.actions.details.link'|trans }}</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

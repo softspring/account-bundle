@@ -1,0 +1,37 @@
+{% trans_default_domain 'sfs_account' %}
+{% extends '@SfsAccount/admin_layout.html.twig' %}
+
+{% block content %}
+    <h2>{{ account.name }}</h2>
+
+    <div class="text-right">
+        <a href="{{ url('sfs_account_admin_accounts_update', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.details.actions.edit'|trans }}</a>
+        <a href="#" class="btn btn-outline-secondary disabled">{{ 'admin_accounts.details.actions.delete'|trans }}</a>
+    </div>
+
+    <p><strong>{{ 'admin_accounts.details.fields.slug'|trans }}:</strong> {{ account.id }}</p>
+    <p><strong>{{ 'admin_accounts.details.fields.name'|trans }}:</strong> {{ account.name }}</p>
+    <p><strong>{{ 'admin_accounts.details.fields.owner'|trans }}:</strong> {{ account.owner.username }}</p>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Users</h4>
+                </div>
+                <div class="card-body">
+                    {% if multi_accounted_account %}
+                        <ul>
+                        {% for relation in account.relations %}
+                            <li>
+                                {{ relation.user.username }}
+                                (granted by {{ relation.grantedBy.username }})
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

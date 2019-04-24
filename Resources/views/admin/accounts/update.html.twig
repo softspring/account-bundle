@@ -1,0 +1,17 @@
+{% trans_default_domain 'sfs_account' %}
+{% extends '@SfsAccount/admin_layout.html.twig' %}
+
+{% block content %}
+    <h2>{{ account.name }}</h2>
+
+    <div class="text-right">
+        <a href="{{ url('sfs_account_admin_accounts_details', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.update.actions.cancel'|trans }}</a>
+    </div>
+
+    {{ form_start(update_form) }}
+    {{ form_rest(update_form) }}
+    <input type="submit" value="{{ 'admin_accounts.update.actions.update.button'|trans }}" class="btn btn-primary btn-block" />
+    {{ form_end(update_form) }}
+
+
+{% endblock content %}
