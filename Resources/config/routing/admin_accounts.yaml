@@ -1,0 +1,3 @@
+sfs_account_admin_accounts_list:
+    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::list
+    path: /

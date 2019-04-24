@@ -1,0 +1,23 @@
+{% trans_default_domain 'sfs_account' %}
+{% extends '@SfsUser/admin_layout.html.twig' %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">{{ 'admin_accounts.list.fields.id.header'|trans }}</th>
+            <th scope="col">{{ 'admin_accounts.list.fields.name.header'|trans }}</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td>{{ account.id }}</td>
+                <td>{{ account.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

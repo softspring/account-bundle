@@ -1,0 +1,5 @@
+admin_accounts:
+    list:
+        fields:
+            id.header: "Slug"
+            name.header: "Nombre"
