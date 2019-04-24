@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Softspring\Account\Model\AccountInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -51,7 +51,7 @@ class AccountRequestListener implements EventSubscriberInterface
 
     /**
      * @param GetResponseEvent $event
-     * @throws NotFoundHttpException
+     * @throws UnauthorizedHttpException
      */
     public function onRequestGetAccount(GetResponseEvent $event)
     {
@@ -61,13 +61,15 @@ class AccountRequestListener implements EventSubscriberInterface
             $account = $request->attributes->get($this->accountRouteParamName);
 
             if (!$account) {
-                throw new NotFoundHttpException('Empty _account');
+                // hide not found with an unauthorized response
+                throw new UnauthorizedHttpException('', 'Empty _account');
             }
 
             $account = $this->em->getRepository(AccountInterface::class)->findOneById($account);
 
             if (!$account) {
-                throw new NotFoundHttpException('Account not found');
+                // hide not found with an unauthorized response
+                throw new UnauthorizedHttpException('', 'Account not found');
             }
 
             $request->attributes->set($this->accountRouteParamName, $account);
