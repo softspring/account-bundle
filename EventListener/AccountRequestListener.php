@@ -8,6 +8,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\Routing\RouterInterface;
 
 class AccountRequestListener implements EventSubscriberInterface
 {
@@ -22,14 +23,21 @@ class AccountRequestListener implements EventSubscriberInterface
     protected $accountRouteParamName;
 
     /**
+     * @var RouterInterface
+     */
+    protected $router;
+
+    /**
      * AccountRequestListener constructor.
      * @param EntityManagerInterface $em
      * @param string $accountRouteParamName
+     * @param RouterInterface $router
      */
-    public function __construct(EntityManagerInterface $em, string $accountRouteParamName)
+    public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router)
     {
         $this->em = $em;
         $this->accountRouteParamName = $accountRouteParamName;
+        $this->router = $router;
     }
 
     public static function getSubscribedEvents()
@@ -63,6 +71,9 @@ class AccountRequestListener implements EventSubscriberInterface
             }
 
             $request->attributes->set($this->accountRouteParamName, $account);
+
+            $context = $this->router->getContext();
+            $context->setParameter('_account', $account);
         }
     }
 }
