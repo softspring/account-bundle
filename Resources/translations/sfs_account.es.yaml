@@ -21,3 +21,11 @@ admin_accounts:
         actions:
             update.button: "Guardar"
             cancel: "Cancelar"
+
+
+register:
+    form:
+        id.label: "Slug"
+        name.label: "Nombre"
+    actions:
+        register.button: "Crear cuenta"

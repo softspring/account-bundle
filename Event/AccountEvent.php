@@ -1,0 +1,48 @@
+<?php
+
+namespace Softspring\AccountBundle\Event;
+
+use Softspring\Account\Model\AccountInterface;
+use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\HttpFoundation\Request;
+
+class AccountEvent extends Event
+{
+    /**
+     * @var AccountInterface
+     */
+    protected $account;
+
+    /**
+     * @var Request|null
+     */
+    protected $request;
+
+    /**
+     * AccountEvent constructor.
+     *
+     * @param AccountInterface $account
+     * @param Request|null  $request
+     */
+    public function __construct(AccountInterface $account, ?Request $request)
+    {
+        $this->account = $account;
+        $this->request = $request;
+    }
+
+    /**
+     * @return AccountInterface
+     */
+    public function getAccount(): AccountInterface
+    {
+        return $this->account;
+    }
+
+    /**
+     * @return Request|null
+     */
+    public function getRequest(): ?Request
+    {
+        return $this->request;
+    }
+}

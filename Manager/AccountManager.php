@@ -60,13 +60,13 @@ class AccountManager implements AccountManagerInterface
     }
 
     /**
-     * @param AccountInterface $user
+     * @param AccountInterface $account
      *
      * @throws \Exception
      */
-    public function save(AccountInterface $user): void
+    public function save(AccountInterface $account): void
     {
-        $this->em->persist($user);
+        $this->em->persist($account);
         $this->em->flush();
     }
 

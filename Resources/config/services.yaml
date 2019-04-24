@@ -6,6 +6,9 @@ services:
         bind:
             $accountRouteParamName: '%sfs_account.account.route_param_name%'
 
+    Softspring\AccountBundle\Form\:
+        resource: '../../Form/*'
+
     Softspring\Account\Manager\AccountManagerInterface:
         class: Softspring\AccountBundle\Manager\AccountManager
 

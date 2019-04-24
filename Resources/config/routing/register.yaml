@@ -1,0 +1,7 @@
+sfs_account_register:
+    path: /
+    controller: Softspring\AccountBundle\Controller\RegisterController::register
+
+sfs_account_register_success:
+    path: /welcome
+    controller: Softspring\AccountBundle\Controller\RegisterController::success
