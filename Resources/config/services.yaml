@@ -22,4 +22,7 @@ services:
     Softspring\AccountBundle\EventListener\AccountAccessPermissionListener:
         tags: ['kernel.event_subscriber']
 
+    Softspring\AccountBundle\EventListener\UserRegisterListener:
+        tags: ['kernel.event_subscriber']
+
     Softspring\AccountBundle\Security\Authorization\Voter\AccountAccessVoter: ~

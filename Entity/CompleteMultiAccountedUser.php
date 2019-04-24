@@ -2,6 +2,7 @@
 
 namespace Softspring\AccountBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Softspring\Account\Model\UserMultiAccountedInterface;
 use Softspring\User\Model\ConfirmableInterface;
 use Softspring\User\Model\NameSurnameInterface;
@@ -17,4 +18,13 @@ abstract class CompleteMultiAccountedUser extends UserModel implements NameSurna
     use ConfirmableTrait;
     use PasswordRequestTrait;
     use UserMultiAccountedTrait;
+
+    /**
+     * CompleteMultiAccountedUser constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->accountRelations = new ArrayCollection();
+    }
 }
