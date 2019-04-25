@@ -5,6 +5,7 @@ services:
         public: false
         bind:
             $accountRouteParamName: '%sfs_account.account.route_param_name%'
+            $twigAppVariable: '@twig.app_variable'
 
     Softspring\AccountBundle\Form\:
         resource: '../../Form/*'

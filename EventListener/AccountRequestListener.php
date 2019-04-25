@@ -4,6 +4,7 @@ namespace Softspring\AccountBundle\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Softspring\Account\Model\AccountInterface;
+use Softspring\AccountBundle\Twig\AppVariable;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -28,16 +29,23 @@ class AccountRequestListener implements EventSubscriberInterface
     protected $router;
 
     /**
+     * @var AppVariable
+     */
+    protected $twigAppVariable;
+
+    /**
      * AccountRequestListener constructor.
      * @param EntityManagerInterface $em
      * @param string $accountRouteParamName
      * @param RouterInterface $router
+     * @param AppVariable $twigAppVariable
      */
-    public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router)
+    public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router, AppVariable $twigAppVariable)
     {
         $this->em = $em;
         $this->accountRouteParamName = $accountRouteParamName;
         $this->router = $router;
+        $this->twigAppVariable = $twigAppVariable;
     }
 
     public static function getSubscribedEvents()
@@ -76,6 +84,8 @@ class AccountRequestListener implements EventSubscriberInterface
 
             $context = $this->router->getContext();
             $context->setParameter('_account', $account);
+
+            $this->twigAppVariable->setAccount($account);
         }
     }
 }
