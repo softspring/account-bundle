@@ -29,3 +29,9 @@ register:
         name.label: "Nombre"
     actions:
         register.button: "Crear cuenta"
+
+settings:
+    form:
+        name.label: "Nombre"
+    actions:
+        submit.button: "Guardar cambios"

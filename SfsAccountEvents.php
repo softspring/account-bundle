@@ -32,15 +32,15 @@ class SfsAccountEvents
     /**
      * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent")
      */
-    const PREFERENCES_UPDATED = 'sfs_account.preferences.updated';
+    const SETTINGS_UPDATED = 'sfs_account.settings.updated';
 
     /**
      * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")
      */
-    const PREFERENCES_FORM_VALID = 'sfs_account.preferences.form_valid';
+    const SETTINGS_FORM_VALID = 'sfs_account.settings.form_valid';
 
     /**
      * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")
      */
-    const PREFERENCES_FORM_INVALID = 'sfs_account.preferences.form_invalid';
+    const SETTINGS_FORM_INVALID = 'sfs_account.settings.form_invalid';
 }

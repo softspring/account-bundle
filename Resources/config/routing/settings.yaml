@@ -1,0 +1,3 @@
+sfs_account_settings:
+    path: /
+    controller: Softspring\AccountBundle\Controller\SettingsController::settings

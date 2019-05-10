@@ -1,0 +1,9 @@
+{% trans_default_domain 'sfs_account' %}
+{% extends '@SfsAccount/app_layout.html.twig' %}
+
+{% block content %}
+    {{ form_start(settings_form) }}
+        {{ form_rest(settings_form) }}
+        <input type="submit" value="{{ 'settings.actions.submit.button'|trans }}" class="btn btn-primary btn-block" />
+    {{ form_end(settings_form) }}
+{% endblock content %}
