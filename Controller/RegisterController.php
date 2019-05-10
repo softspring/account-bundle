@@ -2,23 +2,20 @@
 
 namespace Softspring\AccountBundle\Controller;
 
-use Softspring\Account\Model\MultiAccountedAccountInterface;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Form\RegisterFormInterface;
 use Softspring\Account\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
+use Softspring\ExtraBundle\Controller\AbstractController;
 use Softspring\User\Model\OwnerInterface;
 use Softspring\User\Model\UserInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegisterController extends AbstractController
 {
-    use Traits\DispatchTrait;
-
     /**
      * @var AccountManagerInterface
      */

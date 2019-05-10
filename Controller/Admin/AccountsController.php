@@ -5,16 +5,13 @@ namespace Softspring\AccountBundle\Controller\Admin;
 use Softspring\Account\Manager\AccountManagerInterface;
 use Softspring\Account\Model\MultiAccountedAccountInterface;
 use Softspring\AccountBundle\Form\Admin\AccountForm;
-use Softspring\UserBundle\Controller\Traits\DispatchTrait;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Softspring\ExtraBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AccountsController extends AbstractController
 {
-    use DispatchTrait;
-
     /**
      * @var AccountManagerInterface
      */
