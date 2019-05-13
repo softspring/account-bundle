@@ -11,7 +11,7 @@ trait AccountMultiAccountedTrait
 {
     /**
      * @var AccountUserRelationInterface[]|Collection
-     * @ORM\OneToMany(targetEntity="Softspring\Account\Model\AccountUserRelationInterface", mappedBy="account")
+     * @ORM\OneToMany(targetEntity="Softspring\Account\Model\AccountUserRelationInterface", mappedBy="account", cascade={"persist"})
      */
     protected $userRelations;
 
