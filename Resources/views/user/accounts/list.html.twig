@@ -1,0 +1,20 @@
+{% trans_default_domain 'sfs_account' %}
+{% extends '@SfsUser/preferences_layout.html.twig' %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Account</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for relation in app.user.relations %}
+            <tr>
+                <td>{{ relation.account.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
