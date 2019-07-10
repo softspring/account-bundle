@@ -1,0 +1,37 @@
+admin_accounts:
+    list:
+        fields:
+            id.header: "Slug"
+            name.header: "Name"
+        actions:
+            details:
+                link: "details"
+
+    details:
+        fields:
+            slug: "Slug"
+            name: "Name"
+            owner: "Owner"
+        actions:
+            edit: "Edit"
+            delete: "Delete"
+
+
+    update:
+        actions:
+            update.button: "Save"
+            cancel: "Cancel"
+
+
+register:
+    form:
+        id.label: "Slug"
+        name.label: "Name"
+    actions:
+        register.button: "Create account"
+
+settings:
+    form:
+        name.label: "Name"
+    actions:
+        submit.button: "Save changes"
