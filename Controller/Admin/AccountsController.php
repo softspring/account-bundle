@@ -4,7 +4,9 @@ namespace Softspring\AccountBundle\Controller\Admin;
 
 use Softspring\Account\Manager\AccountManagerInterface;
 use Softspring\Account\Model\MultiAccountedAccountInterface;
+use Softspring\AccountBundle\Event\ViewEvent;
 use Softspring\AccountBundle\Form\Admin\AccountForm;
+use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\ExtraBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,10 +62,14 @@ class AccountsController extends AbstractController
     {
         $account = $this->accountManager->findAccountBy(['id' => $account]);
 
-        return $this->render('@SfsAccount/admin/accounts/details.html.twig', [
+        $viewData = new \ArrayObject([
             'account' => $account,
             'multi_accounted_account' => $account instanceof MultiAccountedAccountInterface,
         ]);
+
+        $this->eventDispatcher->dispatch(new ViewEvent($viewData), SfsAccountEvents::ADMIN_ACCOUNTS_DETAILS_VIEW);
+
+        return $this->render('@SfsAccount/admin/accounts/details.html.twig', $viewData->getArrayCopy());
     }
 
     /**

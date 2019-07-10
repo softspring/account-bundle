@@ -43,4 +43,9 @@ class SfsAccountEvents
      * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")
      */
     const SETTINGS_FORM_INVALID = 'sfs_account.settings.form_invalid';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     */
+    const ADMIN_ACCOUNTS_DETAILS_VIEW = 'sfs_account.admin.accounts.details_view';
 }
