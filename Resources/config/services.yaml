@@ -6,6 +6,7 @@ services:
         bind:
             $accountRouteParamName: '%sfs_account.account.route_param_name%'
             $twigAppVariable: '@twig.app_variable'
+            $em: '@sfs_account.entity_manager'
 
     Softspring\AccountBundle\Form\:
         resource: '../../Form/*'

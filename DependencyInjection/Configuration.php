@@ -18,6 +18,10 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('App\Entity\Account')
                 ->end()
 
+                ->scalarNode('entity_manager')
+                    ->defaultValue('default')
+                ->end()
+
                 ->scalarNode('route_param_name')->defaultValue('_account')->end()
 
                 ->scalarNode('relation_class')

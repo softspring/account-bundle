@@ -22,6 +22,7 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
         $config = $processor->processConfiguration($configuration, $configs);
 
         // set config parameters
+        $container->setParameter('sfs_account.entity_manager_name', $config['entity_manager']);
         $container->setParameter('sfs_account.account.class', $config['class']);
         $container->setParameter('sfs_account.account.route_param_name', $config['route_param_name']);
         $container->setParameter('sfs_account.relation.class', $config['relation_class']);
