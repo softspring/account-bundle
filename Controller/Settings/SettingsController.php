@@ -1,6 +1,6 @@
 <?php
 
-namespace Softspring\AccountBundle\Controller;
+namespace Softspring\AccountBundle\Controller\Settings;
 
 use Softspring\Account\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\Controller\Traits\GetAccountTrait;
@@ -69,7 +69,7 @@ class SettingsController extends AbstractController
             }
         }
 
-        return $this->render('@SfsAccount/settings/settings.html.twig', [
+        return $this->render('@SfsAccount/settings/settings/settings.html.twig', [
             'settings_form' => $form->createView(),
         ]);
     }
