@@ -9,7 +9,6 @@ use Softspring\UserBundle\Entity\OwnerTrait;
 
 abstract class CompleteMultiAccountedAccount extends AccountModel implements MultiAccountedAccountInterface
 {
-    use SlugIdTrait;
     use OwnerTrait;
     use AccountMultiAccountedTrait;
 
