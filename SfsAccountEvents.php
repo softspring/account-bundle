@@ -47,5 +47,10 @@ class SfsAccountEvents
     /**
      * @Event("Softspring\AccountBundle\Event\ViewEvent")
      */
+    const ADMIN_ACCOUNTS_LIST_VIEW = 'sfs_account.admin.accounts.list_view';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     */
     const ADMIN_ACCOUNTS_DETAILS_VIEW = 'sfs_account.admin.accounts.details_view';
 }

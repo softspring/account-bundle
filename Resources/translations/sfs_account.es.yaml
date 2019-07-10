@@ -6,6 +6,9 @@ admin_accounts:
         actions:
             details:
                 link: "detalles"
+        filter_form:
+            name.label: "Nombre"
+            actions.search: "Filtrar"
 
     details:
         fields:

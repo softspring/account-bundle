@@ -12,15 +12,7 @@
         </thead>
 
         <tbody>
-        {% for account in accounts %}
-            <tr>
-                <td>{{ account.id }}</td>
-                <td>{{ account.name }}</td>
-                <td>
-                    <a href="{{ url('sfs_account_admin_accounts_details', {'account': account}) }}">{{ 'admin_accounts.list.actions.details.link'|trans }}</a>
-                </td>
-            </tr>
-        {% endfor %}
+            {% include '@SfsAccount/admin/accounts/list-page.html.twig' %}
         </tbody>
     </table>
 {% endblock content %}
