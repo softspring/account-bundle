@@ -3,8 +3,8 @@
 namespace Softspring\AccountBundle\Event;
 
 use Softspring\Account\Model\AccountInterface;
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class AccountEvent extends Event
 {
