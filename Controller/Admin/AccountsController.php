@@ -5,9 +5,12 @@ namespace Softspring\AccountBundle\Controller\Admin;
 use Jhg\DoctrinePagination\ORM\PaginatedRepository;
 use Softspring\Account\Manager\AccountManagerInterface;
 use Softspring\Account\Model\MultiAccountedAccountInterface;
+use Softspring\AccountBundle\Event\GetResponseAccountEvent;
+use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Event\ViewEvent;
-use Softspring\AccountBundle\Form\Admin\AccountForm;
+use Softspring\AccountBundle\Form\Admin\AccountCreateFormInterface;
 use Softspring\AccountBundle\Form\Admin\AccountListFilterFormInterface;
+use Softspring\AccountBundle\Form\Admin\AccountUpdateFormInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\ExtraBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -32,16 +35,30 @@ class AccountsController extends AbstractController
     protected $listFilterForm;
 
     /**
+     * @var AccountCreateFormInterface
+     */
+    protected $createForm;
+
+    /**
+     * @var AccountUpdateFormInterface
+     */
+    protected $updateForm;
+
+    /**
      * AccountsController constructor.
      * @param AccountManagerInterface $accountManager
      * @param EventDispatcherInterface $eventDispatcher
      * @param AccountListFilterFormInterface $listFilterForm
+     * @param AccountCreateFormInterface $createForm
+     * @param AccountUpdateFormInterface $updateForm
      */
-    public function __construct(AccountManagerInterface $accountManager, EventDispatcherInterface $eventDispatcher, AccountListFilterFormInterface $listFilterForm)
+    public function __construct(AccountManagerInterface $accountManager, EventDispatcherInterface $eventDispatcher, AccountListFilterFormInterface $listFilterForm, AccountCreateFormInterface $createForm, AccountUpdateFormInterface $updateForm)
     {
         $this->accountManager = $accountManager;
         $this->eventDispatcher = $eventDispatcher;
         $this->listFilterForm = $listFilterForm;
+        $this->createForm = $createForm;
+        $this->updateForm = $updateForm;
     }
 
     /**
@@ -84,6 +101,51 @@ class AccountsController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @return Response
+     */
+    public function create(Request $request): Response
+    {
+        $newAccount = $this->accountManager->create();
+
+        if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_INITIALIZE, new GetResponseAccountEvent($newAccount, $request))) {
+            return $response;
+        }
+
+        $form = $this->createForm(get_class($this->createForm), $newAccount, ['method' => 'POST'])->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_FORM_VALID, new GetResponseFormEvent($form, $request))) {
+                    return $response;
+                }
+
+                $this->accountManager->save($newAccount);
+
+                if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_SUCCESS, new GetResponseAccountEvent($newAccount, $request))) {
+                    return $response;
+                }
+
+                return $this->redirectToRoute('sfs_user_register_success');
+            } else {
+                if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_FORM_INVALID, new GetResponseFormEvent($form, $request))) {
+                    return $response;
+                }
+            }
+        }
+
+        // show view
+        $viewData = new \ArrayObject([
+            'form' => $form->createView(),
+        ]);
+
+        $this->eventDispatcher->dispatch(new ViewEvent($viewData), SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_VIEW);
+
+        return $this->render('@SfsAccount/admin/accounts/create.html.twig', $viewData->getArrayCopy());
+    }
+
+
+    /**
      * @param string  $account
      * @param Request $request
      *
@@ -113,19 +175,40 @@ class AccountsController extends AbstractController
     {
         $account = $this->accountManager->findAccountBy(['id' => $account]);
 
-        $form = $this->createForm(AccountForm::class, $account, ['method' => 'POST'])->handleRequest($request);
+        if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_INITIALIZE, new GetResponseAccountEvent($account, $request))) {
+            return $response;
+        }
+
+        $form = $this->createForm(get_class($this->createForm), $account, ['method' => 'POST'])->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+                if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_FORM_VALID, new GetResponseFormEvent($form, $request))) {
+                    return $response;
+                }
+
                 $this->accountManager->save($account);
 
-                return $this->redirectToRoute('sfs_account_admin_accounts_details', ['account' => $account]);
+                if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_SUCCESS, new GetResponseAccountEvent($account, $request))) {
+                    return $response;
+                }
+
+                return $this->redirectToRoute('sfs_account_admin_accounts_details', ['account' => $account->getId()]);
+            } else {
+                if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_FORM_INVALID, new GetResponseFormEvent($form, $request))) {
+                    return $response;
+                }
             }
         }
 
-        return $this->render('@SfsAccount/admin/accounts/update.html.twig', [
-            'update_form' => $form->createView(),
+        // show view
+        $viewData = new \ArrayObject([
+            'form' => $form->createView(),
             'account' => $account,
         ]);
+
+        $this->eventDispatcher->dispatch(new ViewEvent($viewData), SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_VIEW);
+
+        return $this->render('@SfsAccount/admin/accounts/update.html.twig', $viewData->getArrayCopy());
     }
 }

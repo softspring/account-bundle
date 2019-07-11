@@ -19,12 +19,21 @@ admin_accounts:
             edit: "Editar"
             delete: "Eliminar"
 
-
     update:
         actions:
             update.button: "Guardar"
             cancel: "Cancelar"
+        form:
+            name.label: "Nombre"
+            owner.label: "Propietario"
 
+    create:
+        actions:
+            create.button: "Crear"
+            cancel: "Cancelar"
+        form:
+            name.label: "Nombre"
+            owner.label: "Propietario"
 
 register:
     form:

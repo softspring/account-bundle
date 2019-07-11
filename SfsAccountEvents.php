@@ -53,4 +53,54 @@ class SfsAccountEvents
      * @Event("Softspring\AccountBundle\Event\ViewEvent")
      */
     const ADMIN_ACCOUNTS_DETAILS_VIEW = 'sfs_account.admin.accounts.details_view';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent") 
+     */
+    const ADMIN_ACCOUNTS_CREATE_INITIALIZE = 'sfs_account.admin.accounts.create_initialize';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")
+     */
+    const ADMIN_ACCOUNTS_CREATE_FORM_VALID = 'sfs_account.admin.accounts.create_form_valid';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent")
+     */
+    const ADMIN_ACCOUNTS_CREATE_SUCCESS = 'sfs_account.admin.accounts.create_success';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")
+     */
+    const ADMIN_ACCOUNTS_CREATE_FORM_INVALID = 'sfs_account.admin.accounts.create_form_invalid';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     */
+    const ADMIN_ACCOUNTS_CREATE_VIEW = 'sfs_account.admin.accounts.create_view';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent")
+     */
+    const ADMIN_ACCOUNTS_UPDATE_INITIALIZE = 'sfs_account.admin.accounts.update_initialize';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")
+     */
+    const ADMIN_ACCOUNTS_UPDATE_FORM_VALID = 'sfs_account.admin.accounts.update_form_valid';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent")
+     */
+    const ADMIN_ACCOUNTS_UPDATE_SUCCESS = 'sfs_account.admin.accounts.update_success';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")
+     */
+    const ADMIN_ACCOUNTS_UPDATE_FORM_INVALID = 'sfs_account.admin.accounts.update_form_invalid';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     */
+    const ADMIN_ACCOUNTS_UPDATE_VIEW = 'sfs_account.admin.accounts.update_view';
 }
