@@ -34,18 +34,25 @@ class AccountRequestListener implements EventSubscriberInterface
     protected $twigAppVariable;
 
     /**
+     * @var string
+     */
+    protected $findParamName;
+
+    /**
      * AccountRequestListener constructor.
      * @param EntityManagerInterface $em
      * @param string $accountRouteParamName
      * @param RouterInterface $router
      * @param AppVariable $twigAppVariable
+     * @param string $findParamName
      */
-    public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router, AppVariable $twigAppVariable)
+    public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router, AppVariable $twigAppVariable, string $findParamName)
     {
         $this->em = $em;
         $this->accountRouteParamName = $accountRouteParamName;
         $this->router = $router;
         $this->twigAppVariable = $twigAppVariable;
+        $this->findParamName = $findParamName;
     }
 
     public static function getSubscribedEvents()
@@ -73,7 +80,7 @@ class AccountRequestListener implements EventSubscriberInterface
                 throw new UnauthorizedHttpException('', 'Empty _account');
             }
 
-            $account = $this->em->getRepository(AccountInterface::class)->findOneById($account);
+            $account = $this->em->getRepository(AccountInterface::class)->findOneBy([$this->findParamName => $account]);
 
             if (!$account) {
                 // hide not found with an unauthorized response
