@@ -35,6 +35,12 @@ admin_accounts:
             name.label: "Name"
             owner.label: "Owner"
 
+    delete:
+        confirm_message: "Are you sure to delete this account?"
+        actions:
+            delete.button: "Delete"
+            cancel: "Cancel"
+
 register:
     form:
         id.label: "Slug"

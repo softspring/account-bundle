@@ -1,0 +1,16 @@
+{% trans_default_domain 'sfs_account' %}
+{% extends '@SfsAccount/admin_layout.html.twig' %}
+
+{% block content %}
+    <h2>{{ account.name }}</h2>
+
+    <p>{{ 'admin_accounts.delete.confirm_message'|trans }}</p>
+
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+    <a href="{{ url('sfs_account_admin_accounts_details', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.delete.actions.cancel'|trans }}</a>
+    <input type="submit" value="{{ 'admin_accounts.delete.actions.delete.button'|trans }}" class="btn btn-primary" />
+    {{ form_end(form) }}
+
+
+{% endblock content %}

@@ -103,4 +103,29 @@ class SfsAccountEvents
      * @Event("Softspring\AccountBundle\Event\ViewEvent")
      */
     const ADMIN_ACCOUNTS_UPDATE_VIEW = 'sfs_account.admin.accounts.update_view';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent")
+     */
+    const ADMIN_ACCOUNTS_DELETE_INITIALIZE = 'sfs_account.admin.accounts.delete_initialize';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")
+     */
+    const ADMIN_ACCOUNTS_DELETE_FORM_VALID = 'sfs_account.admin.accounts.delete_form_valid';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent")
+     */
+    const ADMIN_ACCOUNTS_DELETE_SUCCESS = 'sfs_account.admin.accounts.delete_success';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")
+     */
+    const ADMIN_ACCOUNTS_DELETE_FORM_INVALID = 'sfs_account.admin.accounts.delete_form_invalid';
+
+    /**
+     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     */
+    const ADMIN_ACCOUNTS_DELETE_VIEW = 'sfs_account.admin.accounts.delete_view';
 }

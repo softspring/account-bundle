@@ -13,3 +13,7 @@ sfs_account_admin_accounts_details:
 sfs_account_admin_accounts_update:
     controller: Softspring\AccountBundle\Controller\Admin\AccountsController::update
     path: /{account}/update
+
+sfs_account_admin_accounts_delete:
+    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::delete
+    path: /{account}/delete
