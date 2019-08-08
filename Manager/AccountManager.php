@@ -71,6 +71,17 @@ class AccountManager implements AccountManagerInterface
     }
 
     /**
+     * @param AccountInterface $account
+     *
+     * @throws \Exception
+     */
+    public function delete(AccountInterface $account): void
+    {
+        $this->em->remove($account);
+        $this->em->flush();
+    }
+
+    /**
      * @inheritdoc
      */
     public function findAccountBy(array $criteria): ?AccountInterface
