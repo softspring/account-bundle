@@ -28,4 +28,7 @@ services:
     Softspring\AccountBundle\EventListener\UserRegisterListener:
         tags: ['kernel.event_subscriber']
 
+    Softspring\AccountBundle\EventListener\AdminAccountDeleteListener:
+        tags: ['kernel.event_subscriber']
+
     Softspring\AccountBundle\Security\Authorization\Voter\AccountAccessVoter: ~

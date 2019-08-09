@@ -40,6 +40,8 @@ admin_accounts:
         actions:
             delete.button: "Delete"
             cancel: "Cancel"
+        form:
+            deleteSingleAccountedUsers.label: "Delete users?"
 
 register:
     form:

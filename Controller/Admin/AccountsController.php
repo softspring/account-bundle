@@ -165,6 +165,10 @@ class AccountsController extends AbstractController
     {
         $account = $this->accountManager->findAccountBy(['id' => $account]);
 
+        if (!$account) {
+            throw $this->createNotFoundException('Account not found');
+        }
+
         $viewData = new \ArrayObject([
             'account' => $account,
             'multi_accounted_account' => $account instanceof MultiAccountedAccountInterface,
@@ -184,6 +188,10 @@ class AccountsController extends AbstractController
     public function update(string $account, Request $request): Response
     {
         $account = $this->accountManager->findAccountBy(['id' => $account]);
+
+        if (!$account) {
+            throw $this->createNotFoundException('Account not found');
+        }
 
         if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_INITIALIZE, new GetResponseAccountEvent($account, $request))) {
             return $response;
@@ -232,6 +240,10 @@ class AccountsController extends AbstractController
     {
         $account = $this->accountManager->findAccountBy(['id' => $account]);
 
+        if (!$account) {
+            throw $this->createNotFoundException('Account not found');
+        }
+
         if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_INITIALIZE, new GetResponseAccountEvent($account, $request))) {
             return $response;
         }
@@ -271,6 +283,9 @@ class AccountsController extends AbstractController
 
     protected function getDeleteForm(AccountInterface $account): FormInterface
     {
-        return $this->createForm(get_class($this->deleteForm), $account, ['method' => 'POST']);
+        return $this->createForm(get_class($this->deleteForm), $account, [
+            'method' => 'POST',
+            'account' => $account,
+        ]);
     }
 }
