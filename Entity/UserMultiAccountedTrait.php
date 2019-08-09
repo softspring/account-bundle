@@ -52,4 +52,18 @@ trait UserMultiAccountedTrait
             return $accountRelation->getAccount();
         });
     }
+
+    /**
+     * @param AccountInterface $account
+     */
+    public function removeAccount(AccountInterface $account): void
+    {
+        $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($account) {
+            return $relation->getAccount() === $account;
+        });
+
+        foreach ($relations as $relation) {
+            $this->removeRelation($relation);
+        }
+    }
 }
