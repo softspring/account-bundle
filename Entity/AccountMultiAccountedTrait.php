@@ -11,7 +11,7 @@ trait AccountMultiAccountedTrait
 {
     /**
      * @var AccountUserRelationInterface[]|Collection
-     * @ORM\OneToMany(targetEntity="Softspring\Account\Model\AccountUserRelationInterface", mappedBy="account", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Softspring\Account\Model\AccountUserRelationInterface", mappedBy="account", cascade={"all"})
      */
     protected $userRelations;
 
@@ -51,5 +51,23 @@ trait AccountMultiAccountedTrait
         return $this->userRelations->map(function(AccountUserRelationInterface $userRelation) {
             return $userRelation->getUser();
         });
+    }
+
+    /**
+     * @param UserInterface $user
+     */
+    public function removeUser(UserInterface $user): void
+    {
+        $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($user) {
+            return $relation->getUser() === $user;
+        });
+
+        foreach ($relations as $relation) {
+            $this->removeRelation($relation);
+        }
+
+        if ($this->getOwner() === $user) {
+            $this->setOwner(null);
+        }
     }
 }
