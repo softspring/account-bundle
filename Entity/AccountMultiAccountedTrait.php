@@ -20,6 +20,8 @@ trait AccountMultiAccountedTrait
      */
     public function getRelations(): Collection
     {
+        $this->checkRelationsCollection();
+
         return $this->userRelations;
     }
 
@@ -28,6 +30,8 @@ trait AccountMultiAccountedTrait
      */
     public function addRelation(AccountUserRelationInterface $userRelation): void
     {
+        $this->checkRelationsCollection();
+
         if (!$this->userRelations->contains($userRelation)) {
             $this->userRelations->add($userRelation);
         }
@@ -38,6 +42,8 @@ trait AccountMultiAccountedTrait
      */
     public function removeRelation(AccountUserRelationInterface $userRelation): void
     {
+        $this->checkRelationsCollection();
+
         if ($this->userRelations->contains($userRelation)) {
             $this->userRelations->removeElement($userRelation);
         }
@@ -48,6 +54,8 @@ trait AccountMultiAccountedTrait
      */
     public function getUsers(): Collection
     {
+        $this->checkRelationsCollection();
+
         return $this->userRelations->map(function(AccountUserRelationInterface $userRelation) {
             return $userRelation->getUser();
         });
@@ -68,6 +76,16 @@ trait AccountMultiAccountedTrait
 
         if ($this->getOwner() === $user) {
             $this->setOwner(null);
+        }
+    }
+
+    /**
+     * @throws \Exception
+     */
+    protected function checkRelationsCollection()
+    {
+        if (!$this->userRelations instanceof Collection) {
+            throw new \Exception(sprintf('"%s" class must create a new collection for userRelations on construction', get_class($this)));
         }
     }
 }

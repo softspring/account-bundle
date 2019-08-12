@@ -2,6 +2,7 @@
 
 namespace Softspring\AccountBundle\Controller;
 
+use Softspring\Account\Model\MultiAccountedInterface;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Form\RegisterFormInterface;
@@ -64,14 +65,6 @@ class RegisterController extends AbstractController
             if ($form->isValid()) {
                 if ($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_FORM_VALID, new GetResponseFormEvent($form, $request))) {
                     return $response;
-                }
-
-                $user = $this->getUser();
-
-                if ($user instanceof UserInterface) {
-                    if ($account instanceof OwnerInterface) {
-                        $account->setOwner($user);
-                    }
                 }
 
                 $this->accountManager->save($account);

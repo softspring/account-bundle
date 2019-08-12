@@ -15,6 +15,9 @@ services:
     Softspring\Account\Manager\AccountManagerInterface:
         class: Softspring\AccountBundle\Manager\AccountManager
 
+    Softspring\Account\Manager\RelationManagerInterface:
+        class: Softspring\AccountBundle\Manager\RelationManager
+
     Softspring\AccountBundle\Controller\:
         resource: '../../Controller/*'
         public: true
@@ -23,6 +26,9 @@ services:
         tags: ['kernel.event_subscriber']
 
     Softspring\AccountBundle\EventListener\AccountAccessPermissionListener:
+        tags: ['kernel.event_subscriber']
+
+    Softspring\AccountBundle\EventListener\AccountCreateListener:
         tags: ['kernel.event_subscriber']
 
     Softspring\AccountBundle\EventListener\UserRegisterListener:
