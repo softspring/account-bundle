@@ -5,7 +5,6 @@ namespace Softspring\AccountBundle\EventListener;
 use Softspring\Account\Manager\RelationManagerInterface;
 use Softspring\Account\Model\AccountInterface;
 use Softspring\Account\Model\MultiAccountedAccountInterface;
-use Softspring\Account\Model\MultiAccountedInterface;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\User\Model\OwnerInterface;
@@ -40,6 +39,7 @@ class AccountCreateListener implements EventSubscriberInterface
     {
         return [
             SfsAccountEvents::REGISTER_FORM_VALID => ['onRegisterValidAddUser', 0],
+            SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_FORM_VALID => ['onRegisterValidAddUser', 0],
         ];
     }
 

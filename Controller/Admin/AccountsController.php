@@ -136,7 +136,7 @@ class AccountsController extends AbstractController
                     return $response;
                 }
 
-                return $this->redirectToRoute('sfs_user_register_success');
+                return $this->redirectToRoute('sfs_account_admin_accounts_details', ['account'=>$newAccount->getId()]);
             } else {
                 if ($response = $this->dispatchGetResponse(SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_FORM_INVALID, new GetResponseFormEvent($form, $request))) {
                     return $response;
