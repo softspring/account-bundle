@@ -39,7 +39,7 @@ class AccountCreateListener implements EventSubscriberInterface
     {
         return [
             SfsAccountEvents::REGISTER_FORM_VALID => ['onRegisterValidAddUser', 0],
-            SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_FORM_VALID => ['onRegisterValidAddUser', 0],
+            SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_FORM_VALID => ['onAccountCreationAddUser', 0],
         ];
     }
 
@@ -54,6 +54,30 @@ class AccountCreateListener implements EventSubscriberInterface
                 $account->setOwner($user);
             }
 
+            if ($account instanceof MultiAccountedAccountInterface) {
+                $account->addRelation($relation = $this->relationManager->create());
+
+                $relation->setAccount($account);
+                $relation->setUser($user);
+
+                if (method_exists($relation, 'setRoles') && method_exists($relation, 'getRoles')) {
+                    $relation->setRoles(array_unique(array_merge(['ROLE_OWNER'], $relation->getRoles())));
+                }
+
+                if (method_exists($relation, 'setGrantedBy')) {
+                    $relation->setGrantedBy($user);
+                }
+            }
+        }
+    }
+
+    public function onAccountCreationAddUser(GetResponseFormEvent $event)
+    {
+        /** @var AccountInterface $account */
+        $account = $event->getForm()->getData();
+        $user = $account->getOwner();
+
+        if ($user instanceof UserInterface) {
             if ($account instanceof MultiAccountedAccountInterface) {
                 $account->addRelation($relation = $this->relationManager->create());
 
