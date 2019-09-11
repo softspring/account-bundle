@@ -2,10 +2,10 @@
 
 namespace Softspring\AccountBundle\Security\Authorization\Voter;
 
-use Softspring\Account\Model\AccountInterface;
-use Softspring\Account\Model\MultiAccountedAccountInterface;
-use Softspring\User\Model\OwnerInterface;
-use Softspring\User\Model\UserInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
+use Softspring\UserBundle\Model\OwnerInterface;
+use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;

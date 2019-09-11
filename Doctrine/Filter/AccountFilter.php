@@ -4,7 +4,7 @@ namespace Softspring\AccountBundle\Doctrine\Filter;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
-use Softspring\Account\Model\AccountFilterInterface;
+use Softspring\AccountBundle\Model\AccountFilterInterface;
 
 class AccountFilter extends SQLFilter
 {

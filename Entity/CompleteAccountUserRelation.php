@@ -3,9 +3,9 @@
 namespace Softspring\AccountBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Softspring\Account\Model\AccountUserRelation as AccountUserRelationModel;
+use Softspring\AccountBundle\Model\AccountUserRelation as AccountUserRelationModel;
 use Softspring\DoctrineTemplates\Entity\Traits\CreatedAtTimestamp;
-use Softspring\User\Model\UserInterface;
+use Softspring\UserBundle\Model\UserInterface;
 
 abstract class CompleteAccountUserRelation extends AccountUserRelationModel
 {
@@ -13,7 +13,7 @@ abstract class CompleteAccountUserRelation extends AccountUserRelationModel
 
     /**
      * @var UserInterface|null
-     * @ORM\ManyToOne(targetEntity="Softspring\User\Model\UserInterface", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Softspring\UserBundle\Model\UserInterface", cascade={"all"})
      * @ORM\JoinColumn(name="granted_by_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $grantedBy;

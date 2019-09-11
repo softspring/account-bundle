@@ -2,7 +2,7 @@
 
 namespace Softspring\AccountBundle\EventListener;
 
-use Softspring\Account\Model\UserMultiAccountedInterface;
+use Softspring\AccountBundle\Model\UserMultiAccountedInterface;
 use Softspring\UserBundle\Event\GetResponseUserEvent;
 use Softspring\UserBundle\SfsUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

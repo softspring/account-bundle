@@ -2,10 +2,10 @@
 
 namespace Softspring\AccountBundle\EventListener;
 
-use Softspring\Account\Model\AccountUserRelation;
+use Softspring\AccountBundle\Model\AccountUserRelation;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\SfsAccountEvents;
-use Softspring\User\Manager\UserManagerInterface;
+use Softspring\UserBundle\Manager\UserManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AdminAccountDeleteListener implements EventSubscriberInterface

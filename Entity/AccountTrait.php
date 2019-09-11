@@ -3,13 +3,13 @@
 namespace Softspring\AccountBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Softspring\Account\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
 
 trait AccountTrait
 {
     /**
      * @var AccountInterface|null
-     * @ORM\ManyToOne(targetEntity="Softspring\Account\Model\AccountInterface", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Softspring\AccountBundle\Model\AccountInterface", cascade={"all"})
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $account;

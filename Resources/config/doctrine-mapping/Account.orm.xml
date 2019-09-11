@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                       https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Softspring\Account\Model\Account" table="account">
+    <mapped-superclass name="Softspring\AccountBundle\Model\Account" table="account">
         <field name="name" column="name" type="string" nullable="true" length="180" />
     </mapped-superclass>
 

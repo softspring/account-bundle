@@ -2,7 +2,7 @@
 
 namespace Softspring\AccountBundle\Controller\Settings;
 
-use Softspring\Account\Manager\AccountManagerInterface;
+use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\Controller\Traits\GetAccountTrait;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;

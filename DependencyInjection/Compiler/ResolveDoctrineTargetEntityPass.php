@@ -2,8 +2,8 @@
 
 namespace Softspring\AccountBundle\DependencyInjection\Compiler;
 
-use Softspring\Account\Model\AccountInterface;
-use Softspring\Account\Model\AccountUserRelationInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountUserRelationInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\LogicException;

@@ -4,8 +4,7 @@ namespace Softspring\AccountBundle\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Softspring\Account\Manager\AccountManagerInterface;
-use Softspring\Account\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 

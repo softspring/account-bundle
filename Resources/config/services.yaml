@@ -12,10 +12,10 @@ services:
     Softspring\AccountBundle\Form\:
         resource: '../../Form/*'
 
-    Softspring\Account\Manager\AccountManagerInterface:
+    Softspring\AccountBundle\Manager\AccountManagerInterface:
         class: Softspring\AccountBundle\Manager\AccountManager
 
-    Softspring\Account\Manager\RelationManagerInterface:
+    Softspring\AccountBundle\Manager\RelationManagerInterface:
         class: Softspring\AccountBundle\Manager\RelationManager
 
     Softspring\AccountBundle\Controller\:

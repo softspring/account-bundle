@@ -2,10 +2,10 @@
 
 namespace Softspring\AccountBundle\Form\Admin;
 
-use Softspring\Account\Model\AccountInterface;
-use Softspring\Account\Model\MultiAccountedAccountInterface;
-use Softspring\Account\Model\UserMultiAccountedInterface;
-use Softspring\User\Model\UserInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
+use Softspring\AccountBundle\Model\UserMultiAccountedInterface;
+use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

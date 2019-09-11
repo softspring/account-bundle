@@ -20,7 +20,7 @@ class SfsAccountBundle extends Bundle
 
         $basePath = realpath(__DIR__.'/Resources/config/doctrine-mapping/');
 
-        $this->addRegisterMappingsPass($container, [$basePath => 'Softspring\Account\Model']);
+        $this->addRegisterMappingsPass($container, [$basePath => 'Softspring\AccountBundle\Model']);
 
         $container->addCompilerPass(new AliasDoctrineEntityManagerPass());
         $container->addCompilerPass(new ResolveDoctrineTargetEntityPass());

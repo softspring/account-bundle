@@ -2,7 +2,7 @@
 
 namespace Softspring\AccountBundle\Templating;
 
-use Softspring\Account\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables as BaseGlobalVariables;
 
 class GlobalVariables extends BaseGlobalVariables

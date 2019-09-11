@@ -2,13 +2,13 @@
 
 namespace Softspring\AccountBundle\EventListener;
 
-use Softspring\Account\Manager\RelationManagerInterface;
-use Softspring\Account\Model\AccountInterface;
-use Softspring\Account\Model\MultiAccountedAccountInterface;
+use Softspring\AccountBundle\Manager\RelationManagerInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\SfsAccountEvents;
-use Softspring\User\Model\OwnerInterface;
-use Softspring\User\Model\UserInterface;
+use Softspring\UserBundle\Model\OwnerInterface;
+use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 

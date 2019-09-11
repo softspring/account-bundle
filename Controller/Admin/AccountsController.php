@@ -3,9 +3,9 @@
 namespace Softspring\AccountBundle\Controller\Admin;
 
 use Jhg\DoctrinePagination\ORM\PaginatedRepository;
-use Softspring\Account\Manager\AccountManagerInterface;
-use Softspring\Account\Model\AccountInterface;
-use Softspring\Account\Model\MultiAccountedAccountInterface;
+use Softspring\AccountBundle\Manager\AccountManagerInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Event\ViewEvent;

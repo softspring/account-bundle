@@ -4,8 +4,7 @@ namespace Softspring\AccountBundle\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Softspring\Account\Manager\RelationManagerInterface;
-use Softspring\Account\Model\AccountUserRelationInterface;
+use Softspring\AccountBundle\Model\AccountUserRelationInterface;
 
 class RelationManager  implements RelationManagerInterface
 {

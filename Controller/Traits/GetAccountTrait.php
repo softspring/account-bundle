@@ -2,7 +2,7 @@
 
 namespace Softspring\AccountBundle\Controller\Traits;
 
-use Softspring\Account\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
 
 trait GetAccountTrait
 {

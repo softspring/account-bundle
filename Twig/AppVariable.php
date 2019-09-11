@@ -2,7 +2,7 @@
 
 namespace Softspring\AccountBundle\Twig;
 
-use Softspring\Account\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Bridge\Twig\AppVariable as BaseAppVariable;
 
 class AppVariable extends BaseAppVariable

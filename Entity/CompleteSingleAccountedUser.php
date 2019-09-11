@@ -2,11 +2,11 @@
 
 namespace Softspring\AccountBundle\Entity;
 
-use Softspring\Account\Model\UserSingleAccountedInterface;
-use Softspring\User\Model\ConfirmableInterface;
-use Softspring\User\Model\NameSurnameInterface;
-use Softspring\User\Model\PasswordRequestInterface;
-use Softspring\User\Model\User as UserModel;
+use Softspring\AccountBundle\Model\UserSingleAccountedInterface;
+use Softspring\UserBundle\Model\ConfirmableInterface;
+use Softspring\UserBundle\Model\NameSurnameInterface;
+use Softspring\UserBundle\Model\PasswordRequestInterface;
+use Softspring\UserBundle\Model\User as UserModel;
 use Softspring\UserBundle\Entity\ConfirmableTrait;
 use Softspring\UserBundle\Entity\NameSurnameTrait;
 use Softspring\UserBundle\Entity\PasswordRequestTrait;

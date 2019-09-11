@@ -2,7 +2,7 @@
 
 namespace Softspring\AccountBundle\Controller\User;
 
-use Softspring\Account\Model\UserMultiAccountedInterface;
+use Softspring\AccountBundle\Model\UserMultiAccountedInterface;
 use Softspring\ExtraBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 

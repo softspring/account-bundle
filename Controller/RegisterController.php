@@ -2,15 +2,15 @@
 
 namespace Softspring\AccountBundle\Controller;
 
-use Softspring\Account\Model\MultiAccountedInterface;
+use Softspring\AccountBundle\Model\MultiAccountedInterface;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Form\RegisterFormInterface;
-use Softspring\Account\Manager\AccountManagerInterface;
+use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\ExtraBundle\Controller\AbstractController;
-use Softspring\User\Model\OwnerInterface;
-use Softspring\User\Model\UserInterface;
+use Softspring\UserBundle\Model\OwnerInterface;
+use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

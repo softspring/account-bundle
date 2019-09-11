@@ -4,14 +4,14 @@ namespace Softspring\AccountBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Softspring\Account\Model\AccountInterface;
-use Softspring\Account\Model\AccountUserRelationInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountUserRelationInterface;
 
 trait UserMultiAccountedTrait
 {
     /**
      * @var AccountUserRelationInterface[]|Collection
-     * @ORM\OneToMany(targetEntity="Softspring\Account\Model\AccountUserRelationInterface", mappedBy="user", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="Softspring\AccountBundle\Model\AccountUserRelationInterface", mappedBy="user", cascade={"all"})
      */
     protected $accountRelations;
 
