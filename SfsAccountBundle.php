@@ -4,7 +4,6 @@ namespace Softspring\AccountBundle;
 
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Softspring\AccountBundle\DependencyInjection\Compiler\AliasDoctrineEntityManagerPass;
-use Softspring\AccountBundle\DependencyInjection\Compiler\OverwriteAppVariablePass;
 use Softspring\AccountBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntityPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -24,7 +23,6 @@ class SfsAccountBundle extends Bundle
 
         $container->addCompilerPass(new AliasDoctrineEntityManagerPass());
         $container->addCompilerPass(new ResolveDoctrineTargetEntityPass());
-        $container->addCompilerPass(new OverwriteAppVariablePass());
     }
 
     /**

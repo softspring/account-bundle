@@ -4,7 +4,8 @@ namespace Softspring\AccountBundle\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
-use Softspring\AccountBundle\Twig\AppVariable;
+use Softspring\CoreBundle\Twig\ExtensibleAppVariable;
+use Symfony\Bridge\Twig\AppVariable;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -40,11 +41,14 @@ class AccountRequestListener implements EventSubscriberInterface
 
     /**
      * AccountRequestListener constructor.
+     *
      * @param EntityManagerInterface $em
-     * @param string $accountRouteParamName
-     * @param RouterInterface $router
-     * @param AppVariable $twigAppVariable
-     * @param string $findParamName
+     * @param string                 $accountRouteParamName
+     * @param RouterInterface        $router
+     * @param AppVariable            $twigAppVariable
+     * @param string                 $findParamName
+     *
+     * @throws \Exception
      */
     public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router, AppVariable $twigAppVariable, string $findParamName)
     {
@@ -53,6 +57,10 @@ class AccountRequestListener implements EventSubscriberInterface
         $this->router = $router;
         $this->twigAppVariable = $twigAppVariable;
         $this->findParamName = $findParamName;
+
+        if (!$this->twigAppVariable instanceof ExtensibleAppVariable) {
+            throw new \Exception('You must configure SfsCoreBundle to extend twig app variable');
+        }
     }
 
     public static function getSubscribedEvents()
