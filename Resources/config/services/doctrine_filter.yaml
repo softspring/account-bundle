@@ -8,3 +8,6 @@ services:
 
     Softspring\AccountBundle\EventListener\AccountDoctrineFilterListener:
         tags: ['kernel.event_subscriber']
+
+    Softspring\AccountBundle\Doctrine\EventListener\AccountFilteredEventListener:
+        tags: ['doctrine.event_subscriber']
