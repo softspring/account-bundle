@@ -14,7 +14,7 @@ use Softspring\AccountBundle\Form\Admin\AccountDeleteFormInterface;
 use Softspring\AccountBundle\Form\Admin\AccountListFilterFormInterface;
 use Softspring\AccountBundle\Form\Admin\AccountUpdateFormInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
-use Softspring\ExtraBundle\Controller\AbstractController;
+use Softspring\CoreBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;

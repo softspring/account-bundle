@@ -4,8 +4,8 @@
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
-        "softspring/extra-bundle": "^1.1",
-        "softspring/user-bundle": "^1.1"
+        "softspring/core-bundle": "*",
+        "softspring/user-bundle": "*"
     },
     "require-dev": {
         "symfony/config": "^4.2",
