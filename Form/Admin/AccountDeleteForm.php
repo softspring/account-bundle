@@ -45,8 +45,12 @@ class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterfa
         }
     }
 
-    protected function getDeletableUsers(MultiAccountedAccountInterface $account): array
+    protected function getDeletableUsers(AccountInterface $account): array
     {
+        if (!$account instanceof MultiAccountedAccountInterface) {
+            return [];
+        }
+
         $usersForDeletion = [];
 
         /** @var UserMultiAccountedInterface $user */
