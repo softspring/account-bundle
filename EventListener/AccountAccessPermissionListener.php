@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -45,10 +46,10 @@ class AccountAccessPermissionListener implements EventSubscriberInterface
     }
 
     /**
-     * @param GetResponseEvent $event
+     * @param GetResponseEvent|RequestEvent $event
      * @throws NotFoundHttpException
      */
-    public function onRequestCheckAccountAccessPermission(GetResponseEvent $event)
+    public function onRequestCheckAccountAccessPermission($event)
     {
         $request = $event->getRequest();
 

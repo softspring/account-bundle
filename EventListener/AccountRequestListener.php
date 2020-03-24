@@ -8,6 +8,7 @@ use Softspring\CoreBundle\Twig\ExtensibleAppVariable;
 use Symfony\Bridge\Twig\AppVariable;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\RouterInterface;
@@ -73,10 +74,10 @@ class AccountRequestListener implements EventSubscriberInterface
     }
 
     /**
-     * @param GetResponseEvent $event
+     * @param GetResponseEvent|RequestEvent $event
      * @throws UnauthorizedHttpException
      */
-    public function onRequestGetAccount(GetResponseEvent $event)
+    public function onRequestGetAccount($event)
     {
         $request = $event->getRequest();
 
