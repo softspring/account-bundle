@@ -1,18 +1,26 @@
 {% trans_default_domain 'sfs_account' %}
 {% extends '@SfsAccount/admin_layout.html.twig' %}
 
+{% block breadcrums_content %}
+    {{ parent() }}
+    <li class="breadcrumb-item active" aria-current="page">Accounts</li>
+{% endblock breadcrums_content %}
+
 {% block content %}
-    <table class="table">
-        <thead>
-        <tr>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3">Accounts</h1>
+    </div>
+
+    {% embed '@SfsAdmin/components/table.html.twig' with {'collection':accounts} %}
+        {% trans_default_domain 'sfs_account' %}
+        {% block ths %}
             <th scope="col">{{ 'admin_accounts.list.fields.id.header'|trans }}</th>
             <th scope="col">{{ 'admin_accounts.list.fields.name.header'|trans }}</th>
             <th>&nbsp;</th>
-        </tr>
-        </thead>
+        {% endblock ths %}
 
-        <tbody>
+        {% block tbody %}
             {% include '@SfsAccount/admin/accounts/list-page.html.twig' %}
-        </tbody>
-    </table>
+        {% endblock tbody %}
+    {% endembed %}
 {% endblock content %}

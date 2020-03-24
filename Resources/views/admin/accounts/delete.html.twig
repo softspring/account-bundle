@@ -1,6 +1,13 @@
 {% trans_default_domain 'sfs_account' %}
 {% extends '@SfsAccount/admin_layout.html.twig' %}
 
+{% block breadcrums_content %}
+    {{ parent() }}
+    <li class="breadcrumb-item"><a href="{{ url('sfs_account_admin_accounts_list') }}">Accounts</a></li>
+    <li class="breadcrumb-item"><a href="{{ url('sfs_account_admin_accounts_details', {'account':account}) }}">{{ account.name }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Delete account</li>
+{% endblock breadcrums_content %}
+
 {% block content %}
     <h2>{{ account.name }}</h2>
 
