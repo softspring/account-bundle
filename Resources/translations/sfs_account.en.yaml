@@ -3,6 +3,7 @@ admin_accounts:
         fields:
             id.header: "Slug"
             name.header: "Name"
+            owner.header: "Owner"
         actions:
             details:
                 link: "details"
