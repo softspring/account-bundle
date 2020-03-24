@@ -43,6 +43,10 @@ class AccountAccessVoter implements VoterInterface
 
         $user = $token->getUser();
 
+        if ($user == 'anon.') {
+            return VoterInterface::ACCESS_DENIED;
+        }
+
         if (! $user instanceof UserInterface) {
             throw new InvalidArgumentException('Invalid user class');
         }
