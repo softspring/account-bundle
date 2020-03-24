@@ -288,4 +288,11 @@ class AccountsController extends AbstractController
             'account' => $account,
         ]);
     }
+
+    public function accountsCountWidget(): Response
+    {
+        return $this->render('@SfsAccount/admin/accounts/widget-accounts-count.html.twig', [
+            'accounts' => $this->accountManager->getRepository()->count([]),
+        ]);
+    }
 }

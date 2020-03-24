@@ -17,3 +17,7 @@ sfs_account_admin_accounts_update:
 sfs_account_admin_accounts_delete:
     controller: Softspring\AccountBundle\Controller\Admin\AccountsController::delete
     path: /{account}/delete
+
+sfs_account_admin_accounts_count_widget:
+    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::accountsCountWidget
+    path: /_widget/accounts-count
