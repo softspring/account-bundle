@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Softspring\AccountBundle\Form\RegisterFormInterface:
+        class: Softspring\AccountBundle\Form\RegisterForm
+
+    Softspring\AccountBundle\Controller\RegisterController:
+        public: true
+        tags: ['controller.service_arguments']

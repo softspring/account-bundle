@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Softspring\AccountBundle\Controller\User\AccountsController:
+        public: true
+        tags: ['controller.service_arguments']

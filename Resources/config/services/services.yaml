@@ -9,18 +9,11 @@ services:
             $em: '@sfs_account.entity_manager'
             $findParamName: '%sfs_account.account.find_field_name%'
 
-    Softspring\AccountBundle\Form\:
-        resource: '../../Form/*'
-
     Softspring\AccountBundle\Manager\AccountManagerInterface:
         class: Softspring\AccountBundle\Manager\AccountManager
 
     Softspring\AccountBundle\Manager\RelationManagerInterface:
         class: Softspring\AccountBundle\Manager\RelationManager
-
-    Softspring\AccountBundle\Controller\:
-        resource: '../../Controller/*'
-        public: true
 
     Softspring\AccountBundle\EventListener\AccountRequestListener:
         tags: ['kernel.event_subscriber']

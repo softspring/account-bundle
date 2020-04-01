@@ -1,0 +1,16 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Softspring\AccountBundle\Form\SettingsFormInterface:
+        class: Softspring\AccountBundle\Form\SettingsForm
+
+    Softspring\AccountBundle\Controller\Settings\SettingsController:
+        public: true
+        tags: ['controller.service_arguments']
+
+    Softspring\AccountBundle\Controller\Settings\UsersController:
+        public: true
+        tags: ['controller.service_arguments']
