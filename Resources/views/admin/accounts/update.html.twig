@@ -1,15 +1,17 @@
 {% trans_default_domain 'sfs_account' %}
 {% extends '@SfsAccount/admin_layout.html.twig' %}
 
+{% block title %}{{ 'admin_accounts.update.meta.title'|trans({'%name%':account.name}) }}{% endblock %}
+
 {% block breadcrums_content %}
     {{ parent() }}
-    <li class="breadcrumb-item"><a href="{{ url('sfs_account_admin_accounts_list') }}">Accounts</a></li>
-    <li class="breadcrumb-item"><a href="{{ url('sfs_account_admin_accounts_details', {'account':account}) }}">{{ account.name }}</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Edit account</li>
+    <li class="breadcrumb-item"><a href="{{ url('sfs_account_admin_accounts_list') }}">{{ 'admin_accounts.list.breadcrumb'|trans }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ url('sfs_account_admin_accounts_details', {'account':account}) }}">{{ 'admin_accounts.details.breadcrumb'|trans({'%name%':account.name}) }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ 'admin_accounts.update.breadcrumb'|trans({'%name%':account.name}) }}</li>
 {% endblock breadcrums_content %}
 
 {% block content %}
-    <h2>{{ account.name }}</h2>
+    <h1 class="h3">{{ 'admin_accounts.update.title'|trans({'%name%': account.name}) }}</h1>
 
     <div class="text-right">
         <a href="{{ url('sfs_account_admin_accounts_details', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.update.actions.cancel'|trans }}</a>

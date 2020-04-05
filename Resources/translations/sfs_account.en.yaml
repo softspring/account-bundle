@@ -1,17 +1,23 @@
 admin_accounts:
     list:
+        meta.title: "Accounts"
+        breadcrumb: "Accounts"
+        title: "Accounts"
         fields:
             id.header: "Slug"
             name.header: "Name"
             owner.header: "Owner"
         actions:
-            details:
-                link: "details"
+            details.link: "details"
+            create.link: "create"
         filter_form:
             name.label: "Name"
             actions.search: "Search"
 
     details:
+        meta.title: "Account details"
+        breadcrumb: "%name%"
+        title: "Accounts details"
         fields:
             slug: "Slug"
             name: "Name"
@@ -21,6 +27,9 @@ admin_accounts:
             delete: "Delete"
 
     update:
+        meta.title: "%name%"
+        breadcrumb: "Edit account"
+        title: "%name%"
         actions:
             update.button: "Save"
             cancel: "Cancel"
@@ -29,6 +38,9 @@ admin_accounts:
             owner.label: "Owner"
 
     create:
+        meta.title: "New account"
+        breadcrumb: "New account"
+        title: "New account"
         actions:
             create.button: "Create"
             cancel: "Cancel"
@@ -37,6 +49,9 @@ admin_accounts:
             owner.label: "Owner"
 
     delete:
+        meta.title: "%name%"
+        breadcrumb: "Delete account"
+        title: "%name%"
         confirm_message: "Are you sure to delete this account?"
         actions:
             delete.button: "Delete"

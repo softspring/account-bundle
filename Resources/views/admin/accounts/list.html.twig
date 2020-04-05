@@ -1,16 +1,20 @@
 {% trans_default_domain 'sfs_account' %}
 {% extends '@SfsAccount/admin_layout.html.twig' %}
 
+{% block title %}{{ 'admin_accounts.list.meta.title'|trans }}{% endblock %}
+
 {% block breadcrums_content %}
     {{ parent() }}
-    <li class="breadcrumb-item active" aria-current="page">Accounts</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ 'admin_accounts.list.breadcrumb'|trans }}</li>
 {% endblock breadcrums_content %}
 
 {% block content %}
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3">Accounts</h1>
+        <h1 class="h3">{{ 'admin_accounts.list.title'|trans }}</h1>
+        <a href="{{ url('sfs_account_admin_accounts_create') }}" class="btn btn-primary">{{ 'admin_accounts.list.actions.create.link'|trans }}</a>
     </div>
 
+    {% block content_table %}
     {% embed '@SfsAdmin/components/table.html.twig' with {'collection':accounts} %}
         {% trans_default_domain 'sfs_account' %}
         {% block ths %}
@@ -24,4 +28,5 @@
             {% include '@SfsAccount/admin/accounts/list-page.html.twig' %}
         {% endblock tbody %}
     {% endembed %}
+    {% endblock content_table %}
 {% endblock content %}

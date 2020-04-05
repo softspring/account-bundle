@@ -1,17 +1,23 @@
 admin_accounts:
     list:
+        meta.title: "Cuentas"
+        breadcrumb: "Cuentas"
+        title: "Cuentas"
         fields:
             id.header: "Slug"
             name.header: "Nombre"
             owner.header: "Propietario"
         actions:
-            details:
-                link: "detalles"
+            details.link: "detalles"
+            create.link: "nueva cuenta"
         filter_form:
             name.label: "Nombre"
             actions.search: "Filtrar"
 
     details:
+        meta.title: "Detalles de la cuenta"
+        breadcrumb: "%name%"
+        title: "Detalles de la cuenta"
         fields:
             slug: "Slug"
             name: "Nombre"
@@ -21,6 +27,9 @@ admin_accounts:
             delete: "Eliminar"
 
     update:
+        meta.title: "%name%"
+        breadcrumb: "Editar cuenta"
+        title: "%name%"
         actions:
             update.button: "Guardar"
             cancel: "Cancelar"
@@ -29,6 +38,9 @@ admin_accounts:
             owner.label: "Propietario"
 
     create:
+        meta.title: "Nueva cuenta"
+        breadcrumb: "Nueva cuenta"
+        title: "Nueva cuenta"
         actions:
             create.button: "Crear"
             cancel: "Cancelar"
@@ -37,6 +49,9 @@ admin_accounts:
             owner.label: "Propietario"
 
     delete:
+        meta.title: "%name%"
+        breadcrumb: "Eliminar cuenta"
+        title: "%name%"
         confirm_message: "¿Confirmas que deseas eliminar esta cuenta?"
         actions:
             delete.button: "Eliminar"
