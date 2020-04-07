@@ -1,0 +1,25 @@
+{% trans_default_domain 'sfs_account' %}
+{% extends '@SfsAccount/settings_layout.html.twig' %}
+
+{% block content %}
+
+    {% embed '@SfsAdmin/components/table.html.twig' with {'collection':relations} %}
+        {% trans_default_domain 'sfs_account' %}
+        {% block ths %}
+            <th scope="col">{{ 'settings_users.list.fields.id.header'|trans }}</th>
+{#            <th>&nbsp;</th>#}
+        {% endblock ths %}
+
+        {% block tbody %}
+            {% for relation in relations %}
+                <tr>
+                    <td>
+                        {{ relation.user.username }}
+                        {% if relation.user == app.user %}(me){% endif %}
+                        {% if relation.user == account.owner %}(owner){% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endblock tbody %}
+    {% endembed %}
+{% endblock content %}

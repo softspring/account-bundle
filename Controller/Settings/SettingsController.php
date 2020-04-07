@@ -3,7 +3,6 @@
 namespace Softspring\AccountBundle\Controller\Settings;
 
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
-use Softspring\AccountBundle\Controller\Traits\GetAccountTrait;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Form\SettingsFormInterface;
@@ -14,8 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SettingsController extends AbstractController
 {
-    use GetAccountTrait;
-
     /**
      * @var AccountManagerInterface
      */
@@ -27,15 +24,22 @@ class SettingsController extends AbstractController
     protected $settingsForm;
 
     /**
-     * RegisterController constructor.
-     *
-     * @param AccountManagerInterface  $accountManager
-     * @param SettingsFormInterface    $settingsForm
+     * @var string
      */
-    public function __construct(AccountManagerInterface $accountManager, SettingsFormInterface $settingsForm)
+    protected $accountParameterName;
+
+    /**
+     * SettingsController constructor.
+     *
+     * @param AccountManagerInterface $accountManager
+     * @param SettingsFormInterface   $settingsForm
+     * @param string                  $accountParameterName
+     */
+    public function __construct(AccountManagerInterface $accountManager, SettingsFormInterface $settingsForm, string $accountParameterName)
     {
         $this->accountManager = $accountManager;
         $this->settingsForm = $settingsForm;
+        $this->accountParameterName = $accountParameterName;
     }
 
     /**
@@ -45,7 +49,7 @@ class SettingsController extends AbstractController
      */
     public function settings(Request $request): Response
     {
-        $account = $this->getAccount();
+        $account = $request->attributes->get($this->accountParameterName);
 
         $form = $this->createForm(get_class($this->settingsForm), $account, ['method' => 'POST'])->handleRequest($request);
 

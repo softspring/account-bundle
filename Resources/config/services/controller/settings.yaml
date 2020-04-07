@@ -3,6 +3,8 @@ services:
         autowire: true
         autoconfigure: true
         public: false
+        bind:
+            $accountParameterName: '%sfs_account.account.route_param_name%'
 
     Softspring\AccountBundle\Form\SettingsFormInterface:
         class: Softspring\AccountBundle\Form\SettingsForm
