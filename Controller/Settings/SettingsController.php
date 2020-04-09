@@ -65,7 +65,7 @@ class SettingsController extends AbstractController
                     return $response;
                 }
 
-                return $this->redirectToRoute('sfs_account_settings');
+                return $this->redirectToRoute('sfs_account_settings_general');
             } else {
                 if ($response = $this->dispatchGetResponse(SfsAccountEvents::SETTINGS_FORM_INVALID, new GetResponseFormEvent($form, $request))) {
                     return $response;
