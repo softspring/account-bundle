@@ -34,7 +34,7 @@
                     <h4>Users</h4>
                 </div>
                 <div class="card-body">
-                    {% if multi_accounted_account %}
+                    {% if account is instanceof('Softspring\\AccountBundle\\Model\\MultiAccountedAccountInterface') %}
                         <ul>
                         {% for relation in account.relations %}
                             <li>

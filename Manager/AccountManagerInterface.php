@@ -2,39 +2,23 @@
 
 namespace Softspring\AccountBundle\Manager;
 
-use Doctrine\ORM\EntityRepository;
 use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\CrudlBundle\Manager\CrudlEntityManagerInterface;
 
-interface AccountManagerInterface
+interface AccountManagerInterface extends CrudlEntityManagerInterface
 {
-    /**
-     * @return string
-     */
-    public function getClass(): string;
-
-    /**
-     * @return EntityRepository
-     */
-    public function getRepository(): EntityRepository;
-
     /**
      * @return AccountInterface
      */
-    public function create(): AccountInterface;
+    public function createEntity();
 
     /**
-     * @param AccountInterface $account
+     * @param AccountInterface $entity
      */
-    public function save(AccountInterface $account): void;
+    public function saveEntity($entity): void;
 
     /**
-     * @param AccountInterface $account
+     * @param AccountInterface $entity
      */
-    public function delete(AccountInterface $account): void;
-
-    /**
-     * @param array $criteria
-     * @return AccountInterface|null
-     */
-    public function findAccountBy(array $criteria): ?AccountInterface;
+    public function deleteEntity($entity): void;
 }

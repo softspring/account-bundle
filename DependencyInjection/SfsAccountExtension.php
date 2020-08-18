@@ -55,5 +55,11 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
         ];
 
         $container->prependExtensionConfig('doctrine', $doctrineConfig);
+
+        $container->prependExtensionConfig('sfs_core', [
+            'twig' => [
+                'instanceof_extension' => true,
+            ],
+        ]);
     }
 }

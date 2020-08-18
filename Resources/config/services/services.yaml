@@ -11,6 +11,8 @@ services:
 
     Softspring\AccountBundle\Manager\AccountManagerInterface:
         class: Softspring\AccountBundle\Manager\AccountManager
+        arguments:
+            $targetClass: 'Softspring\AccountBundle\Model\AccountInterface'
 
     Softspring\AccountBundle\Manager\RelationManagerInterface:
         class: Softspring\AccountBundle\Manager\RelationManager

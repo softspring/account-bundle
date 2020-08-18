@@ -2,29 +2,12 @@
 
 namespace Softspring\AccountBundle\Event;
 
-use Symfony\Contracts\EventDispatcher\Event;
+use Softspring\CoreBundle\Event\ViewEvent as CoreViewEvent;
 
-class ViewEvent extends Event
+/**
+ * @deprecated use Softspring\CoreBundle\Event\ViewEvent instead
+ */
+class ViewEvent extends CoreViewEvent
 {
-    /**
-     * @var \ArrayObject
-     */
-    protected $data;
 
-    /**
-     * ViewEvent constructor.
-     * @param \ArrayObject $data
-     */
-    public function __construct(\ArrayObject $data)
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * @return \ArrayObject
-     */
-    public function getData(): \ArrayObject
-    {
-        return $this->data;
-    }
 }

@@ -2,86 +2,37 @@
 
 namespace Softspring\AccountBundle\Manager;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 use Softspring\AccountBundle\Model\AccountInterface;
-use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Softspring\CrudlBundle\Manager\DefaultCrudlEntityManager;
 
-class AccountManager implements AccountManagerInterface
+class AccountManager extends DefaultCrudlEntityManager implements AccountManagerInterface
 {
     /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
-
-    /**
-     * @var EncoderFactoryInterface
-     */
-    protected $encoderFactory;
-
-    /**
-     * AccountManager constructor.
-     *
-     * @param EntityManagerInterface  $em
-     * @param EncoderFactoryInterface $encoderFactory
-     */
-    public function __construct(EntityManagerInterface $em, EncoderFactoryInterface $encoderFactory)
-    {
-        $this->em = $em;
-        $this->encoderFactory = $encoderFactory;
-    }
-
-    /**
-     * @return string
-     */
-    public function getClass(): string
-    {
-        $metadata = $this->em->getClassMetadata(AccountInterface::class);
-        return $metadata->getName();
-    }
-
-    /**
-     * @return EntityRepository
-     */
-    public function getRepository(): EntityRepository
-    {
-        return $this->em->getRepository(AccountInterface::class);
-    }
-
-    /**
-     * @inheritdoc
+     * @deprecated
      */
     public function create(): AccountInterface
     {
-        $className = $this->getClass();
-        return new $className();
+        return $this->createEntity();
     }
 
     /**
-     * @param AccountInterface $account
-     *
-     * @throws \Exception
+     * @deprecated
      */
     public function save(AccountInterface $account): void
     {
-        $this->em->persist($account);
-        $this->em->flush();
+        $this->saveEntity($account);
     }
 
     /**
-     * @param AccountInterface $account
-     *
-     * @throws \Exception
+     * @deprecated
      */
     public function delete(AccountInterface $account): void
     {
-        $this->em->remove($account);
-        $this->em->flush();
+        $this->deleteEntity($account);
     }
 
     /**
-     * @inheritdoc
+     * @deprecated Use $manager->getRepository()->findOneBy($criteria);
      */
     public function findAccountBy(array $criteria): ?AccountInterface
     {

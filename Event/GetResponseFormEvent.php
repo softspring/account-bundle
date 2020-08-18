@@ -2,10 +2,12 @@
 
 namespace Softspring\AccountBundle\Event;
 
-use Softspring\CoreBundle\Event\GetResponseEventInterface;
-use Softspring\CoreBundle\Event\GetResponseTrait;
+use Softspring\CrudlBundle\Event\GetResponseFormEvent as CrudlGetResponseFormEvent;
 
-class GetResponseFormEvent extends FormEvent implements GetResponseEventInterface
+/**
+ * @deprecated use Softspring\CrudlBundle\Event\GetResponseFormEvent instead
+ */
+class GetResponseFormEvent extends CrudlGetResponseFormEvent
 {
-    use GetResponseTrait;
+
 }

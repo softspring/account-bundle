@@ -1,21 +1,21 @@
 sfs_account_admin_accounts_list:
-    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::list
+    controller: sfs_account.admin.account.controller::list
     path: /
 
 sfs_account_admin_accounts_create:
-    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::create
+    controller: sfs_account.admin.account.controller::create
     path: /create
 
 sfs_account_admin_accounts_details:
-    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::details
+    controller: sfs_account.admin.account.controller::read
     path: /{account}/details
 
 sfs_account_admin_accounts_update:
-    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::update
+    controller: sfs_account.admin.account.controller::update
     path: /{account}/update
 
 sfs_account_admin_accounts_delete:
-    controller: Softspring\AccountBundle\Controller\Admin\AccountsController::delete
+    controller: sfs_account.admin.account.controller::delete
     path: /{account}/delete
 
 sfs_account_admin_accounts_count_widget:

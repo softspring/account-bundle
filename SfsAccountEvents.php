@@ -2,6 +2,8 @@
 
 namespace Softspring\AccountBundle;
 
+use Symfony\Contracts\EventDispatcher\Event;
+
 class SfsAccountEvents
 {
     /**
@@ -45,12 +47,22 @@ class SfsAccountEvents
     const SETTINGS_FORM_INVALID = 'sfs_account.settings.form_invalid';
 
     /**
-     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent")
+     */
+    const ADMIN_ACCOUNTS_LIST_INITIALIZE = 'sfs_account.admin.accounts.list_initialize';
+
+    /**
+     * @Event("Softspring\CoreBundle\Event\ViewEvent")
      */
     const ADMIN_ACCOUNTS_LIST_VIEW = 'sfs_account.admin.accounts.list_view';
 
     /**
-     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent")
+     */
+    const ADMIN_ACCOUNTS_DETAILS_INITIALIZE = 'sfs_account.admin.accounts.details_initialize';
+
+    /**
+     * @Event("Softspring\CoreBundle\Event\ViewEvent")
      */
     const ADMIN_ACCOUNTS_DETAILS_VIEW = 'sfs_account.admin.accounts.details_view';
 
@@ -75,7 +87,7 @@ class SfsAccountEvents
     const ADMIN_ACCOUNTS_CREATE_FORM_INVALID = 'sfs_account.admin.accounts.create_form_invalid';
 
     /**
-     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     * @Event("Softspring\CoreBundle\Event\ViewEvent")
      */
     const ADMIN_ACCOUNTS_CREATE_VIEW = 'sfs_account.admin.accounts.create_view';
 
@@ -100,7 +112,7 @@ class SfsAccountEvents
     const ADMIN_ACCOUNTS_UPDATE_FORM_INVALID = 'sfs_account.admin.accounts.update_form_invalid';
 
     /**
-     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     * @Event("Softspring\CoreBundle\Event\ViewEvent")
      */
     const ADMIN_ACCOUNTS_UPDATE_VIEW = 'sfs_account.admin.accounts.update_view';
 
@@ -125,7 +137,7 @@ class SfsAccountEvents
     const ADMIN_ACCOUNTS_DELETE_FORM_INVALID = 'sfs_account.admin.accounts.delete_form_invalid';
 
     /**
-     * @Event("Softspring\AccountBundle\Event\ViewEvent")
+     * @Event("Softspring\CoreBundle\Event\ViewEvent")
      */
     const ADMIN_ACCOUNTS_DELETE_VIEW = 'sfs_account.admin.accounts.delete_view';
 }

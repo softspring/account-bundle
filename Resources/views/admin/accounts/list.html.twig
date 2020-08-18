@@ -15,7 +15,7 @@
     </div>
 
     {% block content_table %}
-    {% embed '@SfsAdmin/components/table.html.twig' with {'collection':accounts} %}
+    {% embed '@SfsAdmin/components/table.html.twig' with {'collection':entities, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
         {% trans_default_domain 'sfs_account' %}
         {% block ths %}
             <th scope="col">{{ 'admin_accounts.list.fields.id.header'|trans }}</th>
