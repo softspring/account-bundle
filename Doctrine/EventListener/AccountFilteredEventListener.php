@@ -3,7 +3,8 @@
 namespace Softspring\AccountBundle\Doctrine\EventListener;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs as DeprecatedLifecycleEventArgs;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 use Softspring\AccountBundle\Model\AccountFilterInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
@@ -33,7 +34,10 @@ class AccountFilteredEventListener implements EventSubscriber
         ];
     }
 
-    public function prePersist(LifecycleEventArgs $eventArgs)
+    /**
+     * @param DeprecatedLifecycleEventArgs|LifecycleEventArgs $eventArgs
+     */
+    public function prePersist($eventArgs)
     {
         $entity = $eventArgs->getObject();
 
