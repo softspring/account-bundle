@@ -2,15 +2,12 @@
 
 namespace Softspring\AccountBundle\Controller;
 
-use Softspring\AccountBundle\Model\MultiAccountedInterface;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Form\RegisterFormInterface;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\CoreBundle\Controller\AbstractController;
-use Softspring\UserBundle\Model\OwnerInterface;
-use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,13 +50,14 @@ class RegisterController extends AbstractController
      */
     public function register(Request $request): Response
     {
-        $account = $this->accountManager->create();
+        $account = $this->accountManager->createEntity();
 
         if ($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_INITIALIZE, new GetResponseAccountEvent($account, $request))) {
             return $response;
         }
 
-        $form = $this->createForm(get_class($this->registerForm), $account, ['method' => 'POST'])->handleRequest($request);
+        $formOptions = method_exists($this->registerForm, 'formOptions') ? $this->registerForm->formOptions($account, $request) : ['method' => 'POST'];
+        $form = $this->createForm(get_class($this->registerForm), $account, $formOptions)->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -67,7 +65,7 @@ class RegisterController extends AbstractController
                     return $response;
                 }
 
-                $this->accountManager->save($account);
+                $this->accountManager->saveEntity($account);
 
                 if ($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_SUCCESS, new GetResponseAccountEvent($account, $request))) {
                     return $response;
