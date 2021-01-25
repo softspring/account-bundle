@@ -51,7 +51,8 @@ class SettingsController extends AbstractController
     {
         $account = $request->attributes->get($this->accountParameterName);
 
-        $form = $this->createForm(get_class($this->settingsForm), $account, ['method' => 'POST'])->handleRequest($request);
+        $formOptions = method_exists($this->settingsForm, 'formOptions') ? $this->settingsForm->formOptions($account, $request) : ['method' => 'POST'];
+        $form = $this->createForm(get_class($this->settingsForm), $account, $formOptions)->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
