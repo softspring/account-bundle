@@ -4,6 +4,7 @@ namespace Softspring\AccountBundle\EventListener;
 
 use Softspring\AccountBundle\Manager\RelationManagerInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountUserRelationInterface;
 use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\CrudlBundle\Event\GetResponseFormEvent;
@@ -55,6 +56,12 @@ class AccountCreateListener implements EventSubscriberInterface
             }
 
             if ($account instanceof MultiAccountedAccountInterface) {
+                if ($account->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($user) {
+                    return $relation->getUser() === $user;
+                })->count()) {
+                    return;
+                }
+
                 $account->addRelation($relation = $this->relationManager->create());
 
                 $relation->setAccount($account);
