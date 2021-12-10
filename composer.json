@@ -3,11 +3,12 @@
     "description": "An account manage bundle, extending softspring/user-bundle",
     "type": "symfony-bundle",
     "license": "MIT",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=7.4",
-        "softspring/core-bundle": "^1.3.6",
-        "softspring/crudl-bundle": "^1.0.3",
-        "softspring/user-bundle": "^2.0@dev"
+        "softspring/core-bundle": "^4.0",
+        "softspring/crudl-bundle": "^4.0",
+        "softspring/user-bundle": "^4.0"
     },
     "require-dev": {
         "symfony/config": "^4.2",
