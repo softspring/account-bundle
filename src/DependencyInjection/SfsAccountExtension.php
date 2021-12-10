@@ -29,7 +29,7 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
         $container->setParameter('sfs_account.relation.class', $config['relation_class']);
 
         // load services
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config/services'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../config/services'));
         $loader->load('services.yaml');
         $loader->load('controller/admin_accounts.yaml');
         $loader->load('controller/register.yaml');

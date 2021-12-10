@@ -5,7 +5,7 @@ services:
         public: false
 
     Softspring\AccountBundle\Form\Admin\:
-        resource: '../../../Form/Admin/*'
+        resource: '../../../src/Form/Admin/*'
 
     Softspring\AccountBundle\Controller\Admin\AccountsController:
         public: true

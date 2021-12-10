@@ -10,6 +10,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SfsAccountBundle extends Bundle
 {
+    public function getPath(): string
+    {
+        return \dirname(__DIR__);
+    }
+
     /**
      * @param ContainerBuilder $container
      */
