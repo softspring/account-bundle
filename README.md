@@ -6,4 +6,4 @@ This package provides an account management bundle.
 [![Latest Unstable Version](https://poser.pugx.org/softspring/account-bundle/v/unstable.svg)](https://packagist.org/packages/softspring/account-bundle)
 [![License](https://poser.pugx.org/softspring/account-bundle/license.svg)](https://packagist.org/packages/softspring/account-bundle)
 [![Total Downloads](https://poser.pugx.org/softspring/account-bundle/downloads)](https://packagist.org/packages/softspring/account-bundle)
-[![Build status](https://app.travis-ci.com/github/softspring/account-bundle.svg?branch=master)](https://app.travis-ci.com/github/softspring/account-bundle)
+[![Build status](https://travis-ci.com/softspring/account-bundle.svg?branch=master)](https://app.travis-ci.com/github/softspring/account-bundle)
