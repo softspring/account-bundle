@@ -22,7 +22,7 @@ class SfsAccountBundle extends Bundle
     {
         parent::build($container);
 
-        $basePath = realpath(__DIR__.'/Resources/config/doctrine-mapping/');
+        $basePath = realpath(__DIR__.'/../config/doctrine-mapping/');
 
         $this->addRegisterMappingsPass($container, [$basePath => 'Softspring\AccountBundle\Model']);
 
