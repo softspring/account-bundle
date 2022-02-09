@@ -19,6 +19,7 @@ services:
             - { method: setContainer, arguments: ['@service_container'] }
         arguments:
             $manager: '@Softspring\AccountBundle\Manager\AccountManagerInterface'
+            $eventDispatcher: '@event_dispatcher'
             $listFilterForm: '@Softspring\AccountBundle\Form\Admin\AccountListFilterFormInterface'
             $createForm: '@Softspring\AccountBundle\Form\Admin\AccountCreateFormInterface'
             $updateForm: '@Softspring\AccountBundle\Form\Admin\AccountUpdateFormInterface'
