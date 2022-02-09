@@ -20,9 +20,6 @@ class AccountEvent extends Event
 
     /**
      * AccountEvent constructor.
-     *
-     * @param AccountInterface $account
-     * @param Request|null  $request
      */
     public function __construct(AccountInterface $account, ?Request $request)
     {
@@ -30,17 +27,11 @@ class AccountEvent extends Event
         $this->request = $request;
     }
 
-    /**
-     * @return AccountInterface
-     */
     public function getAccount(): AccountInterface
     {
         return $this->account;
     }
 
-    /**
-     * @return Request|null
-     */
     public function getRequest(): ?Request
     {
         return $this->request;

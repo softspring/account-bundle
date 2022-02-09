@@ -30,7 +30,7 @@ class AccountListFilterForm extends EntityListFilterForm implements AccountListF
         ]);
 
         $builder->add('submit', SubmitType::class, [
-            'label' => 'admin_accounts.list.filter_form.actions.search'
+            'label' => 'admin_accounts.list.filter_form.actions.search',
         ]);
     }
 
@@ -38,7 +38,7 @@ class AccountListFilterForm extends EntityListFilterForm implements AccountListF
     {
         if (class_exists(RequestParam::class)) {
             $order = RequestParam::getQueryValidParam($request, self::getOrderFieldParamName(), 'id', ['id', 'name']);
-            $sort = RequestParam::getQueryValidParam($request, self::getOrderDirectionParamName(), 'asc', ['asc','desc']);
+            $sort = RequestParam::getQueryValidParam($request, self::getOrderDirectionParamName(), 'asc', ['asc', 'desc']);
 
             return [$order => $sort];
         }

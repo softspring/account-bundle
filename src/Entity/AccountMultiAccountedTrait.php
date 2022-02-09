@@ -2,8 +2,8 @@
 
 namespace Softspring\AccountBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Softspring\AccountBundle\Model\AccountUserRelationInterface;
 use Softspring\UserBundle\Model\UserInterface;
 
@@ -25,9 +25,6 @@ trait AccountMultiAccountedTrait
         return $this->userRelations;
     }
 
-    /**
-     * @param AccountUserRelationInterface $userRelation
-     */
     public function addRelation(AccountUserRelationInterface $userRelation): void
     {
         $this->checkRelationsCollection();
@@ -37,9 +34,6 @@ trait AccountMultiAccountedTrait
         }
     }
 
-    /**
-     * @param AccountUserRelationInterface $userRelation
-     */
     public function removeRelation(AccountUserRelationInterface $userRelation): void
     {
         $this->checkRelationsCollection();
@@ -56,14 +50,11 @@ trait AccountMultiAccountedTrait
     {
         $this->checkRelationsCollection();
 
-        return $this->userRelations->map(function(AccountUserRelationInterface $userRelation) {
+        return $this->userRelations->map(function (AccountUserRelationInterface $userRelation) {
             return $userRelation->getUser();
         });
     }
 
-    /**
-     * @param UserInterface $user
-     */
     public function removeUser(UserInterface $user): void
     {
         $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($user) {

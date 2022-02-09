@@ -12,4 +12,6 @@ env:
 before_script:
   - composer update --prefer-dist --no-interaction $PREFER_LOWEST
 
-script: composer validate
+script:
+  - composer validate
+  - ./vendor/bin/php-cs-fixer fix -v --diff --dry-run

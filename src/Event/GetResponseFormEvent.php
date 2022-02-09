@@ -9,5 +9,4 @@ use Softspring\CrudlBundle\Event\GetResponseFormEvent as CrudlGetResponseFormEve
  */
 class GetResponseFormEvent extends CrudlGetResponseFormEvent
 {
-
 }

@@ -2,8 +2,8 @@
 
 namespace Softspring\AccountBundle\Controller;
 
-use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
+use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Form\RegisterFormInterface;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
@@ -34,10 +34,6 @@ class RegisterController extends AbstractController
 
     /**
      * RegisterController constructor.
-     *
-     * @param AccountManagerInterface  $accountManager
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param RegisterFormInterface    $registerForm
      */
     public function __construct(AccountManagerInterface $accountManager, EventDispatcherInterface $eventDispatcher, RegisterFormInterface $registerForm)
     {
@@ -46,11 +42,6 @@ class RegisterController extends AbstractController
         $this->registerForm = $registerForm;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return Response
-     */
     public function register(Request $request): Response
     {
         $account = $this->accountManager->createEntity();
@@ -87,15 +78,9 @@ class RegisterController extends AbstractController
         ]);
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return Response
-     */
     public function success(Request $request): Response
     {
         return $this->render('@SfsAccount/register/success.html.twig', [
-
         ]);
     }
 }

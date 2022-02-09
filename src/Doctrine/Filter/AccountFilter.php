@@ -14,6 +14,6 @@ class AccountFilter extends SQLFilter
             return '';
         }
 
-        return $targetTableAlias.'.account_id = ' . $this->getParameter('_account');
+        return $targetTableAlias.'.account_id = '.$this->getParameter('_account');
     }
 }

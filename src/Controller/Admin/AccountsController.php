@@ -15,8 +15,6 @@ class AccountsController extends AbstractController
 
     /**
      * AccountsController constructor.
-     *
-     * @param AccountManagerInterface $accountManager
      */
     public function __construct(AccountManagerInterface $accountManager)
     {

@@ -14,6 +14,7 @@ class AccountAccessVoter implements VoterInterface
 {
     /**
      * @param mixed $account
+     *
      * @return bool
      */
     public function supportsObject($account)
@@ -26,14 +27,13 @@ class AccountAccessVoter implements VoterInterface
     }
 
     /**
-     * @param TokenInterface   $token
      * @param AccountInterface $account
-     * @param array            $attributes
+     *
      * @return int
      */
     public function vote(TokenInterface $token, $account, array $attributes)
     {
-        if (($attributes[0]?? null) !== 'CHECK_ACCOUNT_ACCESS') {
+        if (($attributes[0] ?? null) !== 'CHECK_ACCOUNT_ACCESS') {
             return VoterInterface::ACCESS_ABSTAIN;
         }
 
@@ -43,15 +43,15 @@ class AccountAccessVoter implements VoterInterface
 
         $user = $token->getUser();
 
-        if ($user == 'anon.') {
+        if ('anon.' == $user) {
             return VoterInterface::ACCESS_DENIED;
         }
 
-        if (! $user instanceof UserInterface) {
+        if (!$user instanceof UserInterface) {
             throw new InvalidArgumentException('Invalid user class');
         }
 
-        if ( ! $this->checkUser($account, $user)) {
+        if (!$this->checkUser($account, $user)) {
             return VoterInterface::ACCESS_DENIED;
         }
 
@@ -59,10 +59,7 @@ class AccountAccessVoter implements VoterInterface
     }
 
     /**
-     * @param AccountInterface $account
-     * @param UserInterface    $user
-     *
-     * @return bool
+     * @param UserInterface $user
      */
     protected function checkUser(AccountInterface $account, $user): bool
     {

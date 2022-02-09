@@ -23,9 +23,6 @@ trait UserMultiAccountedTrait
         return $this->accountRelations;
     }
 
-    /**
-     * @param AccountUserRelationInterface $accountRelation
-     */
     public function addRelation(AccountUserRelationInterface $accountRelation): void
     {
         if (!$this->accountRelations->contains($accountRelation)) {
@@ -33,9 +30,6 @@ trait UserMultiAccountedTrait
         }
     }
 
-    /**
-     * @param AccountUserRelationInterface $accountRelation
-     */
     public function removeRelation(AccountUserRelationInterface $accountRelation): void
     {
         if ($this->accountRelations->contains($accountRelation)) {
@@ -48,14 +42,11 @@ trait UserMultiAccountedTrait
      */
     public function getAccounts(): Collection
     {
-        return $this->accountRelations->map(function(AccountUserRelationInterface $accountRelation) {
+        return $this->accountRelations->map(function (AccountUserRelationInterface $accountRelation) {
             return $accountRelation->getAccount();
         });
     }
 
-    /**
-     * @param AccountInterface $account
-     */
     public function removeAccount(AccountInterface $account): void
     {
         $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($account) {

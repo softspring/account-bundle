@@ -20,7 +20,8 @@
         "symfony/http-foundation": "^4.4 || ^5.3 || ^6.0",
         "symfony/security-bundle": "^4.4 || ^5.3 || ^6.0",
         "symfony/validator": "^4.4 || ^5.3 || ^6.0",
-        "symfony/yaml": "^4.4 || ^5.3 || ^6.0"
+        "symfony/yaml": "^4.4 || ^5.3 || ^6.0",
+        "friendsofphp/php-cs-fixer": "9999999-dev"
     },
     "suggest": {
         "softspring/admin-bundle": "Use softspring admin templates"

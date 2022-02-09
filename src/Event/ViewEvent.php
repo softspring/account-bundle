@@ -9,5 +9,4 @@ use Softspring\CoreBundle\Event\ViewEvent as CoreViewEvent;
  */
 class ViewEvent extends CoreViewEvent
 {
-
 }

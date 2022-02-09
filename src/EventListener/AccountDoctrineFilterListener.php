@@ -23,8 +23,6 @@ class AccountDoctrineFilterListener implements EventSubscriberInterface
 
     /**
      * AccountRequestListener constructor.
-     * @param EntityManagerInterface $em
-     * @param string $accountRouteParamName
      */
     public function __construct(EntityManagerInterface $em, string $accountRouteParamName)
     {
@@ -40,7 +38,7 @@ class AccountDoctrineFilterListener implements EventSubscriberInterface
             ],
         ];
     }
-    
+
     /**
      * @param GetResponseEvent|RequestEvent $event
      */

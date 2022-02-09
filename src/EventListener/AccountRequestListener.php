@@ -43,12 +43,6 @@ class AccountRequestListener implements EventSubscriberInterface
     /**
      * AccountRequestListener constructor.
      *
-     * @param EntityManagerInterface $em
-     * @param string                 $accountRouteParamName
-     * @param RouterInterface        $router
-     * @param AppVariable            $twigAppVariable
-     * @param string                 $findParamName
-     *
      * @throws \Exception
      */
     public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router, AppVariable $twigAppVariable, string $findParamName)
@@ -75,6 +69,7 @@ class AccountRequestListener implements EventSubscriberInterface
 
     /**
      * @param GetResponseEvent|RequestEvent $event
+     *
      * @throws UnauthorizedHttpException
      */
     public function onRequestGetAccount($event)

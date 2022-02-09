@@ -17,7 +17,6 @@ class AccountsController extends AbstractController
         }
 
         return $this->render('@SfsAccount/user/accounts/list.html.twig', [
-
         ]);
     }
 }

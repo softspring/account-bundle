@@ -2,10 +2,10 @@
 
 namespace Softspring\AccountBundle\Controller\Settings;
 
-use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Form\SettingsFormInterface;
+use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\CoreBundle\Controller\Traits\DispatchGetResponseTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,12 +37,6 @@ class SettingsController extends AbstractController
      */
     protected $eventDispatcher;
 
-    /**
-     * @param AccountManagerInterface  $accountManager
-     * @param SettingsFormInterface    $settingsForm
-     * @param string                   $accountParameterName
-     * @param EventDispatcherInterface $eventDispatcher
-     */
     public function __construct(AccountManagerInterface $accountManager, SettingsFormInterface $settingsForm, string $accountParameterName, EventDispatcherInterface $eventDispatcher)
     {
         $this->accountManager = $accountManager;
@@ -51,11 +45,6 @@ class SettingsController extends AbstractController
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return Response
-     */
     public function settings(Request $request): Response
     {
         $account = $request->attributes->get($this->accountParameterName);

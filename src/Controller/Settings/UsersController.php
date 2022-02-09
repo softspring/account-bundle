@@ -23,9 +23,6 @@ class UsersController extends AbstractController
 
     /**
      * UsersController constructor.
-     *
-     * @param AccountManagerInterface $accountManager
-     * @param string                  $accountParameterName
      */
     public function __construct(AccountManagerInterface $accountManager, string $accountParameterName)
     {
@@ -33,11 +30,6 @@ class UsersController extends AbstractController
         $this->accountParameterName = $accountParameterName;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return Response
-     */
     public function list(Request $request): Response
     {
         /** @var AccountInterface $account */

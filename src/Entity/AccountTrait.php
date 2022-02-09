@@ -14,17 +14,11 @@ trait AccountTrait
      */
     protected $account;
 
-    /**
-     * @return AccountInterface|null
-     */
     public function getAccount(): ?AccountInterface
     {
         return $this->account;
     }
 
-    /**
-     * @param AccountInterface|null $account
-     */
     public function setAccount(?AccountInterface $account): void
     {
         $this->account = $account;

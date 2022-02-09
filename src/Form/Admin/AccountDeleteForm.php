@@ -62,8 +62,8 @@ class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterfa
         $usersForDeletion = [];
 
         /** @var UserMultiAccountedInterface $user */
-        foreach($account->getUsers() as $user) {
-            if ($user->getAccounts()->count() == 1 && $user->getAccounts()->first() == $account) {
+        foreach ($account->getUsers() as $user) {
+            if (1 == $user->getAccounts()->count() && $user->getAccounts()->first() == $account) {
                 $usersForDeletion[] = $user;
             }
         }

@@ -19,8 +19,6 @@ class AccountFilteredEventListener implements EventSubscriber
 
     /**
      * AccountFilteredEventListener constructor.
-     *
-     * @param RequestStack $requestStack
      */
     public function __construct(RequestStack $requestStack)
     {
@@ -52,9 +50,6 @@ class AccountFilteredEventListener implements EventSubscriber
         $entity->setAccount($this->getAccount());
     }
 
-    /**
-     * @return AccountInterface|null
-     */
     private function getAccount(): ?AccountInterface
     {
         if (!$request = $this->requestStack->getCurrentRequest()) {

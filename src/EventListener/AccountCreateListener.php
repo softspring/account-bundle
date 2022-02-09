@@ -27,8 +27,6 @@ class AccountCreateListener implements EventSubscriberInterface
 
     /**
      * AccountCreateListener constructor.
-     * @param TokenStorageInterface $tokenStorage
-     * @param RelationManagerInterface $relationManager
      */
     public function __construct(TokenStorageInterface $tokenStorage, RelationManagerInterface $relationManager)
     {

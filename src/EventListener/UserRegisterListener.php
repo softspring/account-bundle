@@ -18,7 +18,6 @@ class UserRegisterListener implements EventSubscriberInterface
 
     /**
      * UserRegisterListener constructor.
-     * @param RouterInterface $router
      */
     public function __construct(RouterInterface $router)
     {
@@ -29,10 +28,10 @@ class UserRegisterListener implements EventSubscriberInterface
     {
         return [
             SfsUserEvents::REGISTER_SUCCESS => [
-                ['onUserRegisterRedirectToAccount', 0]
+                ['onUserRegisterRedirectToAccount', 0],
             ],
             SfsUserEvents::INVITATION_ACCEPTED => [
-                ['onUserRegisterRedirectToAccount', 0]
+                ['onUserRegisterRedirectToAccount', 0],
             ],
         ];
     }

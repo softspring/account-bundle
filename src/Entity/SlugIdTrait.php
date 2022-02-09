@@ -14,24 +14,18 @@ trait SlugIdTrait
     protected $id;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __toString(): string
     {
         return "{$this->getId()}";
     }
 
-    /**
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * @param string|null $id
-     */
     public function setId(?string $id): void
     {
         $this->id = $id;

@@ -9,5 +9,4 @@ use Softspring\CoreBundle\Event\FormEvent as CoreFormEvent;
  */
 class FormEvent extends CoreFormEvent
 {
-
 }

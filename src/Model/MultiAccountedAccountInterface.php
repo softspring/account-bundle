@@ -12,14 +12,8 @@ interface MultiAccountedAccountInterface
      */
     public function getRelations(): Collection;
 
-    /**
-     * @param AccountUserRelationInterface $relation
-     */
     public function addRelation(AccountUserRelationInterface $relation): void;
 
-    /**
-     * @param AccountUserRelationInterface $relation
-     */
     public function removeRelation(AccountUserRelationInterface $relation): void;
 
     /**
@@ -27,8 +21,5 @@ interface MultiAccountedAccountInterface
      */
     public function getUsers(): Collection;
 
-    /**
-     * @param UserInterface $user
-     */
     public function removeUser(UserInterface $user): void;
 }

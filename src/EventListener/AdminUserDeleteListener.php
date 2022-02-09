@@ -17,13 +17,11 @@ class AdminUserDeleteListener implements EventSubscriberInterface
 
     /**
      * AdminUserDeleteListener constructor.
-     * @param AccountManagerInterface $accountManager
      */
     public function __construct(AccountManagerInterface $accountManager)
     {
         $this->accountManager = $accountManager;
     }
-
 
     public static function getSubscribedEvents()
     {

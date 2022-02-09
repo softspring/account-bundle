@@ -25,8 +25,6 @@ class AccountAccessPermissionListener implements EventSubscriberInterface
 
     /**
      * AccountAccessPermissionListener constructor.
-     * @param string $accountRouteParamName
-     * @param AuthorizationCheckerInterface $authorizationChecker
      */
     public function __construct(string $accountRouteParamName, AuthorizationCheckerInterface $authorizationChecker)
     {
@@ -45,6 +43,7 @@ class AccountAccessPermissionListener implements EventSubscriberInterface
 
     /**
      * @param GetResponseEvent|RequestEvent $event
+     *
      * @throws NotFoundHttpException
      */
     public function onRequestCheckAccountAccessPermission($event)

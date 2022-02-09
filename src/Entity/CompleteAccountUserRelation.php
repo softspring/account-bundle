@@ -32,33 +32,21 @@ abstract class CompleteAccountUserRelation extends AccountUserRelationModel
         $this->roles = [];
     }
 
-    /**
-     * @return UserInterface|null
-     */
     public function getGrantedBy(): ?UserInterface
     {
         return $this->grantedBy;
     }
 
-    /**
-     * @param UserInterface|null $grantedBy
-     */
     public function setGrantedBy(?UserInterface $grantedBy): void
     {
         $this->grantedBy = $grantedBy;
     }
 
-    /**
-     * @return array
-     */
     public function getRoles(): array
     {
         return $this->roles;
     }
 
-    /**
-     * @param array $roles
-     */
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
