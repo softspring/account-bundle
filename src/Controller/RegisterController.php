@@ -7,13 +7,16 @@ use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Form\RegisterFormInterface;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
-use Softspring\CoreBundle\Controller\AbstractController;
+use Softspring\CoreBundle\Controller\Traits\DispatchGetResponseTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegisterController extends AbstractController
 {
+    use DispatchGetResponseTrait;
+
     /**
      * @var AccountManagerInterface
      */

@@ -5,7 +5,7 @@ namespace Softspring\AccountBundle\Controller\Settings;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
-use Softspring\CoreBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
