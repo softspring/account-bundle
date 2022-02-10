@@ -8,10 +8,7 @@ use Softspring\AccountBundle\Model\AccountUserRelationInterface;
 
 class RelationManager implements RelationManagerInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
+    protected EntityManagerInterface $em;
 
     /**
      * RelationManager constructor.

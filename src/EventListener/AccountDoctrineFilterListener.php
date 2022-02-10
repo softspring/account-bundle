@@ -11,15 +11,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class AccountDoctrineFilterListener implements EventSubscriberInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
+    protected EntityManagerInterface $em;
 
-    /**
-     * @var string
-     */
-    protected $accountRouteParamName;
+    protected string $accountRouteParamName;
 
     /**
      * AccountRequestListener constructor.

@@ -17,25 +17,13 @@ class SettingsController extends AbstractController
 {
     use DispatchGetResponseTrait;
 
-    /**
-     * @var AccountManagerInterface
-     */
-    protected $accountManager;
+    protected AccountManagerInterface $accountManager;
 
-    /**
-     * @var SettingsFormInterface
-     */
-    protected $settingsForm;
+    protected SettingsFormInterface $settingsForm;
 
-    /**
-     * @var string
-     */
-    protected $accountParameterName;
+    protected string $accountParameterName;
 
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
+    protected EventDispatcherInterface $eventDispatcher;
 
     public function __construct(AccountManagerInterface $accountManager, SettingsFormInterface $settingsForm, string $accountParameterName, EventDispatcherInterface $eventDispatcher)
     {

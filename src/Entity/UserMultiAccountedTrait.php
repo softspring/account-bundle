@@ -13,7 +13,7 @@ trait UserMultiAccountedTrait
      * @var AccountUserRelationInterface[]|Collection
      * @ORM\OneToMany(targetEntity="Softspring\AccountBundle\Model\AccountUserRelationInterface", mappedBy="user", cascade={"all"})
      */
-    protected $accountRelations;
+    protected Collection $accountRelations;
 
     /**
      * @return AccountUserRelationInterface[]|Collection

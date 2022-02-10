@@ -13,15 +13,9 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class AccountAccessPermissionListener implements EventSubscriberInterface
 {
-    /**
-     * @var string
-     */
-    protected $accountRouteParamName;
+    protected string $accountRouteParamName;
 
-    /**
-     * @var AuthorizationCheckerInterface
-     */
-    protected $authorizationChecker;
+    protected AuthorizationCheckerInterface $authorizationChecker;
 
     /**
      * AccountAccessPermissionListener constructor.

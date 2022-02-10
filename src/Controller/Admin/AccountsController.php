@@ -8,10 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AccountsController extends AbstractController
 {
-    /**
-     * @var AccountManagerInterface
-     */
-    protected $accountManager;
+    protected AccountManagerInterface $accountManager;
 
     /**
      * AccountsController constructor.

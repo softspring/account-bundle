@@ -15,30 +15,15 @@ use Symfony\Component\Routing\RouterInterface;
 
 class AccountRequestListener implements EventSubscriberInterface
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    protected $em;
+    protected EntityManagerInterface $em;
 
-    /**
-     * @var string
-     */
-    protected $accountRouteParamName;
+    protected string $accountRouteParamName;
 
-    /**
-     * @var RouterInterface
-     */
-    protected $router;
+    protected RouterInterface $router;
 
-    /**
-     * @var AppVariable
-     */
-    protected $twigAppVariable;
+    protected AppVariable $twigAppVariable;
 
-    /**
-     * @var string
-     */
-    protected $findParamName;
+    protected string $findParamName;
 
     /**
      * AccountRequestListener constructor.

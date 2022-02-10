@@ -11,10 +11,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 class UserRegisterListener implements EventSubscriberInterface
 {
-    /**
-     * @var RouterInterface
-     */
-    protected $router;
+    protected RouterInterface $router;
 
     /**
      * UserRegisterListener constructor.

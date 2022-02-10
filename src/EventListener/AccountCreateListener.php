@@ -15,15 +15,9 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class AccountCreateListener implements EventSubscriberInterface
 {
-    /**
-     * @var TokenStorageInterface
-     */
-    protected $tokenStorage;
+    protected TokenStorageInterface $tokenStorage;
 
-    /**
-     * @var RelationManagerInterface
-     */
-    protected $relationManager;
+    protected RelationManagerInterface $relationManager;
 
     /**
      * AccountCreateListener constructor.

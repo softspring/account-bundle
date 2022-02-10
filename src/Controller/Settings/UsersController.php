@@ -11,15 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends AbstractController
 {
-    /**
-     * @var AccountManagerInterface
-     */
-    protected $accountManager;
+    protected AccountManagerInterface $accountManager;
 
-    /**
-     * @var string
-     */
-    protected $accountParameterName;
+    protected string $accountParameterName;
 
     /**
      * UsersController constructor.

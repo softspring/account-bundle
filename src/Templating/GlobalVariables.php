@@ -5,6 +5,9 @@ namespace Softspring\AccountBundle\Templating;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables as BaseGlobalVariables;
 
+/**
+ * @deprecated
+ */
 class GlobalVariables extends BaseGlobalVariables
 {
     public function getAccount(): ?AccountInterface

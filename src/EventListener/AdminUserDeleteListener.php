@@ -10,10 +10,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AdminUserDeleteListener implements EventSubscriberInterface
 {
-    /**
-     * @var AccountManagerInterface
-     */
-    protected $accountManager;
+    protected AccountManagerInterface $accountManager;
 
     /**
      * AdminUserDeleteListener constructor.

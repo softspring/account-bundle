@@ -8,15 +8,9 @@ use Symfony\Contracts\EventDispatcher\Event;
 
 class AccountEvent extends Event
 {
-    /**
-     * @var AccountInterface
-     */
-    protected $account;
+    protected AccountInterface $account;
 
-    /**
-     * @var Request|null
-     */
-    protected $request;
+    protected ?Request $request;
 
     /**
      * AccountEvent constructor.

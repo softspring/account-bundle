@@ -12,10 +12,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class AccountFilteredEventListener implements EventSubscriber
 {
-    /**
-     * @var RequestStack
-     */
-    protected $requestStack;
+    protected RequestStack $requestStack;
 
     /**
      * AccountFilteredEventListener constructor.

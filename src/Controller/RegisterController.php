@@ -17,20 +17,11 @@ class RegisterController extends AbstractController
 {
     use DispatchGetResponseTrait;
 
-    /**
-     * @var AccountManagerInterface
-     */
-    protected $accountManager;
+    protected AccountManagerInterface $accountManager;
 
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $eventDispatcher;
+    protected EventDispatcherInterface $eventDispatcher;
 
-    /**
-     * @var RegisterFormInterface
-     */
-    protected $registerForm;
+    protected RegisterFormInterface $registerForm;
 
     /**
      * RegisterController constructor.

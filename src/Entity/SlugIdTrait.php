@@ -7,11 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 trait SlugIdTrait
 {
     /**
-     * @var string|null
      * @ORM\Id()
      * @ORM\Column(name="id", type="string", length=15, nullable=false, options={"fixed":true})
      */
-    protected $id;
+    protected ?string $id;
 
     /**
      * {@inheritdoc}

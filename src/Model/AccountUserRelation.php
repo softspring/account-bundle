@@ -6,15 +6,9 @@ use Softspring\UserBundle\Model\UserInterface;
 
 abstract class AccountUserRelation implements AccountUserRelationInterface
 {
-    /**
-     * @var AccountInterface|null
-     */
-    protected $account;
+    protected ?AccountInterface $account;
 
-    /**
-     * @var UserInterface|null
-     */
-    protected $user;
+    protected ?UserInterface $user;
 
     public function getAccount(): ?AccountInterface
     {

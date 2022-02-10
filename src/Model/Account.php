@@ -4,10 +4,7 @@ namespace Softspring\AccountBundle\Model;
 
 abstract class Account implements AccountInterface
 {
-    /**
-     * @var string|null
-     */
-    protected $name;
+    protected ?string $name;
 
     /**
      * {@inheritdoc}
