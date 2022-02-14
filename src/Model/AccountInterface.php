@@ -2,8 +2,6 @@
 
 namespace Softspring\AccountBundle\Model;
 
-use Softspring\UserBundle\Model\OwnerInterface;
-
 interface AccountInterface
 {
     /**
