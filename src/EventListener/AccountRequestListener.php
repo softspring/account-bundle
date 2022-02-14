@@ -4,10 +4,9 @@ namespace Softspring\AccountBundle\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
-use Softspring\CoreBundle\Twig\ExtensibleAppVariable;
+use Softspring\TwigExtraBundle\Twig\ExtensibleAppVariable;
 use Symfony\Bridge\Twig\AppVariable;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -25,18 +24,19 @@ class AccountRequestListener implements EventSubscriberInterface
 
     protected string $findParamName;
 
+    protected string $twigAppVariableName;
+
     /**
-     * AccountRequestListener constructor.
-     *
      * @throws \Exception
      */
-    public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router, AppVariable $twigAppVariable, string $findParamName)
+    public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router, AppVariable $twigAppVariable, string $findParamName, string $twigAppVariableName)
     {
         $this->em = $em;
         $this->accountRouteParamName = $accountRouteParamName;
         $this->router = $router;
         $this->twigAppVariable = $twigAppVariable;
         $this->findParamName = $findParamName;
+        $this->twigAppVariableName = $twigAppVariableName;
 
         if (!$this->twigAppVariable instanceof ExtensibleAppVariable) {
             throw new \Exception('You must configure SfsCoreBundle to extend twig app variable');
@@ -53,11 +53,9 @@ class AccountRequestListener implements EventSubscriberInterface
     }
 
     /**
-     * @param GetResponseEvent|RequestEvent $event
-     *
      * @throws UnauthorizedHttpException
      */
-    public function onRequestGetAccount($event)
+    public function onRequestGetAccount(RequestEvent $event)
     {
         $request = $event->getRequest();
 
@@ -66,7 +64,7 @@ class AccountRequestListener implements EventSubscriberInterface
 
             if (!$account) {
                 // hide not found with an unauthorized response
-                throw new UnauthorizedHttpException('', 'Empty _account');
+                throw new UnauthorizedHttpException('', sprintf('Empty %s', $this->accountRouteParamName));
             }
 
             $account = $this->em->getRepository(AccountInterface::class)->findOneBy([$this->findParamName => $account]);
@@ -79,9 +77,9 @@ class AccountRequestListener implements EventSubscriberInterface
             $request->attributes->set($this->accountRouteParamName, $account);
 
             $context = $this->router->getContext();
-            $context->setParameter('_account', $account);
+            $context->setParameter($this->accountRouteParamName, $account);
 
-            $this->twigAppVariable->setAccount($account);
+            call_user_func([$this->twigAppVariable, 'set'.ucfirst($this->twigAppVariableName)], $account);
         }
     }
 }

@@ -8,6 +8,7 @@ services:
             $twigAppVariable: '@twig.app_variable'
             $em: '@sfs_account.entity_manager'
             $findParamName: '%sfs_account.account.find_field_name%'
+            $twigAppVariableName: '%sfs_account.account.twig_app_var_name%'
 
     Softspring\AccountBundle\Manager\AccountManagerInterface:
         class: Softspring\AccountBundle\Manager\AccountManager

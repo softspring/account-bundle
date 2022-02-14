@@ -4,7 +4,7 @@ namespace Softspring\AccountBundle\Model;
 
 use Softspring\UserBundle\Model\OwnerInterface;
 
-interface AccountInterface extends OwnerInterface
+interface AccountInterface
 {
     /**
      * @return mixed|null

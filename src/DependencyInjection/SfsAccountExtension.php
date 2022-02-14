@@ -26,6 +26,7 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
         $container->setParameter('sfs_account.account.class', $config['class']);
         $container->setParameter('sfs_account.account.route_param_name', $config['route_param_name']);
         $container->setParameter('sfs_account.account.find_field_name', $config['find_field_name']);
+        $container->setParameter('sfs_account.account.twig_app_var_name', $config['twig_app_var_name']);
         $container->setParameter('sfs_account.relation.class', $config['relation_class']);
 
         // load services
@@ -60,10 +61,8 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
 
         $container->prependExtensionConfig('doctrine', $doctrineConfig);
 
-        $container->prependExtensionConfig('sfs_core', [
-            'twig' => [
-                'instanceof_extension' => true,
-            ],
+        $container->prependExtensionConfig('sfs_twig_extra', [
+            'instanceof_extension' => true,
         ]);
     }
 }

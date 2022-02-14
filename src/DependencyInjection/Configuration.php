@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('default')
                 ->end()
 
+                ->scalarNode('twig_app_var_name')->defaultValue('account')->end()
                 ->scalarNode('route_param_name')->defaultValue('_account')->end()
                 ->scalarNode('find_field_name')->defaultValue('id')->end()
 
