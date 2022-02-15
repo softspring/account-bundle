@@ -15,12 +15,12 @@ abstract class CompleteAccountUserRelation extends AccountUserRelationModel
      * @ORM\ManyToOne(targetEntity="Softspring\UserBundle\Model\UserInterface", cascade={"all"})
      * @ORM\JoinColumn(name="granted_by_id", referencedColumnName="id", onDelete="SET NULL")
      */
-    protected ?UserInterface $grantedBy;
+    protected ?UserInterface $grantedBy = null;
 
     /**
      * @ORM\Column(name="roles", type="array")
      */
-    protected array $roles;
+    protected array $roles = [];
 
     /**
      * CompleteAccountUserRelation constructor.

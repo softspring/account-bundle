@@ -11,7 +11,7 @@ trait AccountTrait
      * @ORM\ManyToOne(targetEntity="Softspring\AccountBundle\Model\AccountInterface", cascade={"persist"})
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    protected ?AccountInterface $account;
+    protected ?AccountInterface $account = null;
 
     public function getAccount(): ?AccountInterface
     {

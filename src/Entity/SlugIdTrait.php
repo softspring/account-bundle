@@ -10,7 +10,7 @@ trait SlugIdTrait
      * @ORM\Id()
      * @ORM\Column(name="id", type="string", length=15, nullable=false, options={"fixed":true})
      */
-    protected ?string $id;
+    protected ?string $id = null;
 
     /**
      * {@inheritdoc}
