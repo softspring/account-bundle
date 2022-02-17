@@ -4,7 +4,6 @@ namespace Softspring\AccountBundle\EventListener;
 
 use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
@@ -17,16 +16,13 @@ class AccountAccessPermissionListener implements EventSubscriberInterface
 
     protected AuthorizationCheckerInterface $authorizationChecker;
 
-    /**
-     * AccountAccessPermissionListener constructor.
-     */
     public function __construct(string $accountRouteParamName, AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->accountRouteParamName = $accountRouteParamName;
         $this->authorizationChecker = $authorizationChecker;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::REQUEST => [
@@ -36,11 +32,9 @@ class AccountAccessPermissionListener implements EventSubscriberInterface
     }
 
     /**
-     * @param GetResponseEvent|RequestEvent $event
-     *
      * @throws NotFoundHttpException
      */
-    public function onRequestCheckAccountAccessPermission($event)
+    public function onRequestCheckAccountAccessPermission(RequestEvent $event): void
     {
         $request = $event->getRequest();
 

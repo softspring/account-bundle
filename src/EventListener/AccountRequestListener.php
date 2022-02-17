@@ -43,7 +43,7 @@ class AccountRequestListener implements EventSubscriberInterface
         }
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::REQUEST => [
@@ -55,7 +55,7 @@ class AccountRequestListener implements EventSubscriberInterface
     /**
      * @throws UnauthorizedHttpException
      */
-    public function onRequestGetAccount(RequestEvent $event)
+    public function onRequestGetAccount(RequestEvent $event): void
     {
         $request = $event->getRequest();
 

@@ -12,22 +12,19 @@ class AdminUserDeleteListener implements EventSubscriberInterface
 {
     protected AccountManagerInterface $accountManager;
 
-    /**
-     * AdminUserDeleteListener constructor.
-     */
     public function __construct(AccountManagerInterface $accountManager)
     {
         $this->accountManager = $accountManager;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             SfsUserEvents::ADMIN_USERS_DELETE_FORM_VALID => ['onDeleteRemoveAccounts', 0],
         ];
     }
 
-    public function onDeleteRemoveAccounts(GetResponseFormEvent $event)
+    public function onDeleteRemoveAccounts(GetResponseFormEvent $event): void
     {
         $form = $event->getForm();
         /** @var MultiAccountedInterface $user */

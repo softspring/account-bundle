@@ -5,7 +5,6 @@ namespace Softspring\AccountBundle\EventListener;
 use Doctrine\ORM\EntityManagerInterface;
 use Softspring\AccountBundle\Doctrine\Filter\AccountFilter;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -15,16 +14,13 @@ class AccountDoctrineFilterListener implements EventSubscriberInterface
 
     protected string $accountRouteParamName;
 
-    /**
-     * AccountRequestListener constructor.
-     */
     public function __construct(EntityManagerInterface $em, string $accountRouteParamName)
     {
         $this->em = $em;
         $this->accountRouteParamName = $accountRouteParamName;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::REQUEST => [
@@ -33,10 +29,7 @@ class AccountDoctrineFilterListener implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param GetResponseEvent|RequestEvent $event
-     */
-    public function onRequestEnableDoctrineAccountFilter($event)
+    public function onRequestEnableDoctrineAccountFilter(RequestEvent $event): void
     {
         $request = $event->getRequest();
 

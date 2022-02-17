@@ -13,15 +13,12 @@ class UserRegisterListener implements EventSubscriberInterface
 {
     protected RouterInterface $router;
 
-    /**
-     * UserRegisterListener constructor.
-     */
     public function __construct(RouterInterface $router)
     {
         $this->router = $router;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             SfsUserEvents::REGISTER_SUCCESS => [
@@ -33,7 +30,7 @@ class UserRegisterListener implements EventSubscriberInterface
         ];
     }
 
-    public function onUserRegisterRedirectToAccount(GetResponseUserEvent $event)
+    public function onUserRegisterRedirectToAccount(GetResponseUserEvent $event): void
     {
         $user = $event->getUser();
 

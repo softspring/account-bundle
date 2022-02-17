@@ -19,16 +19,13 @@ class AccountCreateListener implements EventSubscriberInterface
 
     protected RelationManagerInterface $relationManager;
 
-    /**
-     * AccountCreateListener constructor.
-     */
     public function __construct(TokenStorageInterface $tokenStorage, RelationManagerInterface $relationManager)
     {
         $this->tokenStorage = $tokenStorage;
         $this->relationManager = $relationManager;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             SfsAccountEvents::REGISTER_FORM_VALID => ['onRegisterValidAddUser', 0],
@@ -36,7 +33,7 @@ class AccountCreateListener implements EventSubscriberInterface
         ];
     }
 
-    public function onRegisterValidAddUser(GetResponseFormEvent $event)
+    public function onRegisterValidAddUser(GetResponseFormEvent $event): void
     {
         /** @var AccountInterface $account */
         $account = $event->getForm()->getData();
