@@ -4,6 +4,7 @@ namespace Softspring\AccountBundle\Security\Authorization\Voter;
 
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
+use Softspring\AccountBundle\Model\SingleAccountedAccountInterface;
 use Softspring\UserBundle\Model\OwnerInterface;
 use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -74,6 +75,10 @@ class AccountAccessVoter implements VoterInterface
         }
 
         if ($account instanceof MultiAccountedAccountInterface) {
+            return $account->getUsers()->contains($user);
+        }
+
+        if ($account instanceof SingleAccountedAccountInterface) {
             return $account->getUsers()->contains($user);
         }
 
