@@ -5,6 +5,7 @@ namespace Softspring\AccountBundle\Form\Admin;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
 use Softspring\AccountBundle\Model\UserMultiAccountedInterface;
+use Softspring\UserBundle\Model\OwnerInterface;
 use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -36,7 +37,7 @@ class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterfa
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        /** @var MultiAccountedAccountInterface $account */
+        /** @var AccountInterface $account */
         $account = $options['account'];
         $users = $this->getDeletableUsers($account);
 
@@ -55,16 +56,19 @@ class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterfa
 
     protected function getDeletableUsers(AccountInterface $account): array
     {
-        if (!$account instanceof MultiAccountedAccountInterface) {
-            return [];
-        }
-
         $usersForDeletion = [];
 
-        /** @var UserMultiAccountedInterface $user */
-        foreach ($account->getUsers() as $user) {
-            if (1 == $user->getAccounts()->count() && $user->getAccounts()->first() == $account) {
-                $usersForDeletion[] = $user;
+        if ($account instanceof OwnerInterface) {
+            $owner = $account->getOwner();
+            // TODO check if user owns other things
+        }
+
+        if ($account instanceof MultiAccountedAccountInterface) {
+            /** @var UserMultiAccountedInterface $user */
+            foreach ($account->getUsers() as $user) {
+                if (1 == $user->getAccounts()->count() && $user->getAccounts()->first() == $account) {
+                    $usersForDeletion[] = $user;
+                }
             }
         }
 
