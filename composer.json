@@ -7,10 +7,10 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
-        "softspring/core-bundle": "^4.0",
-        "softspring/crudl-bundle": "^4.0",
-        "softspring/twig-extra-bundle": "^4.0",
-        "softspring/user-bundle": "^4.0"
+        "softspring/core-bundle": "^5.0",
+        "softspring/crudl-bundle": "^5.0",
+        "softspring/twig-extra-bundle": "^5.0",
+        "softspring/user-bundle": "^5.0"
     },
     "require-dev": {
         "symfony/config": "^5.4 || ^6.0",
