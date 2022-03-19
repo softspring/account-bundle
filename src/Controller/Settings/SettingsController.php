@@ -46,7 +46,7 @@ class SettingsController extends AbstractController
                     return $response;
                 }
 
-                $this->accountManager->save($account);
+                $this->accountManager->saveEntity($account);
 
                 if ($response = $this->dispatchGetResponse(SfsAccountEvents::SETTINGS_UPDATED, new GetResponseAccountEvent($account, $request))) {
                     return $response;
