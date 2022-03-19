@@ -2,6 +2,7 @@
 
 namespace Softspring\AccountBundle\DependencyInjection;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
@@ -40,6 +41,10 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
 
         if ($config['filter']['enabled']) {
             $loader->load('doctrine_filter.yaml');
+        }
+
+        if (class_exists(Fixture::class)) {
+            $loader->load('data_fixtures.yaml');
         }
     }
 
