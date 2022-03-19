@@ -30,9 +30,6 @@ class RelationManager implements RelationManagerInterface
         return $this->em->getRepository(AccountUserRelationInterface::class);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function create(): AccountUserRelationInterface
     {
         $className = $this->getClass();

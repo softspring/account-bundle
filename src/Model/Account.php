@@ -6,9 +6,6 @@ abstract class Account implements AccountInterface
 {
     protected ?string $name = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function __toString(): string
     {
         return "{$this->getId()}";

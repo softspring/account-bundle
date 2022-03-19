@@ -12,9 +12,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class SfsAccountExtension extends Extension implements PrependExtensionInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $processor = new Processor();
