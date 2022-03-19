@@ -17,7 +17,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('class')
                     ->defaultValue('App\Entity\Account')
                 ->end()
-                ->booleanNode('admin')->defaultFalse()->end()
+                ->booleanNode('admin')->defaultTrue()->end()
 
                 ->scalarNode('entity_manager')
                     ->defaultValue('default')
