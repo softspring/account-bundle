@@ -34,15 +34,18 @@ class AccountListFilterForm extends EntityListFilterForm implements AccountListF
         ]);
     }
 
-    public function getOrder(Request $request): array
+    public static function orderValidFields(): array
     {
-        if (class_exists(RequestParam::class)) {
-            $order = RequestParam::getQueryValidParam($request, self::getOrderFieldParamName(), 'id', ['id', 'name']);
-            $sort = RequestParam::getQueryValidParam($request, self::getOrderDirectionParamName(), 'asc', ['asc', 'desc']);
+        return ['name'];
+    }
 
-            return [$order => $sort];
-        }
+    public static function orderDefaultField(): string
+    {
+        return 'name';
+    }
 
-        return [$request->query->get(self::getOrderFieldParamName(), '') ?: 'id' => $request->query->get(self::getOrderDirectionParamName(), '') ?: 'asc'];
+    public function getRpp(Request $request): int
+    {
+        return 10;
     }
 }
