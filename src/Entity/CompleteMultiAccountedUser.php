@@ -12,6 +12,9 @@ use Softspring\UserBundle\Model\NameSurnameInterface;
 use Softspring\UserBundle\Model\PasswordRequestInterface;
 use Softspring\UserBundle\Model\User as UserModel;
 
+/**
+ * @deprecated
+ */
 abstract class CompleteMultiAccountedUser extends UserModel implements NameSurnameInterface, PasswordRequestInterface, ConfirmableInterface, UserMultiAccountedInterface
 {
     use NameSurnameTrait;

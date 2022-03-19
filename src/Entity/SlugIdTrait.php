@@ -12,9 +12,6 @@ trait SlugIdTrait
      */
     protected ?string $id = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function __toString(): string
     {
         return "{$this->getId()}";

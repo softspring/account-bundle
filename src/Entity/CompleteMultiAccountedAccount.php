@@ -7,6 +7,9 @@ use Softspring\AccountBundle\Model\Account as AccountModel;
 use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
 use Softspring\UserBundle\Entity\OwnerTrait;
 
+/**
+ * @deprecated
+ */
 abstract class CompleteMultiAccountedAccount extends AccountModel implements MultiAccountedAccountInterface
 {
     use OwnerTrait;

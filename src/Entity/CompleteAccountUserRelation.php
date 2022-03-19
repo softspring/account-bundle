@@ -7,6 +7,9 @@ use Softspring\AccountBundle\Model\AccountUserRelation as AccountUserRelationMod
 use Softspring\DoctrineTemplates\Entity\Traits\CreatedAtTimestamp;
 use Softspring\UserBundle\Model\UserInterface;
 
+/**
+ * @deprecated
+ */
 abstract class CompleteAccountUserRelation extends AccountUserRelationModel
 {
     use CreatedAtTimestamp;

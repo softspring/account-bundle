@@ -5,6 +5,9 @@ namespace Softspring\AccountBundle\Model;
 use Doctrine\Common\Collections\Collection;
 use Softspring\UserBundle\Model\UserInterface;
 
+/**
+ * @deprecated
+ */
 interface MultiAccountedAccountInterface
 {
     /**
