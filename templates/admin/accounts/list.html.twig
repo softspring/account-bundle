@@ -11,22 +11,35 @@
 {% block content %}
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h3">{{ 'admin_accounts.list.title'|trans }}</h1>
-        <a href="{{ url('sfs_account_admin_accounts_create') }}" class="btn btn-primary">{{ 'admin_accounts.list.actions.create.link'|trans }}</a>
+        {% if is_granted('ROLE_ADMIN_ACCOUNTS_CREATE') %}
+            <a href="{{ url('sfs_account_admin_accounts_create') }}" class="btn btn-primary">{{ 'admin_accounts.list.actions.create.link'|trans }}</a>
+        {% endif %}
     </div>
 
-    {% block content_table %}
-    {% embed '@SfsAdmin/components/table.html.twig' with {'collection':entities, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
-        {% trans_default_domain 'sfs_account' %}
-        {% block ths %}
-            <th scope="col">{{ 'admin_accounts.list.fields.id.header'|trans }}</th>
-            <th scope="col">{{ 'admin_accounts.list.fields.name.header'|trans }}</th>
-            <th scope="col">{{ 'admin_accounts.list.fields.owner.header'|trans }}</th>
-            <th>&nbsp;</th>
-        {% endblock ths %}
+    <div class="container bg-white p-4">
+        {% block content_table %}
+        {% embed '@SfsAdmin/components/table.html.twig' with {'collection':entities, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
+            {% trans_default_domain 'sfs_account' %}
+            {% block ths %}
+                <th scope="col">{{ 'admin_accounts.list.fields.id.header'|trans }}</th>
+                <th scope="col">{{ 'admin_accounts.list.fields.name.header'|trans }}</th>
+                <th scope="col">{{ 'admin_accounts.list.fields.owner.header'|trans }}</th>
+                <th>&nbsp;</th>
+            {% endblock ths %}
 
-        {% block tbody %}
-            {% include '@SfsAccount/admin/accounts/list-page.html.twig' %}
-        {% endblock tbody %}
-    {% endembed %}
-    {% endblock content_table %}
+            {% block tbody %}
+                {% include '@SfsAccount/admin/accounts/list-page.html.twig' %}
+            {% endblock tbody %}
+
+            {% block empty %}
+                <div class="p-5 text-center">
+                    <p>No accounts yet</p>
+                    {% if is_granted('ROLE_ADMIN_ACCOUNTS_CREATE') %}
+                        <a class="btn btn-link" href="{{ url('sfs_account_admin_accounts_create') }}">Create first account</a>
+                    {% endif %}
+                </div>
+            {% endblock empty %}
+        {% endembed %}
+        {% endblock content_table %}
+    </div>
 {% endblock content %}
