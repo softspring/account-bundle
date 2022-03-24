@@ -4,7 +4,7 @@ admin_accounts:
         breadcrumb: "Accounts"
         title: "Accounts"
         fields:
-            id.header: "Slug"
+            id.header: "Id"
             name.header: "Name"
             owner.header: "Owner"
         actions:
@@ -19,7 +19,7 @@ admin_accounts:
         breadcrumb: "%name%"
         title: "Accounts details"
         fields:
-            slug: "Slug"
+            id: "Id"
             name: "Name"
             owner: "Owner"
         actions:

@@ -21,10 +21,10 @@
         {% embed '@SfsAdmin/components/table.html.twig' with {'collection':entities, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
             {% trans_default_domain 'sfs_account' %}
             {% block ths %}
-                <th scope="col">{{ 'admin_accounts.list.fields.id.header'|trans }}</th>
-                <th scope="col">{{ 'admin_accounts.list.fields.name.header'|trans }}</th>
-                <th scope="col">{{ 'admin_accounts.list.fields.owner.header'|trans }}</th>
-                <th>&nbsp;</th>
+                <th class="p-3" scope="col">{{ 'admin_accounts.list.fields.id.header'|trans }}</th>
+                <th class="p-3" scope="col">{{ 'admin_accounts.list.fields.name.header'|trans }}</th>
+                <th class="p-3" scope="col">{{ 'admin_accounts.list.fields.owner.header'|trans }}</th>
+                <th class="p-3">&nbsp;</th>
             {% endblock ths %}
 
             {% block tbody %}

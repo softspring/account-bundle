@@ -11,16 +11,23 @@
 {% endblock breadcrums_content %}
 
 {% block content %}
-    <h1 class="h3">{{ 'admin_accounts.update.title'|trans({'%name%': account.name}) }}</h1>
-
-    <div class="text-right">
-        <a href="{{ url('sfs_account_admin_accounts_details', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.update.actions.cancel'|trans }}</a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="h3 mb-4">{{ 'admin_accounts.update.title'|trans({'%name%': account.name}) }}</h1>
+            </div>
+        </div>
     </div>
 
-    {{ form_start(form) }}
-    {{ form_rest(form) }}
-    <input type="submit" value="{{ 'admin_accounts.update.actions.update.button'|trans }}" class="btn btn-primary btn-block" />
-    {{ form_end(form) }}
-
-
+    <div class="container">
+        <div class="row">
+            <div class="col bg-white p-5">
+                {{ form_start(form) }}
+                {{ form_rest(form) }}
+                <a href="{{ url('sfs_account_admin_accounts_details', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.update.actions.cancel'|trans }}</a>
+                <button class="btn btn-primary">{{ 'admin_accounts.update.actions.update.button'|trans }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 {% endblock content %}

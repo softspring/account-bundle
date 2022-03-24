@@ -10,48 +10,51 @@
 {% endblock breadcrums_content %}
 
 {% block content %}
-    <h1 class="h3">{{ 'admin_accounts.details.title'|trans({'%name%': account.name}) }}</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="h3">{{ 'admin_accounts.details.title'|trans({'%name%': account.name}) }}</h1>
+            </div>
 
-    <div class="text-right">
-        <a href="{{ url('sfs_account_admin_accounts_update', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.details.actions.edit'|trans }}</a>
-        <a href="{{ url('sfs_account_admin_accounts_delete', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.details.actions.delete'|trans }}</a>
+            <div class="col text-end">
+                {% block actions %}
+                    {% if is_granted('ROLE_ADMIN_ACCOUNTS_UPDATE', account) %}
+                        <a href="{{ url('sfs_account_admin_accounts_update', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.details.actions.edit'|trans }}</a>
+                     {% endif %}
+                    {% if is_granted('ROLE_ADMIN_ACCOUNTS_DELETE', account) %}
+                        <a href="{{ url('sfs_account_admin_accounts_delete', {'account':account}) }}" class="btn btn-outline-danger">{{ 'admin_accounts.details.actions.delete'|trans }}</a>
+                     {% endif %}
+                {% endblock actions %}
+            </div>
+        </div>
     </div>
 
-    <p><strong>{{ 'admin_accounts.details.fields.slug'|trans }}:</strong> {{ account.id }}</p>
-    <p><strong>{{ 'admin_accounts.details.fields.name'|trans }}:</strong> {{ account.name }}</p>
-    <p><strong>{{ 'admin_accounts.details.fields.owner'|trans }}:</strong>
-        {% if route_defined('sfs_user_admin_users_details') %}
-            <a href="{{ url('sfs_user_admin_users_details', {'user':account.owner}) }}">{{ account.owner.username }}</a>
-        {% else %}
-            {{ account.owner.username }}
-        {% endif %}
-    </p>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-4">
+                <div class="bg-white p-4">
+                    <div class="text-center mb-4">
+                        <h4>{{ account.name }}</h4>
+                    </div>
 
-    <div class="row">
-        <div class="col-4">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Users</h4>
+                    {% block account_fields %}
+                        {#<p><strong>{{ 'admin_accounts.details.fields.id'|trans }}:</strong> {{ account.id }}</p>#}
+                        <p><strong>{{ 'admin_accounts.details.fields.name'|trans }}:</strong> {{ account.name }}</p>
+                        <p><strong>{{ 'admin_accounts.details.fields.owner'|trans }}:</strong>
+                            {% if route_defined('sfs_user_admin_users_details') %}
+                                <a href="{{ url('sfs_user_admin_users_details', {'user':account.owner}) }}">{{ account.owner.displayName }}</a>
+                            {% else %}
+                                {{ account.owner.displayName }}
+                            {% endif %}
+                        </p>
+                    {% endblock account_fields %}
                 </div>
-                <div class="card-body">
-                    {% if account is instanceof('Softspring\\AccountBundle\\Model\\MultiAccountedAccountInterface') %}
-                        <ul>
-                        {% for relation in account.relations %}
-                            <li>
-                                {% if route_defined('sfs_user_admin_users_details') %}
-                                    <a href="{{ url('sfs_user_admin_users_details', {'user':relation.user}) }}">{{ relation.user.username }}</a>
-                                {% else %}
-                                    {{ relation.user.username }}
-                                {% endif %}
+            </div>
 
-                                {% if relation.grantedBy is defined and relation.grantedBy != relation.user %}
-                                    (granted by {{ relation.grantedBy.username }})
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
+            <div class="col">
+                {% block account_cards %}
+                    {% include '@SfsAccount/admin/accounts/details_users.html.twig' %}
+                {% endblock account_cards %}
             </div>
         </div>
     </div>
