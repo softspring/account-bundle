@@ -10,9 +10,6 @@ class AccountsController extends AbstractController
 {
     protected AccountManagerInterface $accountManager;
 
-    /**
-     * AccountsController constructor.
-     */
     public function __construct(AccountManagerInterface $accountManager)
     {
         $this->accountManager = $accountManager;

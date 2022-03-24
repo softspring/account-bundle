@@ -23,9 +23,6 @@ class RegisterController extends AbstractController
 
     protected RegisterFormInterface $registerForm;
 
-    /**
-     * RegisterController constructor.
-     */
     public function __construct(AccountManagerInterface $accountManager, EventDispatcherInterface $eventDispatcher, RegisterFormInterface $registerForm)
     {
         $this->accountManager = $accountManager;

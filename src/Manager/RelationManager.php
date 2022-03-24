@@ -10,9 +10,6 @@ class RelationManager implements RelationManagerInterface
 {
     protected EntityManagerInterface $em;
 
-    /**
-     * RelationManager constructor.
-     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;

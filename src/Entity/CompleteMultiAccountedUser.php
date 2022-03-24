@@ -22,9 +22,6 @@ abstract class CompleteMultiAccountedUser extends UserModel implements NameSurna
     use PasswordRequestTrait;
     use UserMultiAccountedTrait;
 
-    /**
-     * CompleteMultiAccountedUser constructor.
-     */
     public function __construct()
     {
         parent::__construct();

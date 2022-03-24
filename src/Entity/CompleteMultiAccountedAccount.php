@@ -15,9 +15,6 @@ abstract class CompleteMultiAccountedAccount extends AccountModel implements Mul
     use OwnerTrait;
     use AccountMultiAccountedTrait;
 
-    /**
-     * CompleteMultiAccountedAccount constructor.
-     */
     public function __construct()
     {
         $this->userRelations = new ArrayCollection();

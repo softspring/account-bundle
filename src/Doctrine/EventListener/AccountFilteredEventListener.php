@@ -14,9 +14,6 @@ class AccountFilteredEventListener implements EventSubscriber
 {
     protected RequestStack $requestStack;
 
-    /**
-     * AccountFilteredEventListener constructor.
-     */
     public function __construct(RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;

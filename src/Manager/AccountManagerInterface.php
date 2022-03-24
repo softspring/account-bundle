@@ -10,15 +10,15 @@ interface AccountManagerInterface extends CrudlEntityManagerInterface
     /**
      * @return AccountInterface
      */
-    public function createEntity();
+    public function createEntity(): object;
 
     /**
      * @param AccountInterface $entity
      */
-    public function saveEntity($entity): void;
+    public function saveEntity(object $entity): void;
 
     /**
      * @param AccountInterface $entity
      */
-    public function deleteEntity($entity): void;
+    public function deleteEntity(object $entity): void;
 }

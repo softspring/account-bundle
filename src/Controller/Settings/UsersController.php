@@ -15,9 +15,6 @@ class UsersController extends AbstractController
 
     protected string $accountParameterName;
 
-    /**
-     * UsersController constructor.
-     */
     public function __construct(AccountManagerInterface $accountManager, string $accountParameterName)
     {
         $this->accountManager = $accountManager;

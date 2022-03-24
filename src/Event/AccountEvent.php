@@ -12,9 +12,6 @@ class AccountEvent extends Event
 
     protected ?Request $request;
 
-    /**
-     * AccountEvent constructor.
-     */
     public function __construct(AccountInterface $account, ?Request $request)
     {
         $this->account = $account;

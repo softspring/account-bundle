@@ -25,9 +25,6 @@ abstract class CompleteAccountUserRelation extends AccountUserRelationModel
      */
     protected array $roles = [];
 
-    /**
-     * CompleteAccountUserRelation constructor.
-     */
     public function __construct()
     {
         $this->roles = [];
