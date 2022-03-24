@@ -30,7 +30,7 @@ services:
     Softspring\AccountBundle\EventListener\UserRegisterListener:
         tags: ['kernel.event_subscriber']
 
-    Softspring\AccountBundle\EventListener\AdminAccountDeleteListener:
+    Softspring\AccountBundle\EventListener\AdminAccountListener:
         tags: ['kernel.event_subscriber']
 
     Softspring\AccountBundle\EventListener\AdminUserDeleteListener:

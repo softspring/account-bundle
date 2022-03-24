@@ -3,24 +3,36 @@
 namespace Softspring\AccountBundle\EventListener;
 
 use Softspring\AccountBundle\SfsAccountEvents;
+use Softspring\CrudlBundle\Event\GetResponseEntityEvent;
 use Softspring\CrudlBundle\Event\GetResponseFormEvent;
 use Softspring\UserBundle\Manager\UserManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\RouterInterface;
 
-class AdminAccountDeleteListener implements EventSubscriberInterface
+class AdminAccountListener implements EventSubscriberInterface
 {
     protected UserManagerInterface $userManager;
+    protected RouterInterface $router;
 
-    public function __construct(UserManagerInterface $userManager)
+    public function __construct(UserManagerInterface $userManager, RouterInterface $router)
     {
         $this->userManager = $userManager;
+        $this->router = $router;
     }
 
     public static function getSubscribedEvents(): array
     {
         return [
+            SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_SUCCESS => ['onSuccessRedirectToDetails', 0],
+            SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_SUCCESS => ['onSuccessRedirectToDetails', 0],
             SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_FORM_VALID => ['onDeleteRemoveUsers', 0],
         ];
+    }
+
+    public function onSuccessRedirectToDetails(GetResponseEntityEvent $event): void
+    {
+        $event->setResponse(new RedirectResponse($this->router->generate('sfs_account_admin_accounts_details', ['account' => $event->getEntity()])));
     }
 
     public function onDeleteRemoveUsers(GetResponseFormEvent $event): void
