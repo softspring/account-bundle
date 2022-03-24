@@ -23,6 +23,5 @@ class RegisterForm extends AbstractType implements RegisterFormInterface
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', Types\TextType::class);
-        $builder->add('id', Types\TextType::class);
     }
 }

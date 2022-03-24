@@ -5,9 +5,10 @@ namespace Softspring\AccountBundle\Controller;
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
 use Softspring\AccountBundle\Form\RegisterFormInterface;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
+use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\CoreBundle\Controller\Traits\DispatchGetResponseTrait;
-use Softspring\CoreBundle\Event\GetResponseFormEvent;
+use Softspring\CrudlBundle\Event\GetResponseFormEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,7 +54,7 @@ class RegisterController extends AbstractController
                     return $response;
                 }
 
-                return $this->redirectToRoute('sfs_account_register_success');
+                return $this->redirectToRoute('sfs_account_register_success', ['account' => $account]);
             } else {
                 if ($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_FORM_INVALID, new GetResponseFormEvent($form, $request))) {
                     return $response;
@@ -66,9 +67,10 @@ class RegisterController extends AbstractController
         ]);
     }
 
-    public function success(Request $request): Response
+    public function success(AccountInterface $account, Request $request): Response
     {
         return $this->render('@SfsAccount/register/success.html.twig', [
+            'account' => $account,
         ]);
     }
 }

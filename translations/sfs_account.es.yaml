@@ -60,8 +60,9 @@ admin_accounts:
             deleteSingleAccountedUsers.label: "¿Eliminar estos usuarios?"
 
 register:
+    page_title: "Crea tu cuenta"
+    title: "Tu cuenta"
     form:
-        id.label: "Slug"
         name.label: "Nombre"
     actions:
         register.button: "Crear cuenta"
