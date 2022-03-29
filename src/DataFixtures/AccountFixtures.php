@@ -23,8 +23,7 @@ class AccountFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        /** @var Collection $users */
-        $users = $manager->getRepository(UserInterface::class)->findAll()->toArray();
+        $users = $manager->getRepository(UserInterface::class)->findAll();
 
         for ($i=0 ; $i < 300 ; $i++) {
             $account = $this->createAccount();
