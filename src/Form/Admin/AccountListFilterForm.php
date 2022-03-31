@@ -2,7 +2,6 @@
 
 namespace Softspring\AccountBundle\Form\Admin;
 
-use Jhg\DoctrinePaginationBundle\Request\RequestParam;
 use Softspring\Component\CrudlController\Form\EntityListFilterForm;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -44,7 +43,7 @@ class AccountListFilterForm extends EntityListFilterForm implements AccountListF
         return 'name';
     }
 
-    public function getRpp(Request $request): int
+    public static function getRpp(Request $request): int
     {
         return 10;
     }
