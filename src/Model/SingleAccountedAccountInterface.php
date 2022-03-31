@@ -7,5 +7,4 @@ namespace Softspring\AccountBundle\Model;
  */
 interface SingleAccountedAccountInterface extends AccountManyUsersInterface
 {
-
 }

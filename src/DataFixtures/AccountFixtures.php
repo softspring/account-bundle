@@ -4,7 +4,6 @@ namespace Softspring\AccountBundle\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
@@ -26,7 +25,7 @@ class AccountFixtures extends Fixture implements DependentFixtureInterface, Fixt
     {
         $users = $manager->getRepository(UserInterface::class)->findAll();
 
-        for ($i=0 ; $i < 300 ; $i++) {
+        for ($i = 0; $i < 300; ++$i) {
             $account = $this->createAccount($manager);
 
             if ($account instanceof OwnerInterface) {
