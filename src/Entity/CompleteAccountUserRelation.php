@@ -4,7 +4,7 @@ namespace Softspring\AccountBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Softspring\AccountBundle\Model\AccountUserRelation as AccountUserRelationModel;
-use Softspring\DoctrineTemplates\Entity\Traits\CreatedAtTimestamp;
+use Softspring\Component\DoctrineTemplates\Entity\Traits\CreatedAtTimestamp;
 use Softspring\UserBundle\Model\UserInterface;
 
 /**
