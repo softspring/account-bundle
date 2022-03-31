@@ -7,7 +7,7 @@ use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\AccountUserRelationInterface;
 use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
-use Softspring\CrudlBundle\Event\GetResponseFormEvent;
+use Softspring\Component\CrudlController\Event\GetResponseFormEvent;
 use Softspring\UserBundle\Model\OwnerInterface;
 use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

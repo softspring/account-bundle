@@ -3,7 +3,7 @@
 namespace Softspring\AccountBundle\Form\Admin;
 
 use Jhg\DoctrinePaginationBundle\Request\RequestParam;
-use Softspring\CrudlBundle\Form\EntityListFilterForm;
+use Softspring\Component\CrudlController\Form\EntityListFilterForm;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;

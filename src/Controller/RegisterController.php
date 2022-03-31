@@ -8,7 +8,7 @@ use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\CoreBundle\Controller\Traits\DispatchGetResponseTrait;
-use Softspring\CrudlBundle\Event\GetResponseFormEvent;
+use Softspring\Component\CrudlController\Event\GetResponseFormEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;

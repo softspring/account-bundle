@@ -3,7 +3,7 @@
 namespace Softspring\AccountBundle\Manager;
 
 use Softspring\AccountBundle\Model\AccountInterface;
-use Softspring\CrudlBundle\Manager\CrudlEntityManagerInterface;
+use Softspring\Component\CrudlController\Manager\CrudlEntityManagerInterface;
 
 interface AccountManagerInterface extends CrudlEntityManagerInterface
 {

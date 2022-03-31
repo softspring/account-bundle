@@ -3,8 +3,8 @@
 namespace Softspring\AccountBundle\EventListener;
 
 use Softspring\AccountBundle\SfsAccountEvents;
-use Softspring\CrudlBundle\Event\GetResponseEntityEvent;
-use Softspring\CrudlBundle\Event\GetResponseFormEvent;
+use Softspring\Component\CrudlController\Event\GetResponseEntityEvent;
+use Softspring\Component\CrudlController\Event\GetResponseFormEvent;
 use Softspring\UserBundle\Manager\UserManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;

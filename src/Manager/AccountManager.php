@@ -2,7 +2,7 @@
 
 namespace Softspring\AccountBundle\Manager;
 
-use Softspring\CrudlBundle\Manager\DefaultCrudlEntityManager;
+use Softspring\Component\CrudlController\Manager\DefaultCrudlEntityManager;
 
 class AccountManager extends DefaultCrudlEntityManager implements AccountManagerInterface
 {
