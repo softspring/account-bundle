@@ -2,10 +2,10 @@
 
 {% for account in collection %}
     <tr>
-        <td class="p-3">{{ account.id }}</td>
-        <td class="p-3">{{ account.name }}</td>
-        <td class="p-3">{{ account.owner.username }}</td>
-        <td class="p-3">
+        <td>{{ account.id }}</td>
+        <td>{{ account.name }}</td>
+        <td>{{ account.owner.username }}</td>
+        <td>
             <a href="{{ url('sfs_account_admin_accounts_details', {'account': account}) }}">{{ 'admin_accounts.list.actions.details.link'|trans }}</a>
         </td>
     </tr>
