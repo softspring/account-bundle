@@ -60,7 +60,7 @@ admin_accounts:
             deleteSingleAccountedUsers.label: "¿Eliminar estos usuarios?"
 
 register:
-    page_title: "Crea tu cuenta"
+    meta.title: "Crea tu cuenta"
     title: "Tu cuenta"
     form:
         name.label: "Nombre"
