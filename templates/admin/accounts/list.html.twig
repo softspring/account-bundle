@@ -16,7 +16,7 @@
         {% endif %}
     </div>
 
-    <div class="container bg-white p-4">
+    <div class="container-fluid bg-white p-4">
         {% block content_table %}
         {% embed '@SfsAdmin/components/table.html.twig' with {'collection':entities, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
             {% trans_default_domain 'sfs_account' %}

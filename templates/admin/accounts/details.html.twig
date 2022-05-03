@@ -11,12 +11,9 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <h1 class="h3">{{ 'admin_accounts.details.title'|trans({'%name%': account.name}) }}</h1>
-            </div>
-
-            <div class="col text-end">
+        <div class="d-flex justify-content-between">
+            <h1 class="h3">{{ 'admin_accounts.details.title'|trans({'%name%': account.name}) }}</h1>
+            <div>
                 {% block actions %}
                     {% if is_granted('ROLE_ADMIN_ACCOUNTS_UPDATE', account) %}
                         <a href="{{ url('sfs_account_admin_accounts_update', {'account':account}) }}" class="btn btn-outline-secondary">{{ 'admin_accounts.details.actions.edit'|trans }}</a>
@@ -29,13 +26,12 @@
         </div>
     </div>
 
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <div class="row">
-            <div class="col-4">
-                <div class="bg-white p-4">
-                    <div class="text-center mb-4">
-                        <h4>{{ account.name }}</h4>
-                    </div>
+            <div class="col-12 col-md-6 col-xl-5">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ account.name }}</h2>
 
                     {% block account_fields %}
                         {#<p><strong>{{ 'admin_accounts.details.fields.id'|trans }}:</strong> {{ account.id }}</p>#}
@@ -48,6 +44,7 @@
                             {% endif %}
                         </p>
                     {% endblock account_fields %}
+                    </div>
                 </div>
             </div>
 
