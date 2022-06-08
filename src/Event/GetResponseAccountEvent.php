@@ -2,8 +2,8 @@
 
 namespace Softspring\AccountBundle\Event;
 
-use Softspring\CoreBundle\Event\GetResponseEventInterface;
-use Softspring\CoreBundle\Event\GetResponseTrait;
+use Softspring\Component\Events\GetResponseEventInterface;
+use Softspring\Component\Events\GetResponseTrait;
 
 class GetResponseAccountEvent extends AccountEvent implements GetResponseEventInterface
 {

@@ -7,7 +7,7 @@ use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Form\SettingsFormInterface;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
-use Softspring\CoreBundle\Controller\Traits\DispatchGetResponseTrait;
+use Softspring\Component\Events\DispatchGetResponseTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;

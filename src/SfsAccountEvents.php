@@ -52,7 +52,7 @@ class SfsAccountEvents
     public const ADMIN_ACCOUNTS_LIST_INITIALIZE = 'sfs_account.admin.accounts.list_initialize';
 
     /**
-     * @Event("Softspring\CoreBundle\Event\ViewEvent")
+     * @Event("Softspring\Component\Events\ViewEvent")
      */
     public const ADMIN_ACCOUNTS_LIST_VIEW = 'sfs_account.admin.accounts.list_view';
 
@@ -62,7 +62,7 @@ class SfsAccountEvents
     public const ADMIN_ACCOUNTS_DETAILS_INITIALIZE = 'sfs_account.admin.accounts.details_initialize';
 
     /**
-     * @Event("Softspring\CoreBundle\Event\ViewEvent")
+     * @Event("Softspring\Component\Events\ViewEvent")
      */
     public const ADMIN_ACCOUNTS_DETAILS_VIEW = 'sfs_account.admin.accounts.details_view';
 
@@ -87,7 +87,7 @@ class SfsAccountEvents
     public const ADMIN_ACCOUNTS_CREATE_FORM_INVALID = 'sfs_account.admin.accounts.create_form_invalid';
 
     /**
-     * @Event("Softspring\CoreBundle\Event\ViewEvent")
+     * @Event("Softspring\Component\Events\ViewEvent")
      */
     public const ADMIN_ACCOUNTS_CREATE_VIEW = 'sfs_account.admin.accounts.create_view';
 
@@ -112,7 +112,7 @@ class SfsAccountEvents
     public const ADMIN_ACCOUNTS_UPDATE_FORM_INVALID = 'sfs_account.admin.accounts.update_form_invalid';
 
     /**
-     * @Event("Softspring\CoreBundle\Event\ViewEvent")
+     * @Event("Softspring\Component\Events\ViewEvent")
      */
     public const ADMIN_ACCOUNTS_UPDATE_VIEW = 'sfs_account.admin.accounts.update_view';
 
@@ -137,7 +137,7 @@ class SfsAccountEvents
     public const ADMIN_ACCOUNTS_DELETE_FORM_INVALID = 'sfs_account.admin.accounts.delete_form_invalid';
 
     /**
-     * @Event("Softspring\CoreBundle\Event\ViewEvent")
+     * @Event("Softspring\Component\Events\ViewEvent")
      */
     public const ADMIN_ACCOUNTS_DELETE_VIEW = 'sfs_account.admin.accounts.delete_view';
 }

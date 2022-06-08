@@ -9,6 +9,7 @@
         "php": ">=7.4",
         "softspring/core-bundle": "^5.0",
         "softspring/crudl-controller": "^5.0",
+        "softspring/events": "^5.0",
         "softspring/twig-extra-bundle": "^5.0",
         "softspring/user-bundle": "^5.0"
     },
