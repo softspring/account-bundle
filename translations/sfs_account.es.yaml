@@ -63,7 +63,7 @@ register:
     meta.title: "Crea tu cuenta"
     title: "Tu cuenta"
     form:
-        name.label: "Nombre"
+        name.label: "Nombre de la empresa"
     actions:
         register.button: "Crear cuenta"
 
