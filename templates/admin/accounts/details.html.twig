@@ -35,7 +35,7 @@
 
                     {% block account_fields %}
                         {#<p><strong>{{ 'admin_accounts.details.fields.id'|trans }}:</strong> {{ account.id }}</p>#}
-                        <p><strong>{{ 'admin_accounts.details.fields.name'|trans }}:</strong> {{ account.name }}</p>
+{#                        <p><strong>{{ 'admin_accounts.details.fields.name'|trans }}:</strong> {{ account.name }}</p>#}
                         <p><strong>{{ 'admin_accounts.details.fields.owner'|trans }}:</strong>
                             {% if route_defined('sfs_user_admin_users_details') %}
                                 <a href="{{ url('sfs_user_admin_users_details', {'user':account.owner}) }}">{{ account.owner.displayName }}</a>
