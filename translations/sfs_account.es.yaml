@@ -1,23 +1,23 @@
 admin_accounts:
     list:
-        meta.title: "Cuentas"
-        breadcrumb: "Cuentas"
-        title: "Cuentas"
+        meta.title: "Empresas"
+        breadcrumb: "Empresas"
+        title: "Empresas"
         fields:
             id.header: "Id"
-            name.header: "Nombre"
+            name.header: "Nombre dela empresa"
             owner.header: "Propietario"
         actions:
             details.link: "detalles"
             create.link: "nueva cuenta"
         filter_form:
-            name.label: "Nombre"
+            name.label: "Nombre dela empresa"
             actions.search: "Filtrar"
 
     details:
-        meta.title: "Detalles de la cuenta"
+        meta.title: "Detalles de la empresa"
         breadcrumb: "%name%"
-        title: "Detalles de la cuenta"
+        title: "Detalles de la empresa"
         fields:
             id: "Id"
             name: "Nombre"
