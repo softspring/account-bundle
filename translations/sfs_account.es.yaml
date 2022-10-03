@@ -5,13 +5,13 @@ admin_accounts:
         title: "Empresas"
         fields:
             id.header: "Id"
-            name.header: "Nombre dela empresa"
+            name.header: "Nombre de la empresa"
             owner.header: "Propietario"
         actions:
             details.link: "detalles"
             create.link: "nueva cuenta"
         filter_form:
-            name.label: "Nombre dela empresa"
+            name.label: "Nombre de la empresa"
             actions.search: "Filtrar"
 
     details:
