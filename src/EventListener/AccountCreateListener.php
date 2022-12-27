@@ -71,6 +71,11 @@ class AccountCreateListener implements EventSubscriberInterface
     {
         /** @var AccountInterface $account */
         $account = $event->getForm()->getData();
+
+        if (!$account instanceof OwnerInterface) {
+            return;
+        }
+
         $user = $account->getOwner();
 
         if ($user instanceof UserInterface) {

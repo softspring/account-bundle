@@ -3,11 +3,11 @@
 namespace Softspring\AccountBundle\Controller\Settings;
 
 use Softspring\AccountBundle\Event\GetResponseAccountEvent;
-use Softspring\AccountBundle\Event\GetResponseFormEvent;
 use Softspring\AccountBundle\Form\SettingsFormInterface;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\Component\Events\DispatchGetResponseTrait;
+use Softspring\Component\Events\GetResponseFormEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;

@@ -6,6 +6,7 @@ use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
 use Softspring\AccountBundle\Model\SingleAccountedAccountInterface;
 use Softspring\UserBundle\Model\OwnerInterface;
+use Softspring\UserBundle\Model\RolesAdminInterface;
 use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
@@ -64,7 +65,7 @@ class AccountAccessVoter implements VoterInterface
      */
     protected function checkUser(AccountInterface $account, $user): bool
     {
-        if ($user->isAdmin()) {
+        if ($user instanceof RolesAdminInterface && $user->isAdmin()) {
             return true;
         }
 

@@ -48,7 +48,7 @@ class AdminAccountListener implements EventSubscriberInterface
 
         foreach ($users as $user) {
             $account->removeUser($user);
-            $this->userManager->delete($user);
+            $this->userManager->deleteEntity($user);
         }
     }
 }

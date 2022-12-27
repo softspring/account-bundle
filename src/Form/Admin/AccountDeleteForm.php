@@ -48,7 +48,7 @@ class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterfa
                 'mapped' => false,
                 'choices' => $users,
                 'choice_label' => function (UserInterface $user) {
-                    return $user->getEmail();
+                    return $user->getDisplayName();
                 },
             ]);
         }

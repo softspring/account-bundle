@@ -3,11 +3,11 @@
 namespace Softspring\AccountBundle\Doctrine\EventListener;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\Common\Persistence\Event\LifecycleEventArgs as DeprecatedLifecycleEventArgs;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Softspring\AccountBundle\Model\AccountFilterInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\SingleAccountedInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class AccountFilteredEventListener implements EventSubscriber
@@ -26,10 +26,7 @@ class AccountFilteredEventListener implements EventSubscriber
         ];
     }
 
-    /**
-     * @param DeprecatedLifecycleEventArgs|LifecycleEventArgs $eventArgs
-     */
-    public function prePersist($eventArgs)
+    public function prePersist(LifecycleEventArgs $eventArgs)
     {
         $entity = $eventArgs->getObject();
 
@@ -41,7 +38,9 @@ class AccountFilteredEventListener implements EventSubscriber
             return;
         }
 
-        $entity->setAccount($this->getAccount());
+        if ($entity instanceof SingleAccountedInterface) {
+            $entity->setAccount($this->getAccount());
+        }
     }
 
     private function getAccount(): ?AccountInterface

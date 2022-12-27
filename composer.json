@@ -7,13 +7,13 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.0",
+        "doctrine/doctrine-bundle": "^2.5",
+        "doctrine/orm": "^2.10",
         "softspring/core-bundle": "^5.0",
         "softspring/crudl-controller": "^5.0",
         "softspring/events": "^5.0",
         "softspring/twig-extra-bundle": "^5.0",
-        "softspring/user-bundle": "^5.0"
-    },
-    "require-dev": {
+        "softspring/user-bundle": "^5.0",
         "symfony/config": "^5.4|^6.0",
         "symfony/console": "^5.4|^6.0",
         "symfony/event-dispatcher": "^5.4|^6.0",
@@ -22,8 +22,15 @@
         "symfony/http-foundation": "^5.4|^6.0",
         "symfony/security-bundle": "^5.4|^6.0",
         "symfony/validator": "^5.4|^6.0",
-        "symfony/yaml": "^5.4|^6.0",
-        "friendsofphp/php-cs-fixer": "9999999-dev"
+        "symfony/yaml": "^5.4|^6.0"
+    },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "fakerphp/faker": "^1.21",
+        "friendsofphp/php-cs-fixer": "9999999-dev",
+        "phpstan/phpstan": "^1.9",
+        "sensio/framework-extra-bundle": "^5.4|^6.0",
+        "softspring/doctrine-templates": "^5.0"
     },
     "suggest": {
         "softspring/admin-bundle": "Use softspring admin templates"
@@ -33,6 +40,7 @@
             "Softspring\\AccountBundle\\": "src/"
         }
     },
-    "extra": {
+    "config": {
+        "sort-packages": true
     }
 }

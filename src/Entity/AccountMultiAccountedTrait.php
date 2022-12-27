@@ -44,16 +44,16 @@ trait AccountMultiAccountedTrait
         }
     }
 
-    /**
-     * @return UserInterface[]|Collection
-     */
     public function getUsers(): Collection
     {
         $this->checkRelationsCollection();
 
-        return $this->userRelations->map(function (AccountUserRelationInterface $userRelation) {
+        /** @var Collection $collection */
+        $collection = $this->userRelations->map(function (AccountUserRelationInterface $userRelation) {
             return $userRelation->getUser();
         });
+
+        return $collection;
     }
 
     public function removeUser(UserInterface $user): void
