@@ -2,8 +2,8 @@
 
 namespace Softspring\AccountBundle\Form\Admin;
 
-use Softspring\Component\CrudlController\Form\EntityListFilterFormInterface;
+use Softspring\Component\DoctrineQueryFilters\FilterFormInterface;
 
-interface AccountListFilterFormInterface extends EntityListFilterFormInterface
+interface AccountListFilterFormInterface extends FilterFormInterface
 {
 }

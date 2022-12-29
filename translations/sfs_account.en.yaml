@@ -13,6 +13,8 @@ admin_accounts:
         filter_form:
             name.label: "Name"
             actions.search: "Search"
+        no_matches: "No matching accounts"
+        empty: "No accounts yet"
 
     details:
         meta.title: "Account details"

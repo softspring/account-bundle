@@ -2,14 +2,13 @@
 
 namespace Softspring\AccountBundle\Form\Admin;
 
-use Softspring\Component\CrudlController\Form\EntityListFilterForm;
+use Softspring\Component\DoctrinePaginator\Form\PaginatorFiltersForm;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AccountListFilterForm extends EntityListFilterForm implements AccountListFilterFormInterface
+class AccountListFilterForm extends PaginatorFiltersForm implements AccountListFilterFormInterface
 {
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -17,6 +16,10 @@ class AccountListFilterForm extends EntityListFilterForm implements AccountListF
         $resolver->setDefaults([
             'translation_domain' => 'sfs_account',
             'label_format' => 'admin_accounts.list.filter_form.%name%.label',
+            'rpp_valid_values' => [20],
+            'rpp_default_value' => 20,
+            'order_valid_fields' => ['name'],
+            'order_default_value' => 'name',
         ]);
     }
 
@@ -25,26 +28,11 @@ class AccountListFilterForm extends EntityListFilterForm implements AccountListF
         parent::buildForm($builder, $options);
 
         $builder->add('name', TextType::class, [
-            'property_path' => '[nameContains]',
+            'property_path' => '[name__like]',
         ]);
 
         $builder->add('submit', SubmitType::class, [
             'label' => 'admin_accounts.list.filter_form.actions.search',
         ]);
-    }
-
-    public static function orderValidFields(): array
-    {
-        return ['name'];
-    }
-
-    public static function orderDefaultField(): string
-    {
-        return 'name';
-    }
-
-    public static function getRpp(Request $request): int
-    {
-        return 10;
     }
 }

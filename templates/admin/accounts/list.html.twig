@@ -17,12 +17,31 @@
     </div>
 
     <div class="container-fluid bg-white p-4">
+        {% if filterForm.vars.submitted or accounts|length %}
+            <div class="mb-4">
+                {{ form_start(filterForm) }}
+                <div class="d-flex align-items-center">
+                    {% if filterForm.name is defined %}{{ form_row(filterForm.name, {'row_class':'form-floating mb-3'}) }}{% endif %}
+                    {% if filterForm.search is defined %}{{ form_row(filterForm.search, {'row_class': 'form-floating mb-3'}) }}{% endif %}
+                </div>
+                {{ form_widget(filterForm) }}
+                {{ form_rest(filterForm) }}
+                {{ form_end(filterForm) }}
+            </div>
+        {% endif %}
+
         {% block content_table %}
-        {% embed '@SfsAdmin/components/table.html.twig' with {'collection':entities, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
+        {% embed '@SfsComponents/pagination/table.html.twig' with {'collection':accounts, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
             {% trans_default_domain 'sfs_account' %}
             {% block ths %}
                 <th scope="col">{{ 'admin_accounts.list.fields.id.header'|trans }}</th>
-                <th scope="col">{{ 'admin_accounts.list.fields.name.header'|trans }}</th>
+                <th scope="col">
+                    <a href="{{ accounts.sortToggleUrl(app.request, 'name') }}" class="text-dark">
+                        {{ 'admin_accounts.list.fields.name.header'|trans }}
+                        {% if accounts.sortedBy('name', 'asc') %}<i class="bi bi-caret-up-fill"></i>{% elseif accounts.sortedBy('name', 'desc') %}<i class="bi bi-caret-down-fill"></i>{% endif %}
+                    </a>
+                </th>
+
                 <th scope="col">{{ 'admin_accounts.list.fields.owner.header'|trans }}</th>
                 <th>&nbsp;</th>
             {% endblock ths %}
@@ -33,7 +52,13 @@
 
             {% block empty %}
                 <div class="p-5 text-center">
-                    <p>No accounts yet</p>
+                    <p>
+                        {% if filterForm.vars.submitted %}
+                            {{ 'admin_accounts.list.no_matches'|trans }}
+                        {% else %}
+                            {{ 'admin_accounts.list.empty'|trans }}
+                        {% endif %}
+                    </p>
                     {% if is_granted('ROLE_ADMIN_ACCOUNTS_CREATE') %}
                         <a class="btn btn-link" href="{{ url('sfs_account_admin_accounts_create') }}">Create first account</a>
                     {% endif %}

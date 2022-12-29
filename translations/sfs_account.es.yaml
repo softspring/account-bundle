@@ -1,23 +1,25 @@
 admin_accounts:
     list:
-        meta.title: "Empresas"
-        breadcrumb: "Empresas"
-        title: "Empresas"
+        meta.title: "Cuentas"
+        breadcrumb: "Cuentas"
+        title: "Cuentas"
         fields:
             id.header: "Id"
-            name.header: "Nombre de la empresa"
+            name.header: "Nombre de la cuenta"
             owner.header: "Propietario"
         actions:
             details.link: "detalles"
             create.link: "nueva cuenta"
         filter_form:
-            name.label: "Nombre de la empresa"
+            name.label: "Nombre de la cuenta"
             actions.search: "Filtrar"
+        no_matches: "No se han encontrado cuentas que coincidan con los criterios de búsqueda."
+        empty: "Aún no hay ninguna cuenta"
 
     details:
-        meta.title: "Detalles de la empresa"
+        meta.title: "Detalles de la cuenta"
         breadcrumb: "%name%"
-        title: "Detalles de la empresa"
+        title: "Detalles de la cuenta"
         fields:
             id: "Id"
             name: "Nombre"
@@ -63,7 +65,7 @@ register:
     meta.title: "Crea tu cuenta"
     title: "Tu cuenta"
     form:
-        name.label: "Nombre de la empresa"
+        name.label: "Nombre de la cuenta"
     actions:
         register.button: "Crear cuenta"
 
