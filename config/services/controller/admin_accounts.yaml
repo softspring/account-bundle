@@ -32,6 +32,7 @@ services:
                     view_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_LIST_VIEW
                     view: '@@SfsAccount/admin/accounts/list.html.twig'
                     view_page: '@@SfsAccount/admin/accounts/list-page.html.twig'
+                    entities_attribute: 'accounts'
                 update:
                     is_granted: 'ROLE_ADMIN_ACCOUNTS_UPDATE'
                     param_converter_key: 'id'
