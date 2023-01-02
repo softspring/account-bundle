@@ -2,7 +2,12 @@
 
 namespace Softspring\AccountBundle\Form\Admin;
 
+use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\Component\DoctrinePaginator\Form\PaginatorFiltersForm;
+use Softspring\UserBundle\Manager\UserManagerInterface;
+use Softspring\UserBundle\Model\NameSurnameInterface;
+use Softspring\UserBundle\Model\OwnerInterface;
+use Softspring\UserBundle\Model\UserWithEmailInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -10,6 +15,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AccountListFilterForm extends PaginatorFiltersForm implements AccountListFilterFormInterface
 {
+    protected AccountManagerInterface $accountManager;
+    protected UserManagerInterface $userManager;
+
+    public function __construct(AccountManagerInterface $accountManager, UserManagerInterface $userManager)
+    {
+        $this->accountManager = $accountManager;
+        $this->userManager = $userManager;
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
@@ -31,7 +45,26 @@ class AccountListFilterForm extends PaginatorFiltersForm implements AccountListF
             'property_path' => '[name__like]',
         ]);
 
-        $builder->add('submit', SubmitType::class, [
+        if ($this->accountManager->getEntityClassReflection()->implementsInterface(OwnerInterface::class)) {
+            $fields = [];
+
+            if ($this->userManager->getEntityClassReflection()->implementsInterface(NameSurnameInterface::class)) {
+                $fields[] = 'owner.name__like';
+                $fields[] = 'owner.surname__like';
+            }
+
+            if ($this->userManager->getEntityClassReflection()->implementsInterface(UserWithEmailInterface::class)) {
+                $fields[] = 'owner.email__like';
+            }
+
+            if (!empty($fields)) {
+                $builder->add('owner', TextType::class, [
+                    'property_path' => '['.implode('___or___', $fields).']',
+                ]);
+            }
+        }
+
+        $builder->add('search', SubmitType::class, [
             'label' => 'admin_accounts.list.filter_form.actions.search',
         ]);
     }

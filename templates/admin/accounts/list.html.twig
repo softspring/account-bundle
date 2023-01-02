@@ -21,8 +21,9 @@
             <div class="mb-4">
                 {{ form_start(filterForm) }}
                 <div class="d-flex align-items-center">
-                    {% if filterForm.name is defined %}{{ form_row(filterForm.name, {'row_class':'form-floating mb-3'}) }}{% endif %}
-                    {% if filterForm.search is defined %}{{ form_row(filterForm.search, {'row_class': 'form-floating mb-3'}) }}{% endif %}
+                    {% if filterForm.name is defined %}<div class="col">{{ form_row(filterForm.name, {'row_class':'form-floating mb-3'}) }}</div>{% endif %}
+                    {% if filterForm.owner is defined %}<div class="col">{{ form_row(filterForm.owner, {'row_class':'form-floating mb-3'}) }}</div>{% endif %}
+                    {% if filterForm.search is defined %}<div class="col">{{ form_row(filterForm.search, {'row_class': 'form-floating mb-3'}) }}</div>{% endif %}
                 </div>
                 {{ form_widget(filterForm) }}
                 {{ form_rest(filterForm) }}
@@ -34,7 +35,6 @@
         {% embed '@SfsComponents/pagination/table.html.twig' with {'collection':accounts, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
             {% trans_default_domain 'sfs_account' %}
             {% block ths %}
-                <th scope="col">{{ 'admin_accounts.list.fields.id.header'|trans }}</th>
                 <th scope="col">
                     <a href="{{ accounts.sortToggleUrl(app.request, 'name') }}" class="text-dark">
                         {{ 'admin_accounts.list.fields.name.header'|trans }}

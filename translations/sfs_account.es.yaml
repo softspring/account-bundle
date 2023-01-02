@@ -12,6 +12,7 @@ admin_accounts:
             create.link: "nueva cuenta"
         filter_form:
             name.label: "Nombre de la cuenta"
+            owner.label: "Propietario"
             actions.search: "Filtrar"
         no_matches: "No se han encontrado cuentas que coincidan con los criterios de búsqueda."
         empty: "Aún no hay ninguna cuenta"
