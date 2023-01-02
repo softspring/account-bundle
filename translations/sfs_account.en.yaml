@@ -12,6 +12,7 @@ admin_accounts:
             create.link: "create"
         filter_form:
             name.label: "Name"
+            owner.label: "Owner"
             actions.search: "Search"
         no_matches: "No matching accounts"
         empty: "No accounts yet"
