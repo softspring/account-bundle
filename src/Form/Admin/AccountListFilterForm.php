@@ -3,7 +3,8 @@
 namespace Softspring\AccountBundle\Form\Admin;
 
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
-use Softspring\Component\DoctrinePaginator\Form\PaginatorFiltersForm;
+use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\Component\DoctrinePaginator\Form\PaginatorForm;
 use Softspring\UserBundle\Manager\UserManagerInterface;
 use Softspring\UserBundle\Model\NameSurnameInterface;
 use Softspring\UserBundle\Model\OwnerInterface;
@@ -13,13 +14,14 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AccountListFilterForm extends PaginatorFiltersForm implements AccountListFilterFormInterface
+class AccountListFilterForm extends PaginatorForm implements AccountListFilterFormInterface
 {
     protected AccountManagerInterface $accountManager;
     protected UserManagerInterface $userManager;
 
     public function __construct(AccountManagerInterface $accountManager, UserManagerInterface $userManager)
     {
+        parent::__construct($accountManager->getEntityManager());
         $this->accountManager = $accountManager;
         $this->userManager = $userManager;
     }
@@ -30,6 +32,7 @@ class AccountListFilterForm extends PaginatorFiltersForm implements AccountListF
         $resolver->setDefaults([
             'translation_domain' => 'sfs_account',
             'label_format' => 'admin_accounts.list.filter_form.%name%.label',
+            'class' => AccountInterface::class,
             'rpp_valid_values' => [20],
             'rpp_default_value' => 20,
             'order_valid_fields' => ['name'],
