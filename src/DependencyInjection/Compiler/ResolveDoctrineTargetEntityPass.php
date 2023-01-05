@@ -4,7 +4,7 @@ namespace Softspring\AccountBundle\DependencyInjection\Compiler;
 
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\AccountUserRelationInterface;
-use Softspring\CoreBundle\DependencyInjection\Compiler\AbstractResolveDoctrineTargetEntityPass;
+use Softspring\Component\DoctrineTargetEntityResolver\DependencyInjection\Compiler\AbstractResolveDoctrineTargetEntityPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ResolveDoctrineTargetEntityPass extends AbstractResolveDoctrineTargetEntityPass

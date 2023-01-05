@@ -39,7 +39,7 @@ class AccountRequestListener implements EventSubscriberInterface
         $this->twigAppVariableName = $twigAppVariableName;
 
         if (!$this->twigAppVariable instanceof ExtensibleAppVariable) {
-            throw new \Exception('You must configure SfsCoreBundle to extend twig app variable');
+            throw new \Exception('You must configure SfsTwigExtraBundle to extend twig app variable');
         }
     }
 
