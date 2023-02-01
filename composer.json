@@ -29,7 +29,7 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fakerphp/faker": "^1.21",
-        "friendsofphp/php-cs-fixer": "9999999-dev",
+        "friendsofphp/php-cs-fixer": "^3.14",
         "phpstan/phpstan": "^1.9",
         "sensio/framework-extra-bundle": "^5.4|^6.0",
         "softspring/doctrine-templates": "^5.0"
