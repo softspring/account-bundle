@@ -32,7 +32,7 @@
         {% endif %}
 
         {% block content_table %}
-        {% embed '@SfsComponents/pagination/table.html.twig' with {'collection':accounts, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
+        {% embed '@SfsComponents/paginator/table.html.twig' with {'collection':accounts, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
             {% trans_default_domain 'sfs_account' %}
             {% block ths %}
                 <th scope="col">

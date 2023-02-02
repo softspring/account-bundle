@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    {% embed '@SfsAdmin/components/table.html.twig' with {'collection':relations} %}
+    {% embed '@SfsComponents/paginator/table.html.twig' with {'collection':relations} %}
         {% trans_default_domain 'sfs_account' %}
         {% block ths %}
             <th scope="col">{{ 'settings_users.list.fields.id.header'|trans }}</th>
