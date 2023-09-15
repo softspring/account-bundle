@@ -5,7 +5,7 @@
 [![License](https://poser.pugx.org/softspring/account-bundle/license.svg)](https://packagist.org/packages/softspring/account-bundle)
 [![PHP Version Require](http://poser.pugx.org/softspring/account-bundle/require/php)](https://packagist.org/packages/softspring/account-bundle)
 [![Total Downloads](https://poser.pugx.org/softspring/account-bundle/downloads)](https://packagist.org/packages/softspring/account-bundle)
-[![Build status](https://github.com/softspring/account-bundle/actions/workflows/php.yml/badge.svg?branch=5.1)](https://github.com/softspring/account-bundle/actions/workflows/php.yml)
+[![Build status](https://github.com/softspring/account-bundle/actions/workflows/php.yml/badge.svg?branch=5.2)](https://github.com/softspring/account-bundle/actions/workflows/php.yml)
 
 This package provides an account management bundle.
 
