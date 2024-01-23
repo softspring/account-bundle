@@ -27,12 +27,12 @@ class AccountAccessVoter implements VoterInterface
     }
 
     /**
-     * @param AccountInterface $account
-     *
-     * @return int
+     * @psalm-param AccountInterface $subject
      */
-    public function vote(TokenInterface $token, $account, array $attributes)
+    public function vote(TokenInterface $token, mixed $subject, array $attributes): int
     {
+        $account = $subject;
+
         if (($attributes[0] ?? null) !== 'CHECK_ACCOUNT_ACCESS') {
             return VoterInterface::ACCESS_ABSTAIN;
         }
