@@ -14,7 +14,7 @@ class ResolveDoctrineTargetEntityPass extends AbstractResolveDoctrineTargetEntit
         return $container->getParameter('sfs_account.entity_manager_name');
     }
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $this->setTargetEntityFromParameter('sfs_account.account.class', AccountInterface::class, $container, true);
         $this->setTargetEntityFromParameter('sfs_account.relation.class', AccountUserRelationInterface::class, $container, false);

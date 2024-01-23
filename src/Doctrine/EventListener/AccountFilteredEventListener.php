@@ -2,15 +2,13 @@
 
 namespace Softspring\AccountBundle\Doctrine\EventListener;
 
-use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Softspring\AccountBundle\Model\AccountFilterInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\SingleAccountedInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class AccountFilteredEventListener implements EventSubscriber
+class AccountFilteredEventListener
 {
     protected RequestStack $requestStack;
 
@@ -19,14 +17,7 @@ class AccountFilteredEventListener implements EventSubscriber
         $this->requestStack = $requestStack;
     }
 
-    public function getSubscribedEvents(): array
-    {
-        return [
-            Events::prePersist,
-        ];
-    }
-
-    public function prePersist(LifecycleEventArgs $eventArgs)
+    public function prePersist(LifecycleEventArgs $eventArgs): void
     {
         $entity = $eventArgs->getObject();
 
