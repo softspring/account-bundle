@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class SfsAccountExtension extends Extension implements PrependExtensionInterface
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
         $configuration = new Configuration();
@@ -48,7 +48,7 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
         }
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $doctrineConfig = [];
 

@@ -10,4 +10,5 @@ services:
         tags: ['kernel.event_subscriber']
 
     Softspring\AccountBundle\Doctrine\EventListener\AccountFilteredEventListener:
-        tags: ['doctrine.event_subscriber']
+        tags:
+            - { name: 'doctrine.event_listener', event: prePersist }

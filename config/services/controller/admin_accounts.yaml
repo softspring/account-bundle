@@ -8,15 +8,11 @@ services:
         resource: '../../../src/Form/Admin/*'
 
     Softspring\AccountBundle\Controller\Admin\AccountsController:
-        public: true
-        tags: ['controller.service_arguments']
-
+        tags: [ 'controller.service_arguments' ]
 
     sfs_account.admin.account.controller:
         class: Softspring\Component\CrudlController\Controller\CrudlController
         public: true
-        calls:
-            - { method: setContainer, arguments: ['@service_container'] }
         arguments:
             $manager: '@Softspring\AccountBundle\Manager\AccountManagerInterface'
             $eventDispatcher: '@event_dispatcher'
