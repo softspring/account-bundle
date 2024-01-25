@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\Collection;
 interface MultiAccountedInterface
 {
     /**
-     * @return AccountUserRelationInterface[]|Collection
+     * @return Collection<int, AccountUserRelationInterface>
      */
     public function getRelations(): Collection;
 
@@ -19,7 +19,7 @@ interface MultiAccountedInterface
     public function removeRelation(AccountUserRelationInterface $relation): void;
 
     /**
-     * @return AccountInterface[]|Collection
+     * @return Collection<int, AccountInterface>
      */
     public function getAccounts(): Collection;
 

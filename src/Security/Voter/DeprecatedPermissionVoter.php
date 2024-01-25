@@ -19,6 +19,9 @@ class DeprecatedPermissionVoter implements VoterInterface
         'ROLE_ADMIN_ACCOUNTS_RW' => 'ROLE_SFS_ACCOUNT_ADMIN_ACCOUNTS_RW',
     ];
 
+    /**
+     * @param array<int, string> $attributes
+     */
     public function vote(TokenInterface $token, mixed $subject, array $attributes): int
     {
         if (isset(self::DEPRECATIONS[$attributes[0] ?? ''])) {

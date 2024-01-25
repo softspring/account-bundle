@@ -15,6 +15,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterface
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function formOptions(AccountInterface $account, Request $request = null): array
     {
         return [
@@ -54,6 +57,9 @@ class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterfa
         }
     }
 
+    /**
+     * @return array<UserMultiAccountedInterface>
+     */
     protected function getDeletableUsers(AccountInterface $account): array
     {
         $usersForDeletion = [];
