@@ -16,7 +16,7 @@
         "softspring/doctrine-target-entity-resolver": "^5.2",
         "softspring/events": "^5.2",
         "softspring/twig-extra-bundle": "^5.2",
-        "softspring/user-bundle": "^5.2@dev",
+        "softspring/user-bundle": "5.2.x-dev",
         "symfony/config": "^5.4|^6.0|^7.0",
         "symfony/console": "^5.4|^6.0|^7.0",
         "symfony/event-dispatcher": "^5.4|^6.0|^7.0",
