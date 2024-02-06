@@ -52,6 +52,7 @@ services:
                     is_granted: 'ROLE_ADMIN_ACCOUNTS_DELETE'
                     param_converter_key: 'id'
                     initialize_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_INITIALIZE
+                    form_prepare_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_FORM_PREPARE
                     form_valid_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_FORM_VALID
                     success_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_SUCCESS
                     form_invalid_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_FORM_INVALID
