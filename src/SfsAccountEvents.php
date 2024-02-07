@@ -120,6 +120,7 @@ class SfsAccountEvents
      * @Event("Softspring\AccountBundle\Event\GetResponseAccountEvent")
      */
     public const ADMIN_ACCOUNTS_DELETE_INITIALIZE = 'sfs_account.admin.accounts.delete_initialize';
+    public const ADMIN_ACCOUNTS_DELETE_FORM_PREPARE = 'sfs_account.admin.accounts.delete_form_prepare';
 
     /**
      * @Event("Softspring\AccountBundle\Event\GetResponseFormEvent")

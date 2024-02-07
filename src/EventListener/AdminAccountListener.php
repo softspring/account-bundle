@@ -3,6 +3,7 @@
 namespace Softspring\AccountBundle\EventListener;
 
 use Softspring\AccountBundle\SfsAccountEvents;
+use Softspring\Component\CrudlController\Event\FormPrepareEvent;
 use Softspring\Component\CrudlController\Event\GetResponseEntityEvent;
 use Softspring\Component\CrudlController\Event\GetResponseFormEvent;
 use Softspring\UserBundle\Manager\UserManagerInterface;
@@ -27,6 +28,7 @@ class AdminAccountListener implements EventSubscriberInterface
             SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_SUCCESS => ['onSuccessRedirectToDetails', 0],
             SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_SUCCESS => ['onSuccessRedirectToDetails', 0],
             SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_FORM_VALID => ['onDeleteRemoveUsers', 0],
+            SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_FORM_PREPARE => ['onDeleteFormPrepare', 0],
         ];
     }
 
@@ -50,5 +52,12 @@ class AdminAccountListener implements EventSubscriberInterface
             $account->removeUser($user);
             $this->userManager->deleteEntity($user);
         }
+    }
+
+    public function onDeleteFormPrepare(FormPrepareEvent $event): void
+    {
+        $event->setFormOptions([
+            'account' => $event->getEntity(),
+        ]);
     }
 }
