@@ -10,14 +10,14 @@ use Softspring\AccountBundle\Model\AccountUserRelationInterface;
 trait UserMultiAccountedTrait
 {
     /**
-     * @var AccountUserRelationInterface[]|Collection
+     * @var Collection<int, AccountUserRelationInterface>
      *
      * @ORM\OneToMany(targetEntity="Softspring\AccountBundle\Model\AccountUserRelationInterface", mappedBy="user", cascade={"all"})
      */
     protected Collection $accountRelations;
 
     /**
-     * @return AccountUserRelationInterface[]|Collection
+     * @return Collection<int, AccountUserRelationInterface>
      */
     public function getRelations(): Collection
     {
@@ -39,11 +39,11 @@ trait UserMultiAccountedTrait
     }
 
     /**
-     * @return AccountInterface[]|Collection
+     * @return Collection<int, AccountInterface>
      */
     public function getAccounts(): Collection
     {
-        /** @var Collection $accounts */
+        /** @var Collection<int, AccountInterface> $accounts */
         $accounts = $this->accountRelations->map(function (AccountUserRelationInterface $accountRelation) {
             return $accountRelation->getAccount();
         });

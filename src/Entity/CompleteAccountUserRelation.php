@@ -21,6 +21,7 @@ abstract class CompleteAccountUserRelation extends AccountUserRelationModel
     protected ?UserInterface $grantedBy = null;
 
     /**
+     * @var array<string>
      * @ORM\Column(name="roles", type="array")
      */
     protected array $roles = [];
@@ -40,11 +41,17 @@ abstract class CompleteAccountUserRelation extends AccountUserRelationModel
         $this->grantedBy = $grantedBy;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getRoles(): array
     {
         return $this->roles;
     }
 
+    /**
+     * @param array<string> $roles
+     */
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;

@@ -11,7 +11,7 @@ use Softspring\UserBundle\Model\UserInterface;
 interface MultiAccountedAccountInterface
 {
     /**
-     * @return AccountUserRelationInterface[]|Collection
+     * @return Collection<int, AccountUserRelationInterface>
      */
     public function getRelations(): Collection;
 
@@ -20,7 +20,7 @@ interface MultiAccountedAccountInterface
     public function removeRelation(AccountUserRelationInterface $relation): void;
 
     /**
-     * @return UserInterface[]|Collection
+     * @return Collection<int, UserInterface>
      */
     public function getUsers(): Collection;
 

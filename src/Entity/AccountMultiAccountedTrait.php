@@ -10,14 +10,14 @@ use Softspring\UserBundle\Model\UserInterface;
 trait AccountMultiAccountedTrait
 {
     /**
-     * @var AccountUserRelationInterface[]|Collection
+     * @var Collection<int, AccountUserRelationInterface>
      *
      * @ORM\OneToMany(targetEntity="Softspring\AccountBundle\Model\AccountUserRelationInterface", mappedBy="account", cascade={"all"})
      */
     protected Collection $userRelations;
 
     /**
-     * @return AccountUserRelationInterface[]|Collection
+     * @return Collection<int, AccountUserRelationInterface>
      */
     public function getRelations(): Collection
     {
@@ -44,11 +44,14 @@ trait AccountMultiAccountedTrait
         }
     }
 
+    /**
+     * @return Collection<int, UserInterface>
+     */
     public function getUsers(): Collection
     {
         $this->checkRelationsCollection();
 
-        /** @var Collection $collection */
+        /** @var Collection<int, UserInterface> $collection */
         $collection = $this->userRelations->map(function (AccountUserRelationInterface $userRelation) {
             return $userRelation->getUser();
         });
@@ -74,7 +77,7 @@ trait AccountMultiAccountedTrait
     /**
      * @throws \Exception
      */
-    protected function checkRelationsCollection()
+    protected function checkRelationsCollection(): void
     {
         if (!$this->userRelations instanceof Collection) {
             throw new \Exception(sprintf('"%s" class must create a new collection for userRelations on construction', get_class($this)));

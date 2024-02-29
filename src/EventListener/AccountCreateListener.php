@@ -67,7 +67,7 @@ class AccountCreateListener implements EventSubscriberInterface
         }
     }
 
-    public function onAccountCreationAddUser(GetResponseFormEvent $event)
+    public function onAccountCreationAddUser(GetResponseFormEvent $event): void
     {
         /** @var AccountInterface $account */
         $account = $event->getForm()->getData();

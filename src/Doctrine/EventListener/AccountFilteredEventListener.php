@@ -2,7 +2,7 @@
 
 namespace Softspring\AccountBundle\Doctrine\EventListener;
 
-use Doctrine\Persistence\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
 use Softspring\AccountBundle\Model\AccountFilterInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\SingleAccountedInterface;
@@ -17,7 +17,7 @@ class AccountFilteredEventListener
         $this->requestStack = $requestStack;
     }
 
-    public function prePersist(LifecycleEventArgs $eventArgs): void
+    public function prePersist(PrePersistEventArgs $eventArgs): void
     {
         $entity = $eventArgs->getObject();
 
