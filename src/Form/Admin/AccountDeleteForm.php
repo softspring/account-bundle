@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterface
 {
-    public function formOptions(AccountInterface $account, Request $request = null): array
+    public function formOptions(AccountInterface $account, ?Request $request = null): array
     {
         return [
             'account' => $account,
