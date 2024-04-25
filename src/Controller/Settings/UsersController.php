@@ -2,6 +2,7 @@
 
 namespace Softspring\AccountBundle\Controller\Settings;
 
+use ArrayObject;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
@@ -30,7 +31,7 @@ class UsersController extends AbstractController
             $relations = $account->getRelations();
         }
 
-        $viewData = new \ArrayObject([
+        $viewData = new ArrayObject([
             'relations' => $relations ?? [],
             'account' => $account,
         ]);

@@ -4,6 +4,7 @@ namespace Softspring\AccountBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Softspring\AccountBundle\Model\AccountUserRelationInterface;
 use Softspring\UserBundle\Model\UserInterface;
 
@@ -11,9 +12,8 @@ trait AccountMultiAccountedTrait
 {
     /**
      * @var AccountUserRelationInterface[]|Collection
-     *
-     * @ORM\OneToMany(targetEntity="Softspring\AccountBundle\Model\AccountUserRelationInterface", mappedBy="account", cascade={"all"})
      */
+    #[ORM\OneToMany(targetEntity: AccountUserRelationInterface::class, mappedBy: 'account', cascade: ['all'])]
     protected Collection $userRelations;
 
     /**
@@ -72,12 +72,12 @@ trait AccountMultiAccountedTrait
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected function checkRelationsCollection()
     {
         if (!$this->userRelations instanceof Collection) {
-            throw new \Exception(sprintf('"%s" class must create a new collection for userRelations on construction', get_class($this)));
+            throw new Exception(sprintf('"%s" class must create a new collection for userRelations on construction', get_class($this)));
         }
     }
 }

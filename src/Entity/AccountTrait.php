@@ -7,10 +7,8 @@ use Softspring\AccountBundle\Model\AccountInterface;
 
 trait AccountTrait
 {
-    /**
-     * @ORM\ManyToOne(targetEntity="Softspring\AccountBundle\Model\AccountInterface", cascade={"persist"})
-     * @ORM\JoinColumn(name="account_id", referencedColumnName="id", onDelete="CASCADE")
-     */
+    #[ORM\JoinColumn(name: 'account_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[ORM\ManyToOne(targetEntity: AccountInterface::class, cascade: ['persist'])]
     protected ?AccountInterface $account = null;
 
     public function getAccount(): ?AccountInterface

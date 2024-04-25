@@ -32,6 +32,7 @@
         "fakerphp/faker": "^1.21",
         "friendsofphp/php-cs-fixer": "3.51.*",
         "phpstan/phpstan": "^1.10",
+        "rector/rector": "^1.0",
         "sensio/framework-extra-bundle": "^5.4|^6.0|^7.0",
         "softspring/doctrine-templates": "^5.2"
     },

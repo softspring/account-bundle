@@ -11,9 +11,8 @@ trait UserMultiAccountedTrait
 {
     /**
      * @var AccountUserRelationInterface[]|Collection
-     *
-     * @ORM\OneToMany(targetEntity="Softspring\AccountBundle\Model\AccountUserRelationInterface", mappedBy="user", cascade={"all"})
      */
+    #[ORM\OneToMany(targetEntity: AccountUserRelationInterface::class, mappedBy: 'user', cascade: ['all'])]
     protected Collection $accountRelations;
 
     /**

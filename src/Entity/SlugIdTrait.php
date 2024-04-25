@@ -6,10 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 trait SlugIdTrait
 {
-    /**
-     * @ORM\Id()
-     * @ORM\Column(name="id", type="string", length=15, nullable=false, options={"fixed":true})
-     */
+    #[ORM\Id]
+    #[ORM\Column(name: 'id', type: 'string', length: 15, nullable: false, options: ['fixed' => true])]
     protected ?string $id = null;
 
     public function __toString(): string

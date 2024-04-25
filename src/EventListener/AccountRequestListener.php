@@ -3,6 +3,7 @@
 namespace Softspring\AccountBundle\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\TwigExtraBundle\Twig\ExtensibleAppVariable;
 use Symfony\Bridge\Twig\AppVariable;
@@ -27,7 +28,7 @@ class AccountRequestListener implements EventSubscriberInterface
     protected string $twigAppVariableName;
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router, AppVariable $twigAppVariable, string $findParamName, string $twigAppVariableName)
     {
@@ -39,7 +40,7 @@ class AccountRequestListener implements EventSubscriberInterface
         $this->twigAppVariableName = $twigAppVariableName;
 
         if (!$this->twigAppVariable instanceof ExtensibleAppVariable) {
-            throw new \Exception('You must configure SfsTwigExtraBundle to extend twig app variable');
+            throw new Exception('You must configure SfsTwigExtraBundle to extend twig app variable');
         }
     }
 

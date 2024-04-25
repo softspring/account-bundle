@@ -6,6 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\UserBundle\DataFixtures\UserFixtures;
@@ -40,7 +41,7 @@ class AccountFixtures extends Fixture implements DependentFixtureInterface, Fixt
 
     protected function createAccount(ObjectManager $manager): AccountInterface
     {
-        $faker = \Faker\Factory::create('es_ES');
+        $faker = Factory::create('es_ES');
 
         $account = $this->accountManager->createEntity();
 

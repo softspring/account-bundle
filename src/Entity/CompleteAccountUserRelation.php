@@ -14,15 +14,11 @@ abstract class CompleteAccountUserRelation extends AccountUserRelationModel
 {
     use CreatedAtTimestamp;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Softspring\UserBundle\Model\UserInterface", cascade={"all"})
-     * @ORM\JoinColumn(name="granted_by_id", referencedColumnName="id", onDelete="SET NULL")
-     */
+    #[ORM\JoinColumn(name: 'granted_by_id', referencedColumnName: 'id', onDelete: 'SET NULL')]
+    #[ORM\ManyToOne(targetEntity: UserInterface::class, cascade: ['all'])]
     protected ?UserInterface $grantedBy = null;
 
-    /**
-     * @ORM\Column(name="roles", type="array")
-     */
+    #[ORM\Column(name: 'roles', type: 'array')]
     protected array $roles = [];
 
     public function __construct()

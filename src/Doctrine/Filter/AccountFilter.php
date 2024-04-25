@@ -8,7 +8,7 @@ use Softspring\AccountBundle\Model\AccountFilterInterface;
 
 class AccountFilter extends SQLFilter
 {
-    public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
+    public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias): string
     {
         if (!$targetEntity->reflClass->implementsInterface(AccountFilterInterface::class)) {
             return '';
