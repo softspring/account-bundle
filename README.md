@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/packagist/l/softspring/account-bundle?style=flat-square)
 ![PHP Version](https://img.shields.io/packagist/dependency-v/softspring/account-bundle/php?style=flat-square)
 ![Downloads](https://img.shields.io/packagist/dt/softspring/account-bundle?style=flat-square)
-[![CI](https://img.shields.io/github/actions/workflow/status/softspring/account-bundle/php.yml?branch=5.3&style=flat-square&label=CI)](https://github.com/softspring/account-bundle/actions/workflows/php.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/softspring/account-bundle/ci.yml?branch=5.3&style=flat-square&label=CI)](https://github.com/softspring/account-bundle/actions/workflows/ci.yml)
 
 This package provides an account management bundle.
 
