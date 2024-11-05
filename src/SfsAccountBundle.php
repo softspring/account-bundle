@@ -30,7 +30,7 @@ class SfsAccountBundle extends Bundle
     /**
      * @param string|bool $enablingParameter
      */
-    private function addRegisterMappingsPass(ContainerBuilder $container, array $mappings, $enablingParameter = false)
+    private function addRegisterMappingsPass(ContainerBuilder $container, array $mappings, $enablingParameter = false): void
     {
         $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver($mappings, ['sfs_account.entity_manager_name'], $enablingParameter));
     }
