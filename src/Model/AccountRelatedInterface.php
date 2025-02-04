@@ -2,10 +2,9 @@
 
 namespace Softspring\AccountBundle\Model;
 
-/**
- * This interface is used to filter entities by account.
- */
-interface AccountFilterInterface
+interface AccountRelatedInterface
 {
     public function getAccount(): ?AccountInterface;
+
+    public function setAccount(?AccountInterface $account): void;
 }
