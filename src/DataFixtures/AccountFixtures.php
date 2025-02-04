@@ -22,7 +22,7 @@ class AccountFixtures extends Fixture implements DependentFixtureInterface, Fixt
         $this->accountManager = $accountManager;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $users = $manager->getRepository(UserInterface::class)->findAll();
 
@@ -50,7 +50,7 @@ class AccountFixtures extends Fixture implements DependentFixtureInterface, Fixt
         return $account;
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             UserFixtures::class,

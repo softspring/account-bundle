@@ -3,6 +3,7 @@
 namespace Softspring\AccountBundle\DependencyInjection;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
@@ -10,6 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 
 class SfsAccountExtension extends Extension implements PrependExtensionInterface
 {
@@ -45,6 +47,14 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
 
         if (class_exists(Fixture::class)) {
             $loader->load('data_fixtures.yaml');
+        }
+
+        if (class_exists(ParamConverter::class)) {
+            $loader->load('request_param_converter.yaml');
+        }
+
+        if (class_exists(ValueResolverInterface::class)) {
+            $loader->load('request_value_resolver.yaml');
         }
     }
 

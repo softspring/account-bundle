@@ -38,10 +38,6 @@ services:
 
     Softspring\AccountBundle\Security\Authorization\Voter\AccountAccessVoter: ~
 
-    Softspring\AccountBundle\Request\ParamConverter\:
-        resource: '../../src/Request/ParamConverter/*'
-        tags: [ 'request.param_converter' ]
-
     Softspring\AccountBundle\Security\Voter\DeprecatedPermissionVoter:
         tags:
             - { name: security.voter, priority: 1000 }

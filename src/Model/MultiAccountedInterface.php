@@ -2,26 +2,9 @@
 
 namespace Softspring\AccountBundle\Model;
 
-use Doctrine\Common\Collections\Collection;
-
 /**
- * @deprecated
+ * @deprecated use UserManyAccountRelationsInterface instead
  */
-interface MultiAccountedInterface
+interface MultiAccountedInterface extends UserManyAccountRelationsInterface
 {
-    /**
-     * @return AccountUserRelationInterface[]|Collection
-     */
-    public function getRelations(): Collection;
-
-    public function addRelation(AccountUserRelationInterface $relation): void;
-
-    public function removeRelation(AccountUserRelationInterface $relation): void;
-
-    /**
-     * @return AccountInterface[]|Collection
-     */
-    public function getAccounts(): Collection;
-
-    public function removeAccount(AccountInterface $account): void;
 }

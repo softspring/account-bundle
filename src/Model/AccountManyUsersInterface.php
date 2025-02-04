@@ -8,7 +8,7 @@ use Softspring\UserBundle\Model\UserInterface;
 interface AccountManyUsersInterface
 {
     /**
-     * @return UserInterface[]|Collection
+     * @return Collection<UserInterface>
      */
     public function getUsers(): Collection;
 
