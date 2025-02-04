@@ -5,6 +5,7 @@ namespace Softspring\AccountBundle\Doctrine\EventListener;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Softspring\AccountBundle\Model\AccountFilterInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountRelatedInterface;
 use Softspring\AccountBundle\Model\SingleAccountedInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -29,7 +30,7 @@ class AccountFilteredEventListener
             return;
         }
 
-        if ($entity instanceof SingleAccountedInterface) {
+        if ($entity instanceof SingleAccountedInterface || $entity instanceof AccountRelatedInterface) {
             $entity->setAccount($this->getAccount());
         }
     }

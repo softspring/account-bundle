@@ -14,6 +14,7 @@ class AccountFilter extends SQLFilter
             return '';
         }
 
+        // TODO dynamic account field and parameter name
         return $targetTableAlias.'.account_id = '.$this->getParameter('_account');
     }
 }
