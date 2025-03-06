@@ -11,11 +11,11 @@ This package provides an account management bundle.
 
 ## Armonic
 
-This bundle is part of Armonic.
+This bundle is part of [Armonic](https://softspring.es/en/armonic).
 
 ## Documentation
 
-[Armonic Documentation](https://armonic.softspring.es/latest/bundles/account-bundle/install)
+[Documentation](https://armonic.softspring.es/latest/bundles/account-bundle/install)
 
 ## Contributing
 
@@ -23,4 +23,4 @@ This bundle is part of Armonic.
 
 ## License
 
-This package is free and released under the [MIT license](LICENSE).
+This package is free and released under the [AGPL-3.0 license](LICENSE).
