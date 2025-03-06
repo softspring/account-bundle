@@ -11,12 +11,8 @@ This package provides an account management bundle.
 
 ## Documentation
 
-* [1. Installation](docs/1_installation.md)
-* 2\. Configure model
-* 3\. Register
-* 4\. Account settings
-* 5\. Admin accounts
-* 6\. Routing with accounts
+You have all information in [Armonic Docs-Acoount Bundle](https://armonic.softspring.es/latest/bundles/account-bundle/install)
+
 
 ## License
 
