@@ -9,15 +9,18 @@
 
 This package provides an account management bundle.
 
+## Armonic
+
+This bundle is part of Armonic.
+
 ## Documentation
 
-* [1. Installation](docs/1_installation.md)
-* 2\. Configure model
-* 3\. Register
-* 4\. Account settings
-* 5\. Admin accounts
-* 6\. Routing with accounts
+[Armonic Documentation](https://armonic.softspring.es/latest/bundles/account-bundle/install)
+
+## Contributing
+
+[Report issues](https://github.com/softspring/account-bundle/issues) and [send Pull Requests](https://github.com/softspring/account-bundle/pulls)
 
 ## License
 
-This bundle is under the MIT license. See the complete license in the bundle [LICENSE](LICENSE) file.
+This package is free and released under the [MIT license](LICENSE).
