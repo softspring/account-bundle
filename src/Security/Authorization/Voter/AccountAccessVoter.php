@@ -14,10 +14,7 @@ use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 
 class AccountAccessVoter implements VoterInterface
 {
-    /**
-     * @return bool
-     */
-    public function supportsObject($account)
+    public function supportsObject($account): bool
     {
         if (!is_object($account)) {
             return false;
@@ -67,10 +64,8 @@ class AccountAccessVoter implements VoterInterface
             return true;
         }
 
-        if ($account instanceof OwnerInterface) {
-            if ($account->getOwner() === $user) {
-                return true;
-            }
+        if ($account instanceof OwnerInterface && $account->getOwner() === $user) {
+            return true;
         }
 
         if ($account instanceof MultiAccountedAccountInterface) {

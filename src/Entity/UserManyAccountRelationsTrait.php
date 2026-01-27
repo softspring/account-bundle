@@ -39,14 +39,14 @@ trait UserManyAccountRelationsTrait
 
     public function getAccounts(): Collection
     {
-        return $this->accountRelations->map(function (AccountUserRelationInterface $userRelation) {
+        return $this->accountRelations->map(function (AccountUserRelationInterface $userRelation): ?AccountInterface {
             return $userRelation->getAccount();
         });
     }
 
     public function removeAccount(AccountInterface $account): void
     {
-        $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($account) {
+        $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($account): bool {
             return $relation->getAccount() === $account;
         });
 

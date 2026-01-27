@@ -41,13 +41,13 @@ class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterfa
         $account = $options['account'];
         $users = $this->getDeletableUsers($account);
 
-        if (!empty($users)) {
+        if ([] !== $users) {
             $builder->add('deleteSingleAccountedUsers', ChoiceType::class, [
                 'multiple' => true,
                 'expanded' => true,
                 'mapped' => false,
                 'choices' => $users,
-                'choice_label' => function (UserInterface $user) {
+                'choice_label' => function (UserInterface $user): string {
                     return $user->getDisplayName();
                 },
             ]);

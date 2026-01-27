@@ -43,7 +43,7 @@ trait UserMultiAccountedTrait
     public function getAccounts(): Collection
     {
         /** @var Collection $accounts */
-        $accounts = $this->accountRelations->map(function (AccountUserRelationInterface $accountRelation) {
+        $accounts = $this->accountRelations->map(function (AccountUserRelationInterface $accountRelation): ?AccountInterface {
             return $accountRelation->getAccount();
         });
 
@@ -52,7 +52,7 @@ trait UserMultiAccountedTrait
 
     public function removeAccount(AccountInterface $account): void
     {
-        $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($account) {
+        $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($account): bool {
             return $relation->getAccount() === $account;
         });
 

@@ -26,7 +26,7 @@ class AccountFilteredEventListener
             return;
         }
 
-        if ($entity->getAccount()) {
+        if ($entity->getAccount() instanceof AccountInterface) {
             return;
         }
 
@@ -37,10 +37,10 @@ class AccountFilteredEventListener
 
     private function getAccount(): ?AccountInterface
     {
-        if (!$request = $this->requestStack->getCurrentRequest()) {
+        if (!($request = $this->requestStack->getCurrentRequest()) instanceof \Symfony\Component\HttpFoundation\Request) {
             return null;
         }
 
-        return $request->attributes->get('_account', null);
+        return $request->attributes->get('_account');
     }
 }

@@ -35,7 +35,7 @@ class RegisterController extends AbstractController
     {
         $account = $this->accountManager->createEntity();
 
-        if ($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_INITIALIZE, new GetResponseAccountEvent($account, $request))) {
+        if (($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_INITIALIZE, new GetResponseAccountEvent($account, $request))) instanceof Response) {
             return $response;
         }
 
@@ -44,21 +44,17 @@ class RegisterController extends AbstractController
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                if ($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_FORM_VALID, new GetResponseFormEvent($form, $request))) {
+                if (($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_FORM_VALID, new GetResponseFormEvent($form, $request))) instanceof Response) {
                     return $response;
                 }
-
                 $this->accountManager->saveEntity($account);
-
-                if ($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_SUCCESS, new GetResponseAccountEvent($account, $request))) {
+                if (($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_SUCCESS, new GetResponseAccountEvent($account, $request))) instanceof Response) {
                     return $response;
                 }
 
                 return $this->redirectToRoute('sfs_account_register_success', ['account' => $account]);
-            } else {
-                if ($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_FORM_INVALID, new GetResponseFormEvent($form, $request))) {
-                    return $response;
-                }
+            } elseif (($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_FORM_INVALID, new GetResponseFormEvent($form, $request))) instanceof Response) {
+                return $response;
             }
         }
 

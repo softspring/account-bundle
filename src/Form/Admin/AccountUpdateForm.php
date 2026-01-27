@@ -25,7 +25,7 @@ class AccountUpdateForm extends AbstractType implements AccountUpdateFormInterfa
     {
         $builder->add('name');
         $builder->add('owner', null, [
-            'choice_label' => function (UserInterface $owner) {
+            'choice_label' => function (UserInterface $owner): ?string {
                 if ($owner instanceof NameSurnameInterface) {
                     return sprintf('%s %s', $owner->getName(), $owner->getSurname());
                 }

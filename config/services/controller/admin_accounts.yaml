@@ -19,7 +19,7 @@ services:
             $config:
                 entity_attribute: 'account'
                 list:
-                    is_granted: 'ROLE_ADMIN_ACCOUNTS_LIST'
+                    is_granted: 'PERMISSION_SFS_ACCOUNT_ADMIN_ACCOUNTS_LIST'
                     initialize_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_LIST_INITIALIZE
                     view_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_LIST_VIEW
                     view: '@@SfsAccount/admin/accounts/list.html.twig'
@@ -27,7 +27,7 @@ services:
                     entities_attribute: 'accounts'
                     filter_form: '@Softspring\AccountBundle\Form\Admin\AccountListFilterFormInterface'
                 update:
-                    is_granted: 'ROLE_ADMIN_ACCOUNTS_UPDATE'
+                    is_granted: 'PERMISSION_SFS_ACCOUNT_ADMIN_ACCOUNTS_UPDATE'
                     param_converter_key: 'id'
                     initialize_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_INITIALIZE
                     form_valid_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_UPDATE_FORM_VALID
@@ -49,7 +49,7 @@ services:
                     view: '@@SfsAccount/admin/accounts/create.html.twig'
                     form: '@Softspring\AccountBundle\Form\Admin\AccountCreateFormInterface'
                 delete:
-                    is_granted: 'ROLE_ADMIN_ACCOUNTS_DELETE'
+                    is_granted: 'PERMISSION_SFS_ACCOUNT_ADMIN_ACCOUNTS_DELETE'
                     param_converter_key: 'id'
                     initialize_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_INITIALIZE
                     form_valid_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_DELETE_FORM_VALID
@@ -60,7 +60,7 @@ services:
                     view: '@@SfsAccount/admin/accounts/delete.html.twig'
                     form: '@Softspring\AccountBundle\Form\Admin\AccountDeleteFormInterface'
                 read:
-                    is_granted: 'ROLE_ADMIN_ACCOUNTS_DETAILS'
+                    is_granted: 'PERMISSION_SFS_ACCOUNT_ADMIN_ACCOUNTS_DETAILS'
                     param_converter_key: 'id'
                     initialize_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_DETAILS_INITIALIZE
                     view_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_DETAILS_VIEW

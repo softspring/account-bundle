@@ -25,7 +25,7 @@ class AccountCreateForm extends AbstractType implements AccountCreateFormInterfa
     {
         $builder->add('name');
         $builder->add('owner', null, [
-            'choice_label' => function (UserInterface $owner) {
+            'choice_label' => function (UserInterface $owner): ?string {
                 if ($owner instanceof NameSurnameInterface) {
                     return sprintf('%s %s', $owner->getName(), $owner->getSurname());
                 }
