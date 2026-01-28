@@ -8,7 +8,7 @@ use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
     ->withPaths(array_merge(
-is_dir(__DIR__ . '/src') ? [__DIR__ . '/src'] : [],
+        is_dir(__DIR__ . '/src') ? [__DIR__ . '/src'] : [],
         is_dir(__DIR__ . '/tests') ? [__DIR__ . '/tests'] : []
     ))
     ->withSets([
