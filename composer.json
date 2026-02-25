@@ -1,14 +1,12 @@
 {
     "name": "softspring/account-bundle",
     "description": "An account manage bundle, extending softspring/user-bundle",
-    "type": "symfony-bundle",
     "license": "AGPL-3.0-or-later",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "type": "symfony-bundle",
     "require": {
         "php": ">=8.4",
-        "doctrine/doctrine-bundle": "^2.10|^3.0",
-        "doctrine/orm": "^2.10 | ^3.0",
+        "doctrine/doctrine-bundle": "^2.10 || ^3.0 || ^4.0",
+        "doctrine/orm": "^2.10 || ^3.0 || ^4.0",
         "softspring/components": "^6.0@dev",
         "softspring/crudl-controller": "^6.0@dev",
         "softspring/doctrine-paginator": "^6.0@dev",
@@ -17,30 +15,66 @@
         "softspring/events": "^6.0@dev",
         "softspring/twig-extra-bundle": "^6.0@dev",
         "softspring/user-bundle": "^6.0@dev",
-        "symfony/config": "^6.4|^7.4|^8.0",
-        "symfony/console": "^6.4|^7.4|^8.0",
-        "symfony/event-dispatcher": "^6.4|^7.4|^8.0",
-        "symfony/form": "^6.4|^7.4|^8.0",
-        "symfony/framework-bundle": "^6.4|^7.4|^8.0",
-        "symfony/http-foundation": "^6.4|^7.4|^8.0",
-        "symfony/security-bundle": "^6.4|^7.4|^8.0",
-        "symfony/validator": "^6.4|^7.4|^8.0",
-        "symfony/yaml": "^6.4|^7.4|^8.0"
+        "symfony/config": "^6.4 || ^7.4 || ^8.0",
+        "symfony/console": "^6.4 || ^7.4 || ^8.0",
+        "symfony/event-dispatcher": "^6.4 || ^7.4 || ^8.0",
+        "symfony/form": "^6.4 || ^7.4 || ^8.0",
+        "symfony/framework-bundle": "^6.4 || ^7.4 || ^8.0",
+        "symfony/http-foundation": "^6.4 || ^7.4 || ^8.0",
+        "symfony/security-bundle": "^6.4 || ^7.4 || ^8.0",
+        "symfony/validator": "^6.4 || ^7.4 || ^8.0",
+        "symfony/yaml": "^6.4 || ^7.4 || ^8.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.7",
+        "ergebnis/composer-normalize": "^2.50",
         "fakerphp/faker": "^1.21",
-        "friendsofphp/php-cs-fixer": "^3.89",
+        "friendsofphp/php-cs-fixer": "^3.94",
         "phpstan/phpstan": "^2.1",
-        "rector/rector": "^2.2",
+        "rector/rector": "^2.3",
         "softspring/doctrine-templates": "^6.0@dev"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Softspring\\AccountBundle\\": "src/"
         }
     },
     "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
         "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-6.0": "6.0.x-dev"
+        }
+    },
+    "scripts": {
+        "fix": [
+            "vendor/bin/rector process src tests",
+            "vendor/bin/php-cs-fixer fix",
+            "composer normalize"
+        ],
+        "run-tests": [
+            "composer validate --strict --no-check-lock --ansi",
+            "XDEBUG_MODE=coverage vendor/bin/phpunit",
+            "vendor/bin/rector process src tests --dry-run",
+            "vendor/bin/phpstan analyse src tests --level 5",
+            "vendor/bin/php-cs-fixer fix --dry-run --diff",
+            "vendor/bin/yaml-lint .github/ -vvv --parse-tags",
+            "vendor/bin/yaml-lint config/ -vvv --parse-tags",
+            "vendor/bin/yaml-lint translations/ -vvv --parse-tags"
+        ],
+        "test": [
+            "composer update --no-scripts --ansi",
+            "@run-tests"
+        ],
+        "test-bc": [
+            "composer update --no-scripts --ansi --prefer-lowest --prefer-stable",
+            "@run-tests"
+        ]
     }
 }
