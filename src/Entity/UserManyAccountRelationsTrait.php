@@ -12,7 +12,7 @@ trait UserManyAccountRelationsTrait
     /**
      * @var Collection<AccountUserRelationInterface>
      */
-    #[ORM\OneToMany(targetEntity: AccountUserRelationInterface::class, mappedBy: 'user', cascade: ['all'])]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: AccountUserRelationInterface::class, cascade: ['all'])]
     protected Collection $accountRelations;
 
     /**
@@ -39,14 +39,14 @@ trait UserManyAccountRelationsTrait
 
     public function getAccounts(): Collection
     {
-        return $this->accountRelations->map(function (AccountUserRelationInterface $userRelation) {
+        return $this->accountRelations->map(function (AccountUserRelationInterface $userRelation): ?AccountInterface {
             return $userRelation->getAccount();
         });
     }
 
     public function removeAccount(AccountInterface $account): void
     {
-        $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($account) {
+        $relations = $this->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($account): bool {
             return $relation->getAccount() === $account;
         });
 

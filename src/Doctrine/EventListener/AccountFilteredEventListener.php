@@ -7,6 +7,7 @@ use Softspring\AccountBundle\Model\AccountFilterInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\AccountRelatedInterface;
 use Softspring\AccountBundle\Model\SingleAccountedInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class AccountFilteredEventListener
@@ -26,7 +27,7 @@ class AccountFilteredEventListener
             return;
         }
 
-        if ($entity->getAccount()) {
+        if ($entity->getAccount() instanceof AccountInterface) {
             return;
         }
 
@@ -37,10 +38,10 @@ class AccountFilteredEventListener
 
     private function getAccount(): ?AccountInterface
     {
-        if (!$request = $this->requestStack->getCurrentRequest()) {
+        if (!($request = $this->requestStack->getCurrentRequest()) instanceof Request) {
             return null;
         }
 
-        return $request->attributes->get('_account', null);
+        return $request->attributes->get('_account');
     }
 }

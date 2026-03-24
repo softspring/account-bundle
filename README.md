@@ -15,7 +15,7 @@ This bundle is part of [Armonic](https://softspring.es/en/armonic).
 
 ## Documentation
 
-[Documentation](https://armonic.softspring.es/latest/bundles/account-bundle/install)
+[Armonic Documentation](https://armonic.softspring.es/latest/bundles/account-bundle/install)
 
 ## Contributing
 

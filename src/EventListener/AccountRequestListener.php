@@ -70,7 +70,7 @@ class AccountRequestListener implements EventSubscriberInterface
 
             $account = $this->em->getRepository(AccountInterface::class)->findOneBy([$this->findParamName => $account]);
 
-            if (!$account) {
+            if (!$account instanceof AccountInterface) {
                 // hide not found with an unauthorized response
                 throw new UnauthorizedHttpException('', 'Account not found');
             }

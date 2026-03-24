@@ -42,26 +42,22 @@ class SettingsController extends AbstractController
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                if ($response = $this->dispatchGetResponse(SfsAccountEvents::SETTINGS_FORM_VALID, new GetResponseFormEvent($form, $request))) {
+                if (($response = $this->dispatchGetResponse(SfsAccountEvents::SETTINGS_FORM_VALID, new GetResponseFormEvent($form, $request))) instanceof Response) {
                     return $response;
                 }
-
                 $this->accountManager->saveEntity($account);
-
-                if ($response = $this->dispatchGetResponse(SfsAccountEvents::SETTINGS_UPDATED, new GetResponseAccountEvent($account, $request))) {
+                if (($response = $this->dispatchGetResponse(SfsAccountEvents::SETTINGS_UPDATED, new GetResponseAccountEvent($account, $request))) instanceof Response) {
                     return $response;
                 }
 
                 return $this->redirectToRoute('sfs_account_settings_general');
-            } else {
-                if ($response = $this->dispatchGetResponse(SfsAccountEvents::SETTINGS_FORM_INVALID, new GetResponseFormEvent($form, $request))) {
-                    return $response;
-                }
+            } elseif (($response = $this->dispatchGetResponse(SfsAccountEvents::SETTINGS_FORM_INVALID, new GetResponseFormEvent($form, $request))) instanceof Response) {
+                return $response;
             }
         }
 
         return $this->render('@SfsAccount/settings/settings/settings.html.twig', [
-            'settings_form' => $form->createView(),
+            'settings_form' => $form,
         ]);
     }
 }

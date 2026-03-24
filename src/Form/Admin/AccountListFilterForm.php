@@ -60,7 +60,7 @@ class AccountListFilterForm extends PaginatorForm implements AccountListFilterFo
                 $fields[] = 'owner.email__like';
             }
 
-            if (!empty($fields)) {
+            if ([] !== $fields) {
                 $builder->add('owner', TextType::class, [
                     'property_path' => '['.implode('___or___', $fields).']',
                 ]);

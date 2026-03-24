@@ -21,11 +21,6 @@ abstract class CompleteAccountUserRelation extends AccountUserRelationModel
     #[ORM\Column(name: 'roles', type: 'array')]
     protected array $roles = [];
 
-    public function __construct()
-    {
-        $this->roles = [];
-    }
-
     public function getGrantedBy(): ?UserInterface
     {
         return $this->grantedBy;

@@ -12,6 +12,7 @@ use Softspring\UserBundle\Model\OwnerInterface;
 use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class AccountCreateListener implements EventSubscriberInterface
 {
@@ -45,7 +46,7 @@ class AccountCreateListener implements EventSubscriberInterface
             }
 
             if ($account instanceof MultiAccountedAccountInterface) {
-                if ($account->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($user) {
+                if ($account->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($user): bool {
                     return $relation->getUser() === $user;
                 })->count()) {
                     return;
@@ -67,7 +68,7 @@ class AccountCreateListener implements EventSubscriberInterface
         }
     }
 
-    public function onAccountCreationAddUser(GetResponseFormEvent $event)
+    public function onAccountCreationAddUser(GetResponseFormEvent $event): void
     {
         /** @var AccountInterface $account */
         $account = $event->getForm()->getData();
@@ -78,20 +79,15 @@ class AccountCreateListener implements EventSubscriberInterface
 
         $user = $account->getOwner();
 
-        if ($user instanceof UserInterface) {
-            if ($account instanceof MultiAccountedAccountInterface) {
-                $account->addRelation($relation = $this->relationManager->create());
-
-                $relation->setAccount($account);
-                $relation->setUser($user);
-
-                if (method_exists($relation, 'setRoles') && method_exists($relation, 'getRoles')) {
-                    $relation->setRoles(array_unique(array_merge(['ROLE_OWNER'], $relation->getRoles())));
-                }
-
-                if (method_exists($relation, 'setGrantedBy')) {
-                    $relation->setGrantedBy($user);
-                }
+        if ($user instanceof UserInterface && $account instanceof MultiAccountedAccountInterface) {
+            $account->addRelation($relation = $this->relationManager->create());
+            $relation->setAccount($account);
+            $relation->setUser($user);
+            if (method_exists($relation, 'setRoles') && method_exists($relation, 'getRoles')) {
+                $relation->setRoles(array_unique(array_merge(['ROLE_OWNER'], $relation->getRoles())));
+            }
+            if (method_exists($relation, 'setGrantedBy')) {
+                $relation->setGrantedBy($user);
             }
         }
     }
@@ -100,7 +96,7 @@ class AccountCreateListener implements EventSubscriberInterface
     {
         $token = $this->tokenStorage->getToken();
 
-        if (!$token) {
+        if (!$token instanceof TokenInterface) {
             return null;
         }
 

@@ -37,7 +37,3 @@ services:
         tags: ['kernel.event_subscriber']
 
     Softspring\AccountBundle\Security\Authorization\Voter\AccountAccessVoter: ~
-
-    Softspring\AccountBundle\Security\Voter\DeprecatedPermissionVoter:
-        tags:
-            - { name: security.voter, priority: 1000 }
