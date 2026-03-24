@@ -14,36 +14,49 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php-versions: [ '8.1', '8.2' ]
+                php-versions: [ '8.4' ]
                 composer-prefer: [ '', '--prefer-lowest' ]
 
         steps:
-            - uses: actions/checkout@v3
+            -   uses: actions/checkout@v6
 
-            - name: Install PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php-versions }}
-                  # extensions: intl #optional
-                  ini-values: "post_max_size=256M" #optional
+            -   name: Install PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-versions }}
+                    # extensions: intl #optional
+                    ini-values: "post_max_size=256M" #optional
 
-            - name: Check PHP Version
-              run: php -v
+            -   name: Check PHP Version
+                run: php -v
 
-            - name: Validate composer.json and composer.lock
-              run: composer validate --strict
+            -   name: Validate composer.json and composer.lock
+                run: composer validate --strict
 
-            - name: Cache Composer packages
-              id: composer-cache
-              uses: actions/cache@v5
-              with:
-                  path: vendor
-                  key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-php-
+            -   name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v5
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-
 
-            - name: Install dependencies
-              run: composer update --prefer-dist --no-interaction --no-progress ${{ matrix.composer-prefer }}
+            -   name: Install dependencies
+                run: COMPOSER_ROOT_VERSION=6.0.x-dev composer update --prefer-dist --no-interaction --no-progress ${{ matrix.composer-prefer }}
 
-            - name: Code Style check
-              run: ./vendor/bin/php-cs-fixer fix -v --diff --dry-run
+            -   name: Run phpstan
+                run: ./vendor/bin/phpstan analyse
+
+            #            -   name: Run tests
+            #                run: ./vendor/bin/phpunit --coverage-text --coverage-html=.phpunit.cache/html-report
+
+            -   name: Code Style check
+                run: ./vendor/bin/php-cs-fixer fix -v --diff --dry-run
+
+#            -   name: phpunit-coverage-badge
+#                uses: timkrase/phpunit-coverage-badge@v1.2.1
+#                with:
+#                    push_badge: true
+#                    coverage_badge_path: .github/badges/coverage.svg
+#                    repo_token: ${{ secrets.GITHUB_TOKEN }}
