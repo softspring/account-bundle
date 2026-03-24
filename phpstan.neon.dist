@@ -9,4 +9,3 @@ parameters:
         - vendor/autoload.php
     ignoreErrors:
         - identifier: trait.unused
-        - '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::children\(\)#'
