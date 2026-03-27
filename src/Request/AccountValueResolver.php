@@ -10,8 +10,11 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 
 class AccountValueResolver implements ValueResolverInterface
 {
-    public function __construct(protected AccountManagerInterface $manager)
-    {
+    public function __construct(
+        protected AccountManagerInterface $manager,
+        protected string $accountRouteParamName = '_account',
+        protected string $findFieldName = 'id',
+    ) {
     }
 
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
@@ -24,10 +27,15 @@ class AccountValueResolver implements ValueResolverInterface
             return [];
         }
 
-        $query = $request->attributes->get('_account');
-        $entity = $this->manager->getRepository()->findOneBy(['id' => $query]);
+        $query = $request->attributes->get($this->accountRouteParamName);
 
-        if (!$entity) {
+        if (null === $query || '' === $query) {
+            return [];
+        }
+
+        $entity = $this->manager->getRepository()->findOneBy([$this->findFieldName => $query]);
+
+        if (!$entity instanceof AccountInterface) {
             return [];
         }
 

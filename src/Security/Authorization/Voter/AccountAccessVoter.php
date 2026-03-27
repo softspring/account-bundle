@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 
 class AccountAccessVoter implements VoterInterface
 {
-    public function supportsObject($account): bool
+    public function supportsObject(mixed $account): bool
     {
         if (!is_object($account)) {
             return false;
@@ -26,7 +26,7 @@ class AccountAccessVoter implements VoterInterface
     /**
      * @psalm-param AccountInterface $subject
      */
-    public function vote(TokenInterface $token, mixed $subject, array $attributes): int
+    public function vote(TokenInterface $token, mixed $subject, array $attributes, mixed $vote = null): int
     {
         $account = $subject;
 

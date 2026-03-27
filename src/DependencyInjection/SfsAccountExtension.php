@@ -48,7 +48,7 @@ class SfsAccountExtension extends Extension implements PrependExtensionInterface
             $loader->load('data_fixtures.yaml');
         }
 
-        if (class_exists(ValueResolverInterface::class)) {
+        if (interface_exists(ValueResolverInterface::class)) {
             $loader->load('request_value_resolver.yaml');
         }
     }

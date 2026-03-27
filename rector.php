@@ -24,4 +24,5 @@ return RectorConfig::configure()
     ->withComposerBased(symfony: true)
     ->withSkip([
         SortAttributeNamedArgsRector::class,
+        __DIR__.'/tests/Security/Authorization/Voter/AccountAccessVoterTest.php',
     ]);

@@ -38,7 +38,7 @@ services:
                     view: '@@SfsAccount/admin/accounts/update.html.twig'
                     form: '@Softspring\AccountBundle\Form\Admin\AccountUpdateFormInterface'
                 create:
-                    is_granted: 'ROLE_ADMIN_ACCOUNTS_CREATE'
+                    is_granted: 'PERMISSION_SFS_ACCOUNT_ADMIN_ACCOUNTS_CREATE'
                     param_converter_key: 'id'
                     initialize_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_INITIALIZE
                     form_valid_event_name: !php/const Softspring\AccountBundle\SfsAccountEvents::ADMIN_ACCOUNTS_CREATE_FORM_VALID

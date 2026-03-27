@@ -6,6 +6,7 @@ parameters:
     reportUnmatchedIgnoredErrors: false
     paths:
         - src/
+        - tests/
     bootstrapFiles:
         - vendor/autoload.php
     ignoreErrors:

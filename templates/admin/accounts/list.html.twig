@@ -11,7 +11,7 @@
 {% block content %}
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h3">{{ 'admin_accounts.list.title'|trans }}</h1>
-        {% if is_granted('ROLE_ADMIN_ACCOUNTS_CREATE') %}
+        {% if is_granted('PERMISSION_SFS_ACCOUNT_ADMIN_ACCOUNTS_CREATE') %}
             <a href="{{ url('sfs_account_admin_accounts_create') }}" class="btn btn-primary">{{ 'admin_accounts.list.actions.create.link'|trans }}</a>
         {% endif %}
     </div>
@@ -59,7 +59,7 @@
                             {{ 'admin_accounts.list.empty'|trans }}
                         {% endif %}
                     </p>
-                    {% if is_granted('ROLE_ADMIN_ACCOUNTS_CREATE') %}
+                    {% if is_granted('PERMISSION_SFS_ACCOUNT_ADMIN_ACCOUNTS_CREATE') %}
                         <a class="btn btn-link" href="{{ url('sfs_account_admin_accounts_create') }}">Create first account</a>
                     {% endif %}
                 </div>

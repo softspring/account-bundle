@@ -1,6 +1,6 @@
 {
     "name": "softspring/account-bundle",
-    "description": "An account manage bundle, extending softspring/user-bundle",
+    "description": "Account ownership bundle for Symfony applications",
     "license": "AGPL-3.0-or-later",
     "type": "symfony-bundle",
     "require": {
@@ -31,6 +31,7 @@
         "fakerphp/faker": "^1.21",
         "friendsofphp/php-cs-fixer": "^3.94",
         "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.5",
         "rector/rector": "^2.3",
         "softspring/doctrine-templates": "^6.0@dev"
     },
@@ -39,6 +40,11 @@
     "autoload": {
         "psr-4": {
             "Softspring\\AccountBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Softspring\\AccountBundle\\Tests\\": "tests/"
         }
     },
     "config": {
@@ -54,22 +60,22 @@
     },
     "scripts": {
         "fix": [
-            "vendor/bin/rector process src tests",
-            "vendor/bin/php-cs-fixer fix",
+            "vendor/bin/rector process src tests --debug",
+            "vendor/bin/php-cs-fixer fix --sequential",
             "composer normalize"
         ],
         "run-tests": [
             "composer validate --strict --no-check-lock --ansi",
-            "# XDEBUG_MODE=coverage vendor/bin/phpunit",
-            "vendor/bin/rector process src tests --dry-run",
-            "vendor/bin/phpstan analyse src tests --level 5",
-            "vendor/bin/php-cs-fixer fix --dry-run --diff",
+            "XDEBUG_MODE=coverage vendor/bin/phpunit",
+            "vendor/bin/rector process src tests --dry-run --debug",
+            "vendor/bin/phpstan analyse src tests --level 5 --debug",
+            "vendor/bin/php-cs-fixer fix --dry-run --diff --sequential",
             "vendor/bin/yaml-lint .github/ -vvv --parse-tags",
             "vendor/bin/yaml-lint config/ -vvv --parse-tags",
             "vendor/bin/yaml-lint translations/ -vvv --parse-tags"
         ],
         "test": [
-            "composer update --no-scripts --ansi",
+            "composer update --no-scripts --ansi --prefer-stable",
             "@run-tests"
         ],
         "test-bc": [
