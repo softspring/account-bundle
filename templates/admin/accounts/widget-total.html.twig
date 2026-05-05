@@ -1,0 +1,18 @@
+{% trans_default_domain 'sfs_account' %}
+
+{% embed '@SfsComponents/admin/widget.html.twig' %}
+    {% block title %}{{ 'admin_accounts.list.widgets.total.title'|trans({}, 'sfs_account') }}{% endblock title %}
+    {% block body %}
+        <p class="display-6 fw-semibold mb-0" id="totalAccountsWidget"></p>
+        <script type="text/javascript">
+            var totalAccountsWidgetXhr = new XMLHttpRequest();
+            totalAccountsWidgetXhr.onreadystatechange = function() {
+                if (totalAccountsWidgetXhr.readyState === 4){
+                    document.getElementById('totalAccountsWidget').innerHTML = totalAccountsWidgetXhr.responseText;
+                }
+            };
+            totalAccountsWidgetXhr.open('GET', '{{ url('sfs_account_admin_accounts_count_widget') }}');
+            totalAccountsWidgetXhr.send()
+        </script>
+    {% endblock body %}
+{% endembed %}

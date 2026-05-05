@@ -10,11 +10,25 @@
 {% endblock breadcrums_content %}
 
 {% block content %}
-    <h1 class="h3">{{ 'admin_accounts.create.title'|trans }}</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="h3 mb-4">{{ 'admin_accounts.create.title'|trans }}</h1>
+            </div>
+        </div>
+    </div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_rest(form) }}
-        <input type="submit" value="{{ 'admin_accounts.create.actions.create.button'|trans }}" class="btn btn-primary btn-block" />
-    {{ form_end(form) }}
+    <div class="container">
+        <div class="row">
+            <div class="col bg-white p-5">
+                {{ form_start(form) }}
+                {{ form_rest(form) }}
+                <div class="d-flex justify-content-end align-items-center">
+                    <a href="{{ url('sfs_account_admin_accounts_list') }}" class="btn btn-outline-secondary">{{ 'admin_accounts.create.actions.cancel'|trans }}</a>
+                    <input type="submit" value="{{ 'admin_accounts.create.actions.create.button'|trans }}" class="btn btn-primary ms-3" />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 {% endblock content %}

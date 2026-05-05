@@ -7,7 +7,6 @@ services:
             $accountRouteParamName: '%sfs_account.account.route_param_name%'
             $twigAppVariable: '@twig.app_variable'
             $em: '@sfs_account.entity_manager'
-            $findParamName: '%sfs_account.account.find_field_name%'
             $twigAppVariableName: '%sfs_account.account.twig_app_var_name%'
 
     Softspring\AccountBundle\Manager\AccountManagerInterface:
@@ -15,8 +14,14 @@ services:
         arguments:
             $targetClass: 'Softspring\AccountBundle\Model\AccountInterface'
 
-    Softspring\AccountBundle\Manager\RelationManagerInterface:
-        class: Softspring\AccountBundle\Manager\RelationManager
+    Softspring\AccountBundle\Manager\AccountMembershipManagerInterface:
+        class: Softspring\AccountBundle\Manager\AccountMembershipManager
+
+    Softspring\AccountBundle\Context\AccountContextResolverInterface:
+        class: Softspring\AccountBundle\Context\AccountContextResolver
+        arguments:
+            $accountRouteParamName: '%sfs_account.account.route_param_name%'
+            $findFieldName: '%sfs_account.account.find_field_name%'
 
     Softspring\AccountBundle\EventListener\AccountRequestListener:
         tags: ['kernel.event_subscriber']

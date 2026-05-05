@@ -1,29 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\AccountBundle\Doctrine\EventListener;
 
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Softspring\AccountBundle\Model\AccountFilterInterface;
+use Softspring\AccountBundle\Context\AccountContextResolverInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
-use Softspring\AccountBundle\Model\AccountRelatedInterface;
-use Softspring\AccountBundle\Model\SingleAccountedInterface;
+use Softspring\AccountBundle\Model\AccountScopedInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class AccountFilteredEventListener
 {
-    protected RequestStack $requestStack;
-
-    public function __construct(RequestStack $requestStack)
-    {
-        $this->requestStack = $requestStack;
+    public function __construct(
+        private readonly RequestStack $requestStack,
+        private readonly AccountContextResolverInterface $accountContextResolver,
+    ) {
     }
 
     public function prePersist(LifecycleEventArgs $eventArgs): void
     {
         $entity = $eventArgs->getObject();
 
-        if (!$entity instanceof AccountFilterInterface) {
+        if (!$entity instanceof AccountScopedInterface) {
             return;
         }
 
@@ -31,9 +31,7 @@ class AccountFilteredEventListener
             return;
         }
 
-        if ($entity instanceof SingleAccountedInterface || $entity instanceof AccountRelatedInterface) {
-            $entity->setAccount($this->getAccount());
-        }
+        $entity->setAccount($this->getAccount());
     }
 
     private function getAccount(): ?AccountInterface
@@ -42,6 +40,6 @@ class AccountFilteredEventListener
             return null;
         }
 
-        return $request->attributes->get('_account');
+        return $this->accountContextResolver->resolveAccount($request);
     }
 }

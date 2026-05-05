@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\AccountBundle\Controller\User;
 
 use Exception;
-use Softspring\AccountBundle\Model\UserMultiAccountedInterface;
+use Softspring\AccountBundle\Model\UserAccountMembershipsInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -13,7 +15,7 @@ class AccountsController extends AbstractController
     {
         $user = $this->getUser();
 
-        if (!$user instanceof UserMultiAccountedInterface) {
+        if (!$user instanceof UserAccountMembershipsInterface) {
             throw new Exception('Invalid user class');
         }
 

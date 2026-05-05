@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\AccountBundle\Request;
 
-use Softspring\AccountBundle\Manager\AccountManagerInterface;
+use Softspring\AccountBundle\Context\AccountContextResolverInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
@@ -11,9 +13,7 @@ use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 class AccountValueResolver implements ValueResolverInterface
 {
     public function __construct(
-        protected AccountManagerInterface $manager,
-        protected string $accountRouteParamName = '_account',
-        protected string $findFieldName = 'id',
+        protected AccountContextResolverInterface $accountContextResolver,
     ) {
     }
 
@@ -27,13 +27,7 @@ class AccountValueResolver implements ValueResolverInterface
             return [];
         }
 
-        $query = $request->attributes->get($this->accountRouteParamName);
-
-        if (null === $query || '' === $query) {
-            return [];
-        }
-
-        $entity = $this->manager->getRepository()->findOneBy([$this->findFieldName => $query]);
+        $entity = $this->accountContextResolver->resolveAccount($request);
 
         if (!$entity instanceof AccountInterface) {
             return [];

@@ -5,7 +5,7 @@ namespace Softspring\AccountBundle\Controller\Settings;
 use ArrayObject;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
-use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
+use Softspring\AccountBundle\Model\AccountMembershipsInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,12 +27,12 @@ class UsersController extends AbstractController
         /** @var AccountInterface $account */
         $account = $request->attributes->get($this->accountParameterName);
 
-        if ($account instanceof MultiAccountedAccountInterface) {
-            $relations = $account->getRelations();
+        if ($account instanceof AccountMembershipsInterface) {
+            $memberships = $account->getMemberships();
         }
 
         $viewData = new ArrayObject([
-            'relations' => $relations ?? [],
+            'memberships' => $memberships ?? [],
             'account' => $account,
         ]);
 

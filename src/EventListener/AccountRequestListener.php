@@ -2,8 +2,8 @@
 
 namespace Softspring\AccountBundle\EventListener;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Softspring\AccountBundle\Context\AccountContextResolverInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\TwigExtraBundle\Twig\ExtensibleAppVariable;
 use Symfony\Bridge\Twig\AppVariable;
@@ -15,30 +15,15 @@ use Symfony\Component\Routing\RouterInterface;
 
 class AccountRequestListener implements EventSubscriberInterface
 {
-    protected EntityManagerInterface $em;
-
-    protected string $accountRouteParamName;
-
-    protected RouterInterface $router;
-
-    protected AppVariable $twigAppVariable;
-
-    protected string $findParamName;
-
-    protected string $twigAppVariableName;
-
     /**
      * @throws Exception
      */
-    public function __construct(EntityManagerInterface $em, string $accountRouteParamName, RouterInterface $router, AppVariable $twigAppVariable, string $findParamName, string $twigAppVariableName)
-    {
-        $this->em = $em;
-        $this->accountRouteParamName = $accountRouteParamName;
-        $this->router = $router;
-        $this->twigAppVariable = $twigAppVariable;
-        $this->findParamName = $findParamName;
-        $this->twigAppVariableName = $twigAppVariableName;
-
+    public function __construct(
+        private readonly AccountContextResolverInterface $accountContextResolver,
+        private readonly RouterInterface $router,
+        private readonly AppVariable $twigAppVariable,
+        private readonly string $twigAppVariableName,
+    ) {
         if (!$this->twigAppVariable instanceof ExtensibleAppVariable) {
             throw new Exception('You must configure SfsTwigExtraBundle to extend twig app variable');
         }
@@ -60,27 +45,20 @@ class AccountRequestListener implements EventSubscriberInterface
     {
         $request = $event->getRequest();
 
-        if ($request->attributes->has($this->accountRouteParamName)) {
-            $account = $request->attributes->get($this->accountRouteParamName);
-
-            if (!$account) {
-                // hide not found with an unauthorized response
-                throw new UnauthorizedHttpException('', sprintf('Empty %s', $this->accountRouteParamName));
-            }
-
-            $account = $this->em->getRepository(AccountInterface::class)->findOneBy([$this->findParamName => $account]);
-
-            if (!$account instanceof AccountInterface) {
-                // hide not found with an unauthorized response
-                throw new UnauthorizedHttpException('', 'Account not found');
-            }
-
-            $request->attributes->set($this->accountRouteParamName, $account);
-
-            $context = $this->router->getContext();
-            $context->setParameter($this->accountRouteParamName, $account);
-
-            call_user_func([$this->twigAppVariable, 'set'.ucfirst($this->twigAppVariableName)], $account);
+        if (!$this->accountContextResolver->hasAccountScope($request)) {
+            return;
         }
+
+        $account = $this->accountContextResolver->resolveAccount($request);
+
+        if (!$account instanceof AccountInterface) {
+            // hide not found with an unauthorized response
+            throw new UnauthorizedHttpException('', sprintf('Account not found for "%s".', $this->accountContextResolver->getAccountRouteParamName()));
+        }
+
+        $context = $this->router->getContext();
+        $context->setParameter($this->accountContextResolver->getAccountRouteParamName(), $account);
+
+        call_user_func([$this->twigAppVariable, 'set'.ucfirst($this->twigAppVariableName)], $account);
     }
 }

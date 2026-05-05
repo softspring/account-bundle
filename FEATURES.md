@@ -19,8 +19,8 @@ Functional definition for `softspring/account-bundle`.
 ## Integration And Extension
 
 - Builds on top of `softspring/user-bundle`.
-- Supports custom account entities and optional account-user relation entities through bundle configuration.
-- Can be extended with custom relation roles, voters, forms, event listeners, controllers, and templates.
+- Supports custom account entities and optional account membership entities through bundle configuration.
+- Can be extended with custom membership roles, voters, forms, event listeners, controllers, and templates.
 - Is designed to be combined with account-scoped domain entities such as subscriptions, projects, invoices, customers, or content.
 
 ## Expected Capabilities

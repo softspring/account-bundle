@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\AccountBundle\Manager;
 
 use Softspring\Component\CrudlController\Manager\DefaultCrudlEntityManager;

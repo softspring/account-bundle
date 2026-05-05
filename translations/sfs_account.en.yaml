@@ -7,6 +7,8 @@ admin_accounts:
             id.header: "Id"
             name.header: "Name"
             owner.header: "Owner"
+        widgets:
+            total.title: "total accounts"
         actions:
             details.link: "details"
             create.link: "create"

@@ -3,8 +3,6 @@ services:
         autowire: true
         autoconfigure: true
         public: false
-        bind:
-            $accountRouteParamName: '%sfs_account.account.route_param_name%'
 
     Softspring\AccountBundle\EventListener\AccountDoctrineFilterListener:
         tags: ['kernel.event_subscriber']

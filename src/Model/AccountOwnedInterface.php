@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\AccountBundle\Model;
 
-/**
- * @deprecated
- */
-interface SingleAccountedInterface
+interface AccountOwnedInterface
 {
     public function getAccount(): ?AccountInterface;
 

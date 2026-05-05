@@ -9,8 +9,8 @@ use Doctrine\ORM\Query\FilterCollection;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use Softspring\AccountBundle\Doctrine\Filter\AccountFilter;
-use Softspring\AccountBundle\Model\AccountFilterInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountScopedInterface;
 use stdClass;
 
 class AccountFilterTest extends TestCase
@@ -64,10 +64,17 @@ class AccountFilterTest extends TestCase
     }
 }
 
-class AccountFilteredEntityStub implements AccountFilterInterface
+class AccountFilteredEntityStub implements AccountScopedInterface
 {
+    private ?AccountInterface $account = null;
+
     public function getAccount(): ?AccountInterface
     {
-        return null;
+        return $this->account;
+    }
+
+    public function setAccount(?AccountInterface $account): void
+    {
+        $this->account = $account;
     }
 }
