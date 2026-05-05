@@ -4,17 +4,17 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                       https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Softspring\AccountBundle\Model\AccountUserRelation" table="account_user">
+    <mapped-superclass name="Softspring\AccountBundle\Model\AccountMembership" table="account_user">
 
         <id name="account" association-key="true" />
         <id name="user" association-key="true" />
 
-        <many-to-one field="account" target-entity="Softspring\AccountBundle\Model\AccountInterface" inversed-by="userRelations">
-            <join-column name="account_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+        <many-to-one field="account" target-entity="Softspring\AccountBundle\Model\AccountInterface" inversed-by="memberships">
+            <join-column name="account_id" referenced-column-name="id" on-delete="CASCADE" />
         </many-to-one>
 
-        <many-to-one field="user" target-entity="Softspring\UserBundle\Model\UserInterface" inversed-by="accountRelations">
-            <join-column name="user_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+        <many-to-one field="user" target-entity="Softspring\UserBundle\Model\UserInterface" inversed-by="accountMemberships">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE" />
         </many-to-one>
 
     </mapped-superclass>

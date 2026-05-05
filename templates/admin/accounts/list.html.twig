@@ -1,6 +1,8 @@
 {% trans_default_domain 'sfs_account' %}
 {% extends '@SfsAccount/admin_layout.html.twig' %}
 
+{% form_theme filter_form '@SfsComponents/forms/admin-horizontal.html.twig' %}
+
 {% block title %}{{ 'admin_accounts.list.meta.title'|trans }}{% endblock %}
 
 {% block breadcrums_content %}
@@ -17,54 +19,53 @@
     </div>
 
     <div class="container-fluid bg-white p-4">
-        {% if filterForm.vars.submitted or accounts|length %}
+        {% if accounts|length %}
             <div class="mb-4">
-                {{ form_start(filterForm) }}
-                <div class="d-flex align-items-center">
-                    {% if filterForm.name is defined %}<div class="col">{{ form_row(filterForm.name, {'row_class':'form-floating mb-3'}) }}</div>{% endif %}
-                    {% if filterForm.owner is defined %}<div class="col">{{ form_row(filterForm.owner, {'row_class':'form-floating mb-3'}) }}</div>{% endif %}
-                    {% if filterForm.search is defined %}<div class="col">{{ form_row(filterForm.search, {'row_class': 'form-floating mb-3'}) }}</div>{% endif %}
+                {{ form_start(filter_form) }}
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    {% if filter_form.name is defined %}{{ form_row(filter_form.name, {'row_class':'form-floating mb-3'}) }}{% endif %}
+                    {% if filter_form.owner is defined %}{{ form_row(filter_form.owner, {'row_class':'form-floating mb-3'}) }}{% endif %}
+                    {% if filter_form.search is defined %}{{ form_row(filter_form.search, {'row_class': 'form-floating mb-3'}) }}{% endif %}
                 </div>
-                {{ form_widget(filterForm) }}
-                {{ form_rest(filterForm) }}
-                {{ form_end(filterForm) }}
+                {{ form_rest(filter_form) }}
+                {{ form_end(filter_form) }}
             </div>
         {% endif %}
 
-        {% block content_table %}
-        {% embed '@SfsComponents/paginator/table.html.twig' with {'collection':accounts, 'pagination_route': 'sfs_account_admin_accounts_list'} %}
+        {% set has_active_filters = filter_form.vars.submitted or filter_form.vars.data|default([])|filter(v => v) is not empty %}
+
+        {% embed '@SfsComponents/paginator/table.html.twig' with {'collection': accounts, 'pagination_route': 'sfs_account_admin_accounts_list', 'has_active_filters': has_active_filters} only %}
             {% trans_default_domain 'sfs_account' %}
+
             {% block ths %}
-                <th scope="col">
-                    <a href="{{ accounts.sortToggleUrl(app.request, 'name') }}" class="text-dark">
+                <th scope="col" class="p-3">
+                    <a href="{{ collection.sortToggleUrl(app.request, 'name') }}" class="text-dark">
                         {{ 'admin_accounts.list.fields.name.header'|trans }}
-                        {% if accounts.sortedBy('name', 'asc') %}<i class="bi bi-caret-up-fill"></i>{% elseif accounts.sortedBy('name', 'desc') %}<i class="bi bi-caret-down-fill"></i>{% endif %}
+                        {% if collection.sortedBy('name', 'asc') %}<i class="bi bi-caret-up-fill"></i>{% elseif collection.sortedBy('name', 'desc') %}<i class="bi bi-caret-down-fill"></i>{% endif %}
                     </a>
                 </th>
-
-                <th scope="col">{{ 'admin_accounts.list.fields.owner.header'|trans }}</th>
+                <th scope="col" class="p-3">{{ 'admin_accounts.list.fields.owner.header'|trans }}</th>
                 <th>&nbsp;</th>
             {% endblock ths %}
 
             {% block tbody %}
-                {% include '@SfsAccount/admin/accounts/list-page.html.twig' %}
+                {% include '@SfsAccount/admin/accounts/list-page.html.twig' with {'accounts': collection} only %}
             {% endblock tbody %}
 
             {% block empty %}
                 <div class="p-5 text-center">
-                    <p>
-                        {% if filterForm.vars.submitted %}
+                    <p class="mb-3 text-body-secondary">
+                        {% if has_active_filters %}
                             {{ 'admin_accounts.list.no_matches'|trans }}
                         {% else %}
                             {{ 'admin_accounts.list.empty'|trans }}
                         {% endif %}
                     </p>
                     {% if is_granted('PERMISSION_SFS_ACCOUNT_ADMIN_ACCOUNTS_CREATE') %}
-                        <a class="btn btn-link" href="{{ url('sfs_account_admin_accounts_create') }}">Create first account</a>
+                        <a class="btn btn-link" href="{{ url('sfs_account_admin_accounts_create') }}">{{ 'admin_accounts.list.actions.create.link'|trans }}</a>
                     {% endif %}
                 </div>
             {% endblock empty %}
         {% endembed %}
-        {% endblock content_table %}
     </div>
 {% endblock content %}

@@ -3,13 +3,13 @@
 namespace Softspring\AccountBundle\Manager;
 
 use Doctrine\ORM\EntityRepository;
-use Softspring\AccountBundle\Model\AccountUserRelationInterface;
+use Softspring\AccountBundle\Model\AccountMembershipInterface;
 
-interface RelationManagerInterface
+interface AccountMembershipManagerInterface
 {
     public function getClass(): string;
 
     public function getRepository(): EntityRepository;
 
-    public function create(): AccountUserRelationInterface;
+    public function create(): AccountMembershipInterface;
 }

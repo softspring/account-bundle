@@ -4,7 +4,7 @@ namespace Softspring\AccountBundle\Model;
 
 use Softspring\UserBundle\Model\UserInterface;
 
-abstract class AccountUserRelation implements AccountUserRelationInterface
+abstract class AccountMembership implements AccountMembershipInterface
 {
     protected ?AccountInterface $account;
 

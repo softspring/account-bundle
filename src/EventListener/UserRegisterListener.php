@@ -2,7 +2,7 @@
 
 namespace Softspring\AccountBundle\EventListener;
 
-use Softspring\AccountBundle\Model\UserMultiAccountedInterface;
+use Softspring\AccountBundle\Model\UserAccountMembershipsInterface;
 use Softspring\UserBundle\Event\GetResponseUserEvent;
 use Softspring\UserBundle\SfsUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -34,7 +34,7 @@ class UserRegisterListener implements EventSubscriberInterface
     {
         $user = $event->getUser();
 
-        if ($user instanceof UserMultiAccountedInterface && !$user->getAccounts()->count()) {
+        if ($user instanceof UserAccountMembershipsInterface && !$user->getAccounts()->count()) {
             $event->setResponse(new RedirectResponse($this->router->generate('sfs_account_register')));
         }
     }

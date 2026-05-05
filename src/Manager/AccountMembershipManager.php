@@ -4,9 +4,9 @@ namespace Softspring\AccountBundle\Manager;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Softspring\AccountBundle\Model\AccountUserRelationInterface;
+use Softspring\AccountBundle\Model\AccountMembershipInterface;
 
-class RelationManager implements RelationManagerInterface
+class AccountMembershipManager implements AccountMembershipManagerInterface
 {
     protected EntityManagerInterface $em;
 
@@ -17,17 +17,17 @@ class RelationManager implements RelationManagerInterface
 
     public function getClass(): string
     {
-        $metadata = $this->em->getClassMetadata(AccountUserRelationInterface::class);
+        $metadata = $this->em->getClassMetadata(AccountMembershipInterface::class);
 
         return $metadata->getName();
     }
 
     public function getRepository(): EntityRepository
     {
-        return $this->em->getRepository(AccountUserRelationInterface::class);
+        return $this->em->getRepository(AccountMembershipInterface::class);
     }
 
-    public function create(): AccountUserRelationInterface
+    public function create(): AccountMembershipInterface
     {
         $className = $this->getClass();
 

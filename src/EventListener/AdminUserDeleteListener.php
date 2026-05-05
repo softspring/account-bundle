@@ -3,7 +3,7 @@
 namespace Softspring\AccountBundle\EventListener;
 
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
-use Softspring\AccountBundle\Model\MultiAccountedInterface;
+use Softspring\AccountBundle\Model\UserAccountMembershipsInterface;
 use Softspring\Component\Events\GetResponseFormEvent;
 use Softspring\UserBundle\SfsUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -27,8 +27,11 @@ class AdminUserDeleteListener implements EventSubscriberInterface
     public function onDeleteRemoveAccounts(GetResponseFormEvent $event): void
     {
         $form = $event->getForm();
-        /** @var MultiAccountedInterface $user */
         $user = $form->getData();
+
+        if (!$user instanceof UserAccountMembershipsInterface) {
+            return;
+        }
 
         if (!$form->has('deleteOwnedAccounts')) {
             return;

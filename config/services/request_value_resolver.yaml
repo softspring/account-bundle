@@ -3,9 +3,6 @@ services:
         autowire: true
         autoconfigure: true
         public: false
-        bind:
-            $accountRouteParamName: '%sfs_account.account.route_param_name%'
-            $findFieldName: '%sfs_account.account.find_field_name%'
 
     Softspring\AccountBundle\Request\AccountValueResolver:
         tags: ['controller.argument_value_resolver']

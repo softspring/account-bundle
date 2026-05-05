@@ -2,9 +2,8 @@
 
 namespace Softspring\AccountBundle\Tests\Request;
 
-use Doctrine\ORM\EntityRepository;
 use PHPUnit\Framework\TestCase;
-use Softspring\AccountBundle\Manager\AccountManagerInterface;
+use Softspring\AccountBundle\Context\AccountContextResolverInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Request\AccountValueResolver;
 use stdClass;
@@ -15,8 +14,8 @@ class AccountValueResolverTest extends TestCase
 {
     public function testSkipsArgumentsThatAreAlreadyResolved(): void
     {
-        $manager = $this->createMock(AccountManagerInterface::class);
-        $resolver = new AccountValueResolver($manager);
+        $accountContextResolver = $this->createMock(AccountContextResolverInterface::class);
+        $resolver = new AccountValueResolver($accountContextResolver);
         $request = new Request();
         $request->attributes->set('account', new stdClass());
 
@@ -27,8 +26,8 @@ class AccountValueResolverTest extends TestCase
 
     public function testSkipsUnsupportedArgumentTypes(): void
     {
-        $manager = $this->createMock(AccountManagerInterface::class);
-        $resolver = new AccountValueResolver($manager);
+        $accountContextResolver = $this->createMock(AccountContextResolverInterface::class);
+        $resolver = new AccountValueResolver($accountContextResolver);
         $request = new Request();
         $request->attributes->set('_account', 'account-42');
 
@@ -39,8 +38,11 @@ class AccountValueResolverTest extends TestCase
 
     public function testReturnsEmptyResultWhenRouteParameterIsMissing(): void
     {
-        $manager = $this->createMock(AccountManagerInterface::class);
-        $resolver = new AccountValueResolver($manager);
+        $accountContextResolver = $this->createMock(AccountContextResolverInterface::class);
+        $accountContextResolver->expects(self::once())
+            ->method('resolveAccount')
+            ->willReturn(null);
+        $resolver = new AccountValueResolver($accountContextResolver);
 
         $resolved = $resolver->resolve(new Request(), $this->createArgumentMetadata());
 
@@ -50,20 +52,12 @@ class AccountValueResolverTest extends TestCase
     public function testResolvesAccountUsingConfiguredRouteParameterAndFindField(): void
     {
         $account = new AccountStub('account-42', 'Main account');
-        $repository = $this->createMock(EntityRepository::class);
-        $repository->expects(self::once())
-            ->method('findOneBy')
-            ->with(['slug' => 'main-account'])
+        $accountContextResolver = $this->createMock(AccountContextResolverInterface::class);
+        $accountContextResolver->expects(self::once())
+            ->method('resolveAccount')
             ->willReturn($account);
-
-        $manager = $this->createMock(AccountManagerInterface::class);
-        $manager->expects(self::once())
-            ->method('getRepository')
-            ->willReturn($repository);
-
-        $resolver = new AccountValueResolver($manager, '_workspace', 'slug');
+        $resolver = new AccountValueResolver($accountContextResolver);
         $request = new Request();
-        $request->attributes->set('_workspace', 'main-account');
 
         $resolved = $resolver->resolve($request, $this->createArgumentMetadata());
 
@@ -72,20 +66,12 @@ class AccountValueResolverTest extends TestCase
 
     public function testReturnsEmptyResultWhenRepositoryDoesNotReturnAnAccount(): void
     {
-        $repository = $this->createMock(EntityRepository::class);
-        $repository->expects(self::once())
-            ->method('findOneBy')
-            ->with(['id' => 'account-42'])
-            ->willReturn(new stdClass());
-
-        $manager = $this->createMock(AccountManagerInterface::class);
-        $manager->expects(self::once())
-            ->method('getRepository')
-            ->willReturn($repository);
-
-        $resolver = new AccountValueResolver($manager);
+        $accountContextResolver = $this->createMock(AccountContextResolverInterface::class);
+        $accountContextResolver->expects(self::once())
+            ->method('resolveAccount')
+            ->willReturn(null);
+        $resolver = new AccountValueResolver($accountContextResolver);
         $request = new Request();
-        $request->attributes->set('_account', 'account-42');
 
         $resolved = $resolver->resolve($request, $this->createArgumentMetadata());
 

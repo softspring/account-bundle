@@ -4,13 +4,13 @@ namespace Softspring\AccountBundle\Doctrine\Filter;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Query\Filter\SQLFilter;
-use Softspring\AccountBundle\Model\AccountFilterInterface;
+use Softspring\AccountBundle\Model\AccountScopedInterface;
 
 class AccountFilter extends SQLFilter
 {
     public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias): string
     {
-        if (!$targetEntity->reflClass->implementsInterface(AccountFilterInterface::class)) {
+        if (!$targetEntity->reflClass->implementsInterface(AccountScopedInterface::class)) {
             return '';
         }
 

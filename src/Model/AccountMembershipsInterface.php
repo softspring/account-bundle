@@ -5,16 +5,16 @@ namespace Softspring\AccountBundle\Model;
 use Doctrine\Common\Collections\Collection;
 use Softspring\UserBundle\Model\UserInterface;
 
-interface AccountManyUserRelationsInterface
+interface AccountMembershipsInterface
 {
     /**
-     * @return Collection<AccountUserRelationInterface>
+     * @return Collection<AccountMembershipInterface>
      */
-    public function getRelations(): Collection;
+    public function getMemberships(): Collection;
 
-    public function addRelation(AccountUserRelationInterface $relation): void;
+    public function addMembership(AccountMembershipInterface $membership): void;
 
-    public function removeRelation(AccountUserRelationInterface $relation): void;
+    public function removeMembership(AccountMembershipInterface $membership): void;
 
     /**
      * @return Collection<UserInterface>

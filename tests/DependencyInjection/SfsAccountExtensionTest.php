@@ -2,6 +2,7 @@
 
 namespace Softspring\AccountBundle\Tests\DependencyInjection;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use PHPUnit\Framework\TestCase;
 use Softspring\AccountBundle\DataFixtures\AccountFixtures;
 use Softspring\AccountBundle\DependencyInjection\SfsAccountExtension;
@@ -19,7 +20,7 @@ class SfsAccountExtensionTest extends TestCase
 
         $extension->load([[
             'class' => 'App\\Entity\\Workspace',
-            'relation_class' => 'App\\Entity\\WorkspaceMember',
+            'membership_class' => 'App\\Entity\\WorkspaceMember',
             'entity_manager' => 'accounts',
             'twig_app_var_name' => 'workspace',
             'route_param_name' => '_workspace',
@@ -30,7 +31,7 @@ class SfsAccountExtensionTest extends TestCase
 
         self::assertSame('accounts', $container->getParameter('sfs_account.entity_manager_name'));
         self::assertSame('App\\Entity\\Workspace', $container->getParameter('sfs_account.account.class'));
-        self::assertSame('App\\Entity\\WorkspaceMember', $container->getParameter('sfs_account.relation.class'));
+        self::assertSame('App\\Entity\\WorkspaceMember', $container->getParameter('sfs_account.membership.class'));
         self::assertSame('_workspace', $container->getParameter('sfs_account.account.route_param_name'));
         self::assertSame('slug', $container->getParameter('sfs_account.account.find_field_name'));
         self::assertSame('workspace', $container->getParameter('sfs_account.account.twig_app_var_name'));
@@ -38,7 +39,7 @@ class SfsAccountExtensionTest extends TestCase
         self::assertFalse($container->hasDefinition('sfs_account.admin.account.controller'));
         self::assertFalse($container->hasDefinition(AccountDoctrineFilterListener::class));
         self::assertTrue($container->hasDefinition(AccountValueResolver::class));
-        self::assertTrue($container->hasDefinition(AccountFixtures::class));
+        self::assertSame(class_exists(Fixture::class), $container->hasDefinition(AccountFixtures::class));
     }
 
     public function testPrependRegistersDoctrineTargetEntityAndTwigExtraConfig(): void

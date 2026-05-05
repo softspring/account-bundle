@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    {% embed '@SfsComponents/paginator/table.html.twig' with {'collection':relations} %}
+    {% embed '@SfsComponents/paginator/table.html.twig' with {'collection':memberships} %}
         {% trans_default_domain 'sfs_account' %}
         {% block ths %}
             <th scope="col">{{ 'settings_users.list.fields.id.header'|trans }}</th>
@@ -11,12 +11,12 @@
         {% endblock ths %}
 
         {% block tbody %}
-            {% for relation in relations %}
+            {% for membership in memberships %}
                 <tr>
                     <td>
-                        {{ relation.user.username }}
-                        {% if relation.user == app.user %}(me){% endif %}
-                        {% if relation.user == account.owner %}(owner){% endif %}
+                        {{ membership.user.username }}
+                        {% if membership.user == app.user %}(me){% endif %}
+                        {% if membership.user == account.owner %}(owner){% endif %}
                     </td>
                 </tr>
             {% endfor %}

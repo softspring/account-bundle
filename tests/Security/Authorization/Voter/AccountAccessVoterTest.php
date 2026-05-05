@@ -5,8 +5,9 @@ namespace Softspring\AccountBundle\Tests\Security\Authorization\Voter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use PHPUnit\Framework\TestCase;
+use Softspring\AccountBundle\Model\AccountMembershipsInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
-use Softspring\AccountBundle\Model\SingleAccountedAccountInterface;
+use Softspring\AccountBundle\Model\AccountMembershipInterface;
 use Softspring\AccountBundle\Security\Authorization\Voter\AccountAccessVoter;
 use Softspring\UserBundle\Model\OwnerInterface;
 use Softspring\UserBundle\Model\RolesAdminInterface;
@@ -191,19 +192,22 @@ class OwnerAccountStub implements AccountInterface, OwnerInterface
     }
 }
 
-class UsersAccountStub implements AccountInterface, SingleAccountedAccountInterface
+class UsersAccountStub implements AccountInterface, AccountMembershipsInterface
 {
     /**
-     * @var Collection<int, UserInterface>
+     * @var Collection<int, AccountMembershipInterface>
      */
-    private Collection $users;
+    private Collection $memberships;
 
     /**
      * @param UserInterface[] $users
      */
     public function __construct(array $users = [])
     {
-        $this->users = new ArrayCollection($users);
+        $this->memberships = new ArrayCollection(array_map(
+            fn (UserInterface $user) => new AccountMembershipStub($this, $user),
+            $users,
+        ));
     }
 
     public function getId(): ?string
@@ -220,21 +224,75 @@ class UsersAccountStub implements AccountInterface, SingleAccountedAccountInterf
     {
     }
 
-    public function getUsers(): Collection
+    public function getMemberships(): Collection
     {
-        return $this->users;
+        return $this->memberships;
     }
 
-    public function addUser(UserInterface $user): void
+    public function addMembership(AccountMembershipInterface $membership): void
     {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
+        if (!$this->memberships->contains($membership)) {
+            $this->memberships->add($membership);
         }
+    }
+
+    public function removeMembership(AccountMembershipInterface $membership): void
+    {
+        $this->memberships->removeElement($membership);
+    }
+
+    public function getUsers(): Collection
+    {
+        return $this->memberships->map(fn (AccountMembershipInterface $membership) => $membership->getUser());
     }
 
     public function removeUser(UserInterface $user): void
     {
-        $this->users->removeElement($user);
+        foreach ($this->memberships as $membership) {
+            if ($membership->getUser() === $user) {
+                $this->memberships->removeElement($membership);
+            }
+        }
+    }
+}
+
+class AccountMembershipStub implements AccountMembershipInterface
+{
+    public function __construct(
+        private ?AccountInterface $account,
+        private ?UserInterface $user,
+        private array $roles = [],
+    ) {
+    }
+
+    public function getAccount(): ?AccountInterface
+    {
+        return $this->account;
+    }
+
+    public function setAccount(?AccountInterface $account): void
+    {
+        $this->account = $account;
+    }
+
+    public function getUser(): ?UserInterface
+    {
+        return $this->user;
+    }
+
+    public function setUser(?UserInterface $user): void
+    {
+        $this->user = $user;
+    }
+
+    public function getRoles(): array
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
     }
 }
 

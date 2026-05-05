@@ -11,11 +11,11 @@
         </thead>
 
         <tbody>
-        {% for relation in app.user.relations %}
+        {% for membership in app.user.accountMemberships %}
             <tr>
-                <td>{{ relation.account.name }}</td>
+                <td>{{ membership.account.name }}</td>
                 <td>
-                    {% if relation.account.owner == app.user %}
+                    {% if membership.account.owner == app.user %}
                         Owner
                     {% endif %}
                 </td>

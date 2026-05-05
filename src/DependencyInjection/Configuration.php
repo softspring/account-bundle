@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('route_param_name')->defaultValue('_account')->end()
                 ->scalarNode('find_field_name')->defaultValue('id')->end()
 
-                ->scalarNode('relation_class')
+                ->scalarNode('membership_class')
                     ->defaultNull()
                 ->end()
 

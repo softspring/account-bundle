@@ -40,11 +40,11 @@ class AdminAccountListener implements EventSubscriberInterface
         $form = $event->getForm();
         $account = $form->getData();
 
-        if (!$form->has('deleteSingleAccountedUsers')) {
+        if (!$form->has('deleteUsersWithoutOtherAccounts')) {
             return;
         }
 
-        $users = $form->get('deleteSingleAccountedUsers')->getData();
+        $users = $form->get('deleteUsersWithoutOtherAccounts')->getData();
 
         foreach ($users as $user) {
             $account->removeUser($user);

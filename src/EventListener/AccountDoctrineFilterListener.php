@@ -2,22 +2,20 @@
 
 namespace Softspring\AccountBundle\EventListener;
 
+use Softspring\AccountBundle\Context\AccountContextResolverInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Softspring\AccountBundle\Doctrine\Filter\AccountFilter;
+use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 class AccountDoctrineFilterListener implements EventSubscriberInterface
 {
-    protected EntityManagerInterface $em;
-
-    protected string $accountRouteParamName;
-
-    public function __construct(EntityManagerInterface $em, string $accountRouteParamName)
-    {
-        $this->em = $em;
-        $this->accountRouteParamName = $accountRouteParamName;
+    public function __construct(
+        private readonly EntityManagerInterface $em,
+        private readonly AccountContextResolverInterface $accountContextResolver,
+    ) {
     }
 
     public static function getSubscribedEvents(): array
@@ -33,10 +31,18 @@ class AccountDoctrineFilterListener implements EventSubscriberInterface
     {
         $request = $event->getRequest();
 
-        if ($request->attributes->has($this->accountRouteParamName)) {
-            $this->em->getConfiguration()->addFilter('account', AccountFilter::class);
-            $filter = $this->em->getFilters()->enable('account');
-            $filter->setParameter('_account', $request->attributes->get($this->accountRouteParamName));
+        if (!$this->accountContextResolver->hasAccountScope($request)) {
+            return;
         }
+
+        $account = $this->accountContextResolver->resolveAccount($request);
+
+        if (!$account instanceof AccountInterface || null === $account->getId()) {
+            return;
+        }
+
+        $this->em->getConfiguration()->addFilter('account', AccountFilter::class);
+        $filter = $this->em->getFilters()->enable('account');
+        $filter->setParameter('_account', (string) $account->getId());
     }
 }

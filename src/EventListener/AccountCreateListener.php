@@ -2,10 +2,10 @@
 
 namespace Softspring\AccountBundle\EventListener;
 
-use Softspring\AccountBundle\Manager\RelationManagerInterface;
+use Softspring\AccountBundle\Manager\AccountMembershipManagerInterface;
+use Softspring\AccountBundle\Model\AccountMembershipsInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
-use Softspring\AccountBundle\Model\AccountUserRelationInterface;
-use Softspring\AccountBundle\Model\MultiAccountedAccountInterface;
+use Softspring\AccountBundle\Model\AccountMembershipInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\Component\CrudlController\Event\GetResponseFormEvent;
 use Softspring\UserBundle\Model\OwnerInterface;
@@ -18,12 +18,12 @@ class AccountCreateListener implements EventSubscriberInterface
 {
     protected TokenStorageInterface $tokenStorage;
 
-    protected RelationManagerInterface $relationManager;
+    protected AccountMembershipManagerInterface $membershipManager;
 
-    public function __construct(TokenStorageInterface $tokenStorage, RelationManagerInterface $relationManager)
+    public function __construct(TokenStorageInterface $tokenStorage, AccountMembershipManagerInterface $membershipManager)
     {
         $this->tokenStorage = $tokenStorage;
-        $this->relationManager = $relationManager;
+        $this->membershipManager = $membershipManager;
     }
 
     public static function getSubscribedEvents(): array
@@ -45,24 +45,27 @@ class AccountCreateListener implements EventSubscriberInterface
                 $account->setOwner($user);
             }
 
-            if ($account instanceof MultiAccountedAccountInterface) {
-                if ($account->getRelations()->filter(function (AccountUserRelationInterface $relation) use ($user): bool {
-                    return $relation->getUser() === $user;
+            if ($account instanceof AccountMembershipsInterface) {
+                if ($account->getMemberships()->filter(function (AccountMembershipInterface $membership) use ($user): bool {
+                    return $membership->getUser() === $user;
                 })->count()) {
                     return;
                 }
 
-                $account->addRelation($relation = $this->relationManager->create());
-
-                $relation->setAccount($account);
-                $relation->setUser($user);
-
-                if (method_exists($relation, 'setRoles') && method_exists($relation, 'getRoles')) {
-                    $relation->setRoles(array_unique(array_merge(['ROLE_OWNER'], $relation->getRoles())));
+                $account->addMembership($membership = $this->membershipManager->create());
+                if (method_exists($user, 'addAccountMembership')) {
+                    $user->addAccountMembership($membership);
                 }
 
-                if (method_exists($relation, 'setGrantedBy')) {
-                    $relation->setGrantedBy($user);
+                $membership->setAccount($account);
+                $membership->setUser($user);
+
+                if (method_exists($membership, 'setRoles') && method_exists($membership, 'getRoles')) {
+                    $membership->setRoles(array_unique(array_merge(['ROLE_OWNER'], $membership->getRoles())));
+                }
+
+                if (method_exists($membership, 'setGrantedBy')) {
+                    $membership->setGrantedBy($user);
                 }
             }
         }
@@ -79,15 +82,18 @@ class AccountCreateListener implements EventSubscriberInterface
 
         $user = $account->getOwner();
 
-        if ($user instanceof UserInterface && $account instanceof MultiAccountedAccountInterface) {
-            $account->addRelation($relation = $this->relationManager->create());
-            $relation->setAccount($account);
-            $relation->setUser($user);
-            if (method_exists($relation, 'setRoles') && method_exists($relation, 'getRoles')) {
-                $relation->setRoles(array_unique(array_merge(['ROLE_OWNER'], $relation->getRoles())));
+        if ($user instanceof UserInterface && $account instanceof AccountMembershipsInterface) {
+            $account->addMembership($membership = $this->membershipManager->create());
+            if (method_exists($user, 'addAccountMembership')) {
+                $user->addAccountMembership($membership);
             }
-            if (method_exists($relation, 'setGrantedBy')) {
-                $relation->setGrantedBy($user);
+            $membership->setAccount($account);
+            $membership->setUser($user);
+            if (method_exists($membership, 'setRoles') && method_exists($membership, 'getRoles')) {
+                $membership->setRoles(array_unique(array_merge(['ROLE_OWNER'], $membership->getRoles())));
+            }
+            if (method_exists($membership, 'setGrantedBy')) {
+                $membership->setGrantedBy($user);
             }
         }
     }

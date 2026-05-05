@@ -2,10 +2,7 @@
 
 namespace Softspring\AccountBundle\Model;
 
-/**
- * @deprecated
- */
-interface SingleAccountedInterface
+interface AccountOwnedInterface
 {
     public function getAccount(): ?AccountInterface;
 
