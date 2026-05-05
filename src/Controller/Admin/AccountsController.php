@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\AccountBundle\Controller\Admin;
 
 use Softspring\AccountBundle\Manager\AccountManagerInterface;

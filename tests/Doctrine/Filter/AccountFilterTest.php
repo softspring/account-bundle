@@ -9,8 +9,8 @@ use Doctrine\ORM\Query\FilterCollection;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use Softspring\AccountBundle\Doctrine\Filter\AccountFilter;
-use Softspring\AccountBundle\Model\AccountScopedInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountScopedInterface;
 use stdClass;
 
 class AccountFilterTest extends TestCase

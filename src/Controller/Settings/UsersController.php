@@ -4,8 +4,8 @@ namespace Softspring\AccountBundle\Controller\Settings;
 
 use ArrayObject;
 use Softspring\AccountBundle\Manager\AccountManagerInterface;
-use Softspring\AccountBundle\Model\AccountMembershipsInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountMembershipsInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

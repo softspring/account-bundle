@@ -3,9 +3,9 @@
 namespace Softspring\AccountBundle\EventListener;
 
 use Softspring\AccountBundle\Manager\AccountMembershipManagerInterface;
-use Softspring\AccountBundle\Model\AccountMembershipsInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\AccountMembershipInterface;
+use Softspring\AccountBundle\Model\AccountMembershipsInterface;
 use Softspring\AccountBundle\SfsAccountEvents;
 use Softspring\Component\CrudlController\Event\GetResponseFormEvent;
 use Softspring\UserBundle\Model\OwnerInterface;
@@ -60,9 +60,7 @@ class AccountCreateListener implements EventSubscriberInterface
                 $membership->setAccount($account);
                 $membership->setUser($user);
 
-                if (method_exists($membership, 'setRoles') && method_exists($membership, 'getRoles')) {
-                    $membership->setRoles(array_unique(array_merge(['ROLE_OWNER'], $membership->getRoles())));
-                }
+                $membership->setRoles(array_unique(array_merge(['ROLE_OWNER'], $membership->getRoles())));
 
                 if (method_exists($membership, 'setGrantedBy')) {
                     $membership->setGrantedBy($user);
@@ -89,9 +87,7 @@ class AccountCreateListener implements EventSubscriberInterface
             }
             $membership->setAccount($account);
             $membership->setUser($user);
-            if (method_exists($membership, 'setRoles') && method_exists($membership, 'getRoles')) {
-                $membership->setRoles(array_unique(array_merge(['ROLE_OWNER'], $membership->getRoles())));
-            }
+            $membership->setRoles(array_unique(array_merge(['ROLE_OWNER'], $membership->getRoles())));
             if (method_exists($membership, 'setGrantedBy')) {
                 $membership->setGrantedBy($user);
             }

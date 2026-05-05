@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\AccountBundle\Doctrine\EventListener;
 
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Softspring\AccountBundle\Context\AccountContextResolverInterface;
-use Softspring\AccountBundle\Model\AccountScopedInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
+use Softspring\AccountBundle\Model\AccountScopedInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 

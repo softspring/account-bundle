@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\AccountBundle\EventListener;
 
-use Softspring\AccountBundle\Context\AccountContextResolverInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Softspring\AccountBundle\Context\AccountContextResolverInterface;
 use Softspring\AccountBundle\Doctrine\Filter\AccountFilter;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

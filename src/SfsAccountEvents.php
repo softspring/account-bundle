@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Softspring\AccountBundle;
 
 use Symfony\Contracts\EventDispatcher\Event;

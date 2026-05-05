@@ -5,9 +5,9 @@ namespace Softspring\AccountBundle\Tests\Security\Authorization\Voter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use PHPUnit\Framework\TestCase;
-use Softspring\AccountBundle\Model\AccountMembershipsInterface;
 use Softspring\AccountBundle\Model\AccountInterface;
 use Softspring\AccountBundle\Model\AccountMembershipInterface;
+use Softspring\AccountBundle\Model\AccountMembershipsInterface;
 use Softspring\AccountBundle\Security\Authorization\Voter\AccountAccessVoter;
 use Softspring\UserBundle\Model\OwnerInterface;
 use Softspring\UserBundle\Model\RolesAdminInterface;
@@ -204,10 +204,11 @@ class UsersAccountStub implements AccountInterface, AccountMembershipsInterface
      */
     public function __construct(array $users = [])
     {
-        $this->memberships = new ArrayCollection(array_map(
-            fn (UserInterface $user) => new AccountMembershipStub($this, $user),
-            $users,
-        ));
+        $this->memberships = new ArrayCollection();
+
+        foreach ($users as $user) {
+            $this->memberships->add(new AccountMembershipStub($this, $user));
+        }
     }
 
     public function getId(): ?string
