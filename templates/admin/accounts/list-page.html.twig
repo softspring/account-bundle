@@ -1,7 +1,7 @@
 {% trans_default_domain 'sfs_account' %}
 
 {% for account in accounts %}
-    <tr>
+    <tr data-row-href="{{ url('sfs_account_admin_accounts_details', {'account': account}) }}">
         <td>{{ account.name }}</td>
         <td>{{ account.owner.displayName }}</td>
         <td>
