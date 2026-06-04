@@ -8,6 +8,7 @@ use Softspring\UserBundle\Model\OwnerInterface;
 use Softspring\UserBundle\Model\RolesAdminInterface;
 use Softspring\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\Vote;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 
@@ -25,7 +26,7 @@ class AccountAccessVoter implements VoterInterface
     /**
      * @psalm-param AccountInterface $subject
      */
-    public function vote(TokenInterface $token, mixed $subject, array $attributes, mixed $vote = null): int
+    public function vote(TokenInterface $token, mixed $subject, array $attributes, ?Vote $vote = null): int
     {
         $account = $subject;
 
