@@ -8,9 +8,9 @@ use Softspring\UserBundle\Model\UserInterface;
 
 abstract class AccountMembership implements AccountMembershipInterface
 {
-    protected ?AccountInterface $account;
+    protected ?AccountInterface $account = null;
 
-    protected ?UserInterface $user;
+    protected ?UserInterface $user = null;
 
     public function getAccount(): ?AccountInterface
     {

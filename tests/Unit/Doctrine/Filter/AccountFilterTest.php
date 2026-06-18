@@ -1,6 +1,6 @@
 <?php
 
-namespace Softspring\AccountBundle\Tests\Doctrine\Filter;
+namespace Softspring\AccountBundle\Tests\Unit\Doctrine\Filter;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;

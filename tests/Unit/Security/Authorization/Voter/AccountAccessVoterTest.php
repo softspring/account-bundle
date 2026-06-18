@@ -1,6 +1,6 @@
 <?php
 
-namespace Softspring\AccountBundle\Tests\Security\Authorization\Voter;
+namespace Softspring\AccountBundle\Tests\Unit\Security\Authorization\Voter;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -34,7 +34,7 @@ class AccountAccessVoterTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $voter = new AccountAccessVoter();
-        $token = $this->createToken(new LegacyUserStub());
+        $token = $this->createToken($this->createStub(SymfonyUserInterface::class));
 
         $voter->vote($token, new UsersAccountStub(), ['CHECK_ACCOUNT_ACCESS']);
     }
@@ -244,7 +244,7 @@ class UsersAccountStub implements AccountInterface, AccountMembershipsInterface
 
     public function getUsers(): Collection
     {
-        return $this->memberships->map(fn (AccountMembershipInterface $membership) => $membership->getUser());
+        return $this->memberships->map(fn (AccountMembershipInterface $membership): ?UserInterface => $membership->getUser());
     }
 
     public function removeUser(UserInterface $user): void
@@ -294,23 +294,6 @@ class AccountMembershipStub implements AccountMembershipInterface
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
-    }
-}
-
-class LegacyUserStub implements SymfonyUserInterface
-{
-    public function getRoles(): array
-    {
-        return [];
-    }
-
-    public function getUserIdentifier(): string
-    {
-        return 'legacy-user';
-    }
-
-    public function eraseCredentials(): void
-    {
     }
 }
 

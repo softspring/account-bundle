@@ -1,6 +1,6 @@
 <?php
 
-namespace Softspring\AccountBundle\Tests\DependencyInjection;
+namespace Softspring\AccountBundle\Tests\Integration\DependencyInjection;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use PHPUnit\Framework\TestCase;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Softspring\AccountBundle\Tests\Request;
+namespace Softspring\AccountBundle\Tests\Unit\Request;
 
 use PHPUnit\Framework\TestCase;
 use Softspring\AccountBundle\Context\AccountContextResolverInterface;

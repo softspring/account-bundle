@@ -1,6 +1,6 @@
 <?php
 
-namespace Softspring\AccountBundle\Tests\Context;
+namespace Softspring\AccountBundle\Tests\Unit\Context;
 
 use Doctrine\ORM\EntityRepository;
 use PHPUnit\Framework\TestCase;
