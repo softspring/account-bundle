@@ -6,7 +6,7 @@
 [![PHP Version](https://img.shields.io/packagist/dependency-v/softspring/account-bundle/php?style=flat-square)](https://github.com/softspring/account-bundle/blob/6.0/composer.json)
 [![Downloads](https://img.shields.io/packagist/dt/softspring/account-bundle?style=flat-square)](https://packagist.org/packages/softspring/account-bundle)
 [![CI](https://img.shields.io/github/actions/workflow/status/softspring/account-bundle/ci.yml?branch=6.0&style=flat-square&label=CI)](https://github.com/softspring/account-bundle/actions/workflows/ci.yml)
-[![Coverage](https://img.shields.io/codecov/c/github/softspring/account-bundle?branch=6.0&style=flat-square)](https://codecov.io/gh/softspring/account-bundle)
+[![Coverage](https://img.shields.io/codecov/c/github/softspring/account-bundle?branch=6.0&style=flat-square)](https://app.codecov.io/gh/softspring/account-bundle/tree/6.0)
 
 Account ownership bundle for Symfony applications built on top of `softspring/user-bundle`.
 
