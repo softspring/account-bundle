@@ -53,7 +53,8 @@ class RegisterController extends AbstractController
                 }
 
                 return $this->redirectToRoute('sfs_account_register_success', ['account' => $account]);
-            } elseif (($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_FORM_INVALID, new GetResponseFormEvent($form, $request))) instanceof Response) {
+            }
+            if (($response = $this->dispatchGetResponse(SfsAccountEvents::REGISTER_FORM_INVALID, new GetResponseFormEvent($form, $request))) instanceof Response) {
                 return $response;
             }
         }
