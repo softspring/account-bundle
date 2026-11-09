@@ -69,7 +69,7 @@ class AccountDeleteForm extends AbstractType implements AccountDeleteFormInterfa
                     continue;
                 }
 
-                if (1 == $user->getAccounts()->count() && $user->getAccounts()->first() == $account) {
+                if (1 === $user->getAccounts()->count() && $user->getAccounts()->first() == $account) {
                     $usersForDeletion[] = $user;
                 }
             }
