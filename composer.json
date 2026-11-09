@@ -7,14 +7,14 @@
         "php": ">=8.4",
         "doctrine/doctrine-bundle": "^2.10 || ^3.0 || ^4.0",
         "doctrine/orm": "^2.10 || ^3.0 || ^4.0",
-        "softspring/components": "^6.0@dev",
-        "softspring/crudl-controller": "^6.0@dev",
-        "softspring/doctrine-paginator": "^6.0@dev",
-        "softspring/doctrine-query-filters": "^6.0@dev",
-        "softspring/doctrine-target-entity-resolver": "^6.0@dev",
-        "softspring/events": "^6.0@dev",
-        "softspring/twig-extra-bundle": "^6.0@dev",
-        "softspring/user-bundle": "^6.0@dev",
+        "softspring/components": "6.1.*@dev",
+        "softspring/crudl-controller": "6.1.*@dev",
+        "softspring/doctrine-paginator": "6.1.*@dev",
+        "softspring/doctrine-query-filters": "6.1.*@dev",
+        "softspring/doctrine-target-entity-resolver": "6.1.*@dev",
+        "softspring/events": "6.1.*@dev",
+        "softspring/twig-extra-bundle": "6.1.*@dev",
+        "softspring/user-bundle": "6.1.*@dev",
         "symfony/config": "^6.4 || ^7.4 || ^8.0",
         "symfony/console": "^6.4 || ^7.4 || ^8.0",
         "symfony/event-dispatcher": "^6.4 || ^7.4 || ^8.0",
@@ -34,7 +34,7 @@
         "phpunit/phpunit": "^12.5",
         "rector/rector": "^2.6.7",
         "symfony/polyfill-php85": "^1.33",
-        "softspring/doctrine-templates": "^6.0@dev"
+        "softspring/doctrine-templates": "6.1.*@dev"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -56,7 +56,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-6.0": "6.0.x-dev"
+            "dev-6.0": "6.0.x-dev",
+            "dev-6.1": "6.1.x-dev"
         }
     },
     "scripts": {
